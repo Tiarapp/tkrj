@@ -1,0 +1,165 @@
+{
+  "menu": [
+    {
+      "url": "home",
+      "name": "Home",
+      "icon": "home",
+      "slug": "home"
+    },
+    {
+      "name": "Master",
+      "icon": "database",
+      "slug": "",
+      "submenu": [
+          {
+            "url": "Master/Tahun Ajaran",
+            "name": "Tahun Ajaran",
+            "icon": "database",
+            "slug": "master.tahunajaran.list"
+          },
+          {
+            "url": "Master/Kelas",
+            "name": "Kelas",
+            "icon": "database",
+            "slug": "master.kelas.list"
+          },
+          {
+            "url": "Master/Guru",
+            "name": "Guru",
+            "icon": "database",
+            "slug": "master.guru.list"
+          },
+          {
+            "url": "Master/Siswa",
+            "name": "Siswa",
+            "icon": "database",
+            "slug": "master.siswa.list"
+          },
+          {
+            "url": "Master/Capaian Pembelajaran",
+            "name": "Capaian Pembelajaran",
+            "icon": "database",
+            "slug": "master.cp.list"
+          },
+          {
+            "url": "Master/Tujuan Pembelajaran",
+            "name": "Tujuan Pembelajaran",
+            "icon": "database",
+            "slug": "master.tp.list"
+          },
+          {
+            "url": "Master/Tujuan Kegiatan",
+            "name": "Tujuan Kegiatan",
+            "icon": "database",
+            "slug": "master.tk.list"
+          },
+          {
+            "url": "Master/Kategori",
+            "name": "Kategori",
+            "icon": "database",
+            "slug": "master.kategori.list"
+          },
+          {
+            "url": "Master/Skill Value",
+            "name": "Skill Value",
+            "icon": "database",
+            "slug": "master.skillvalue.list"
+          },
+          {
+            "url": "Master/Perkembangan",
+            "name": "Perkembangan",
+            "icon": "database",
+            "slug": "master.perkembangan.list"
+          },
+          {
+            "url": "Master/Areas Dev",
+            "name": "Areas Dev",
+            "icon": "database",
+            "slug": "master.areasdev.list"
+          },
+          {
+            "url": "Master/Dev Achiev",
+            "name": "Dev Achiev",
+            "icon": "database",
+            "slug": "master.devachiev.list"
+          },
+          {
+            "url": "Master/Indikator",
+            "name": "Indikator",
+            "icon": "database",
+            "slug": "master.indikator.list"
+          },
+          {
+            "url": "Master/Ekstra",
+            "name": "Ekstra",
+            "icon": "database",
+            "slug": "master.ekstra.list"
+          },
+          {
+            "url": "Master/Jenjang",
+            "name": "Jenjang",
+            "icon": "database",
+            "slug": "master.jenjang.list"
+          },
+          {
+            "url": "Master/Semester",
+            "name": "Semester",
+            "icon": "database",
+            "slug": "master.semester.list"
+          }
+      ]
+    },
+    {
+      "name": "Data",
+      "icon": "database",
+      "slug": "",
+      "submenu": [
+          {
+            "url": "Data/Tahun Ajaran",
+            "name": "Tahun Ajaran",
+            "icon": "database",
+            "slug": "master.tahunajaran.list"
+          }
+      ]
+    },
+    {
+      "name": "Page Layouts",
+      "icon": "mail",
+      "slug": "",
+      "badge": "5",
+      "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
+      "submenu": [
+        {
+          "url": "layouts/collapsed-menu",
+          "name": "Collapsed Menu",
+          "icon": "circle",
+          "slug": "collapsed-menu"
+        },
+        {
+          "url": "layouts/full",
+          "name": "Layout Full",
+          "icon": "circle",
+          "slug": "layout-full"
+        },
+        {
+          "url": "layouts/without-menu",
+          "name": "Without Menu",
+          "icon": "circle",
+          "slug": "without-menu"
+        },
+        {
+          "url": "layouts/empty",
+          "name": "Layout Empty",
+          "icon": "circle",
+          "slug": "layout-empty"
+        },
+        {
+          "url": "layouts/blank",
+          "name": "Layout Blank",
+          "icon": "circle",
+          "slug": "layout-blank"
+        }
+      ]
+    }
+  ]
+}
