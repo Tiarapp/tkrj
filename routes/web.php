@@ -3,13 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\Master\MasterAreaController;
 use App\Http\Controllers\Master\MasterCPController;
+use App\Http\Controllers\Master\MasterDevacController;
+use App\Http\Controllers\Master\MasterElemenCPController;
 use App\Http\Controllers\Master\MasterGuruController;
+use App\Http\Controllers\Master\MasterIndikatorController;
 use App\Http\Controllers\Master\MasterJenjangController;
 use App\Http\Controllers\Master\MasterKategoriController;
 use App\Http\Controllers\Master\MasterTahunajaranController;
 use App\Http\Controllers\Master\MasterKelasController;
 use App\Http\Controllers\Master\MasterPerkembanganController;
+use App\Http\Controllers\Master\MasterSemesterController;
 use App\Http\Controllers\Master\MasterSiswaController;
 use App\Http\Controllers\Master\MasterSkillValueController;
 use App\Http\Controllers\Master\MasterTKController;
@@ -75,6 +80,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
       Route::put('/edit{id}',[MasterCPController::class, 'update'])->name('edit');
   });
 
+    // MASTER Elemen CP
+    Route::group(['prefix' => 'Master/Elemen Capaian Pembelajaran', 'as' => 'master.elemen.'], function() {
+      Route::get('', [MasterElemenCPController::class, 'index'])->name('list');
+      Route::post('/add',[MasterElemenCPController::class, 'store'])->name('add');
+      Route::put('/edit{id}',[MasterElemenCPController::class, 'update'])->name('edit');
+  });
+
     // MASTER TP
     Route::group(['prefix' => 'Master/Tujuan Pembelajaran', 'as' => 'master.tp.'], function() {
       Route::get('', [MasterTPController::class, 'index'])->name('list');
@@ -115,5 +127,33 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
       Route::get('', [MasterPerkembanganController::class, 'index'])->name('list');
       Route::post('/add',[MasterPerkembanganController::class, 'store'])->name('add');
       Route::put('/edit{id}',[MasterPerkembanganController::class, 'update'])->name('edit');
+  });
+
+    // MASTER SEMESTER
+    Route::group(['prefix' => 'Master/Semester', 'as' => 'master.semester.'], function() {
+      Route::get('', [MasterSemesterController::class, 'index'])->name('list');
+      Route::post('/add',[MasterSemesterController::class, 'store'])->name('add');
+      Route::put('/edit{id}',[MasterSemesterController::class, 'update'])->name('edit');
+  });
+
+    // MASTER AREA DEVELOPMENT
+    Route::group(['prefix' => 'Master/Areas Dev', 'as' => 'master.area.'], function() {
+      Route::get('', [MasterAreaController::class, 'index'])->name('list');
+      Route::post('/add',[MasterAreaController::class, 'store'])->name('add');
+      Route::put('/edit{id}',[MasterAreaController::class, 'update'])->name('edit');
+  });
+
+    // MASTER Development Achievment
+    Route::group(['prefix' => 'Master/Dev Achiev', 'as' => 'master.devac.'], function() {
+      Route::get('', [MasterDevacController::class, 'index'])->name('list');
+      Route::post('/add',[MasterDevacController::class, 'store'])->name('add');
+      Route::put('/edit{id}',[MasterDevacController::class, 'update'])->name('edit');
+  });
+
+    // MASTER Indikator
+    Route::group(['prefix' => 'Master/Indikator', 'as' => 'master.indikator.'], function() {
+      Route::get('', [MasterIndikatorController::class, 'index'])->name('list');
+      Route::post('/add',[MasterIndikatorController::class, 'store'])->name('add');
+      Route::put('/edit{id}',[MasterIndikatorController::class, 'update'])->name('edit');
   });
 

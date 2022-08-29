@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Master\MasterController;
+use App\Models\Master\MasterCP;
+use App\Models\Master\MasterElemenCP;
 use App\Models\Master\MasterTP;
 use Illuminate\Http\Request;
 
@@ -13,9 +15,14 @@ class MasterTPController extends MasterController
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data Master"], ['name' => "TP"]];
         $MasterTP = MasterTP::latest()->paginate(10);
 
+        $cp = MasterElemenCP::all();
+
+        // dd($cp);
+
         return view('content.Master.TP.data_tp', [
             'breadcrumbs' => $breadcrumbs,
-            'tp' => $MasterTP
+            'tp' => $MasterTP,
+            'cp' => $cp
         ]);
     }
 
@@ -24,12 +31,15 @@ class MasterTPController extends MasterController
         $this->validate($request, [
             'nama_tp'       => 'required',
             'status_aktif'  => 'required',
-            'narasi'        => 'required'
+            'cp_id'         => 'required',
+            'narasi'        => 'required',
         ]);
+        // dd($request->cp_id);
 
         $mastertp = MasterTP::create([
             'nama_tp'       => $request->nama_tp,
             'narasi'        => $request->narasi,
+            'elemen_id'        => $request->cp_id,
             'status_aktif'  => $request->status_aktif
         ]);
 
@@ -46,17 +56,22 @@ class MasterTPController extends MasterController
     {
         $this->validate($request, [
             'nama_tp'     => 'required',
+            'cp_id'        => 'required',
+            'narasi'        => 'required',
             'status_aktif'   => 'required'
         ]);
 
         //get data MasterTP by ID
         $mastertp = MasterTP::findOrFail($id);
 
+        // dd($mastertp);
+
         if($request->file('image') == "") {
 
             $mastertp->update([
                 'nama_tp'       => $request->nama_tp,
                 'narasi'        => $request->narasi,
+                'elemen_id'        => $request->cp_id,
                 'status_aktif'  => $request->status_aktif
             ]);
 
@@ -66,6 +81,7 @@ class MasterTPController extends MasterController
                 // 'image'     => $image->hashName(),
                 'nama_tp'     => $request->nama_tp,
                 'narasi'        => $request->narasi,
+                'elemen_id'        => $request->cp_id,
                 'status_aktif'   => $request->status_aktif
             ]);
 

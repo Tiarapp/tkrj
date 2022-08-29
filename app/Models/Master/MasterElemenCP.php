@@ -5,7 +5,7 @@ namespace App\Models\Master;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MasterTP extends Model
+class MasterElemenCP extends Model
 {
     use HasFactory;
 
@@ -15,14 +15,14 @@ class MasterTP extends Model
     * @var array
     */
 
-    protected $table = 'master_t_p_s';
+    protected $table = 'master_elemen_cp';
 
     protected $fillable = [
-        'nama_tp', 'narasi','status_aktif', 'elemen_id',
+        'cp_id', 'nama_elemen','narasi', 'status',
     ];
 
-    public function elemencp()
+    public function cp()
     {
-        return $this->belongsTo(MasterElemenCP::class, 'elemen_id', 'id');
+        return $this->belongsTo(MasterCP::class, 'cp_id', 'id');
     }
 }

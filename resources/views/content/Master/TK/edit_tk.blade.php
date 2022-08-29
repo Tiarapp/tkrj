@@ -23,6 +23,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12 col-12">
+                        <div class="mb-1">
+                            <label class="form-label" for="basic-default-name">Jenis TP</label>
+                            <select class="basic-select2" name="tp_id" required>
+                                <option value="{{ $tk->tp_id }}" selected>{{ $tk->tp->nama_tp }}</option>
+                                @foreach ($tp as $c)
+                                    <option value="{{ $c->id }}">{{$c->nama_tp}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="row d-flex align-items-end">
                         <div class="col-md-5 col-12">
                             <div class="mb-1">

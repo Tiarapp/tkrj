@@ -28,15 +28,6 @@
                     <div class="row d-flex align-items-end">
                         <div class="col-md-12 col-12">
                             <div class="mb-1">
-                                <label class="form-label" for="basic-default-name">Narasi</label>
-                                {{-- <input type="textarea" class="form-control" name="narasi" id="basic-default-name" placeholder="Narasi" required/> --}}
-                                <textarea class="form-control" name="narasi" id="narasi" placeholder="Narasi" cols="30" rows="5">{{ $cp->narasi }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row d-flex align-items-end">
-                        <div class="col-md-12 col-12">
-                            <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Keterangan</label>
                                 {{-- <input type="textarea" class="form-control" name="keterangan" id="basic-default-name" placeholder="Keterangan" required/> --}}
                                 <textarea class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" cols="30" rows="5">{{ $cp->keterangan }}</textarea>
