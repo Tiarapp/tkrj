@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
 @endsection
 
-@section('title', 'Data Tahun Ajaran')
+@section('title', 'Capaian Pembelajaran')
 
 @section('content')
 @if ($message = Session::get('succes'))
@@ -43,46 +43,34 @@
                             OPTION
                         </button>
                         <div class="dropdown-menu" style="">
-                            {{-- <h6 class="dropdown-header">Header</h6> --}}
                             <a data-bs-toggle="modal" data-bs-target="#inlineForm" class="dropdown-item" href="#">
-                            {{-- <a class="dropdown-item" href="{{route('master.ekstra.tambah')}}"> --}}
                                 Tambah
                             </a>
-                            {{-- <a class="dropdown-item" href="#">Option 3</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a> --}}
                         </div>
                     </div>
                 </div>
-                @include('content.Master.TP.add_tp')
+                @include('content.Master.Area.add_area')
                 <div class="card-datatable">
                     <table id="example" class="datatables-ajax table table-responsive">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>CP</th>
-                                <th>Nama Elemen</th>
-                                <th>Narasi</th>
+                                <th>Area</th>
                                 <th>Status</th>
                                 <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tp as $tp)
+                            @foreach ($area as $a)
                                 <tr>
-                                    <td>{{ $tp->nama_tp }}</td>
-                                    <td>{{ $tp->elemencp->cp->nama_cp }}</td>
-                                    <td>{{ $tp->elemencp->nama_elemen }}</td>
-                                    <td>{{ $tp->narasi }}</td>
-                                    <td>{{ $tp->status_aktif }}</td>
+                                    <td>{{ $a->nama_area }} </td>
+                                    <td>{{ $a->status}}</td>
                                     <td>
-                                        {{-- <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{$t->id}}"> --}}
-                                        <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{ $tp->id }}">
+                                        <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{ $a->id }}">
                                             <i data-feather="edit"></i>
                                         </button>
                                     </td>
                                 </tr>
-                                @include('content.Master.TP.edit_tp')
+                                @include('content.Master.Area.edit_area')
                             @endforeach
                         </tbody>
                     </table>

@@ -13,16 +13,27 @@
                         <div class="col-md-12 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Kode Referensi</label>
-                                <input type="text" class="form-control" name="kode_ref" id="basic-default-name" placeholder="Narasi" required/>
+                                <input type="text" class="form-control" name="kode_ref" id="basic-default-name" placeholder="Kode Referensi" required/>
                                 {{-- <textarea class="form-control" name="narasi" id="narasi" placeholder="Narasi" cols="30" rows="5"></textarea> --}}
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="mb-1">
+                            <label class="form-label" for="basic-default-name">Jenis TP</label>
+                            <select class="basic-select2" name="tp_id" required>
+                                <option value="" selected disabled>Pilih TP</option>
+                                @foreach ($tp as $c)
+                                    <option value="{{ $c->id }}">{{$c->nama_tp}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row d-flex align-items-end">
                         <div class="col-md-5 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Nama TK</label>
-                                <input type="text" class="form-control" name="nama_tk" id="basic-default-name" placeholder="Tahun Ajaran Mulai" required/>
+                                <input type="text" class="form-control" name="nama_tk" id="basic-default-name" placeholder="Nama Tujuan Kegiatan" required/>
                             </div>
                         </div>
                         <div class="col-md-5 col-12">
@@ -36,7 +47,6 @@
                         <div class="col-md-12 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Narasi</label>
-                                {{-- <input type="textarea" class="form-control" name="narasi" id="basic-default-name" placeholder="Narasi" required/> --}}
                                 <textarea class="form-control" name="narasi" id="narasi" placeholder="Narasi" cols="30" rows="5"></textarea>
                             </div>
                         </div>

@@ -60,6 +60,8 @@
                         <thead>
                             <tr>
                                 <th>Kode Referensi</th>
+                                <th>Elemen CP</th>
+                                <th>TP</th>
                                 <th>Nama Kegiatan</th>
                                 <th>Narasi</th>
                                 <th>Status</th>
@@ -70,6 +72,8 @@
                             @foreach ($tk as $tk)
                                 <tr>
                                     <td>{{ $tk->kode_ref }}</td>
+                                    <td>{{ $tk->tp->elemencp->nama_elemen }} </td>
+                                    <td>{{ $tk->tp->nama_tp }} </td>
                                     <td>{{ $tk->nama_tk }} </td>
                                     <td>{{ $tk->narasi }} </td>
                                     <td>{{ $tk->status_aktif }}</td>

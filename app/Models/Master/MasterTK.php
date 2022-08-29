@@ -18,6 +18,11 @@ class MasterTK extends Model
     protected $table = 'master_t_k_s';
 
     protected $fillable = [
-        'nama_tk', 'narasi', 'status_aktif', 'kode_ref'
+        'nama_tk', 'narasi', 'status_aktif', 'kode_ref', 'tp_id'
     ];
+
+    public function tp()
+    {
+        return $this->belongsTo(MasterTP::class, 'tp_id', 'id');
+    }
 }

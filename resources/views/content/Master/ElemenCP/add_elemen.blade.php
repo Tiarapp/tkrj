@@ -3,17 +3,17 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Tambah Data Tujuan Pembelajaran</h4>
+                <h4 class="modal-title" id="myModalLabel33">Tambah Data Elemen <i class="icon-cplusplus"></i></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="jquery-val-form" action="{{route('master.tp.add')}}" method="post" enctype="multipart/form-data">
+            <form id="jquery-val-form" action="{{route('master.elemen.add')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="modal-body">
                     <div class="row d-flex align-items-end">
                         <div class="col-md-12 col-12">
                             <div class="mb-1">
-                                <label class="form-label" for="basic-default-name">Nama Tujuan Pembelajaran</label>
-                                <input type="text" class="form-control" name="nama_tp" id="basic-default-name" placeholder="Nama Tujuan Pembelajaran" required/>
+                                <label class="form-label" for="basic-default-name">Nama Elemen CP</label>
+                                <input type="text" class="form-control" name="elemen" id="basic-default-name" placeholder="Nama Tujuan Pembelajaran" required/>
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -22,7 +22,7 @@
                                 <select class="basic-select2" name="cp_id" required>
                                     <option value="" selected disabled>Pilih CP</option>
                                     @foreach ($cp as $c)
-                                        <option value="{{ $c->id }}">{{$c->nama_elemen}}</option>
+                                        <option value="{{ $c->id }}">{{$c->nama_cp}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -38,7 +38,7 @@
                         <div class="col-md-5 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Status Aktif</label>
-                                <input type="text" class="form-control" name="status_aktif" id="basic-default-name" placeholder="Status" required/>
+                                <input type="text" class="form-control" name="status" id="basic-default-name" placeholder="Status" required/>
                             </div>
                         </div>
                     </div>

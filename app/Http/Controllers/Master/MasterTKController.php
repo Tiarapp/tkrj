@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Master\MasterController;
 use App\Models\Master\MasterTK;
+use App\Models\Master\MasterTP;
 use Illuminate\Http\Request;
 
 class MasterTKController extends MasterController
@@ -14,9 +15,12 @@ class MasterTKController extends MasterController
         
         $MasterTK = MasterTK::latest()->paginate(10);
 
+        $MasterTP = MasterTP::all();
+
         return view('content.Master.TK.data_tk', [
             'breadcrumbs' => $breadcrumbs,
-            'tk' => $MasterTK
+            'tk' => $MasterTK,
+            'tp' => $MasterTP
         ]);
     }
 
@@ -24,6 +28,7 @@ class MasterTKController extends MasterController
     {
         $this->validate($request, [
             'kode_ref'      => 'required',
+            'tp_id'         => 'required',
             'nama_tk'       => 'required',
             'narasi'        => 'required',
             'status_aktif'  => 'required'
@@ -32,6 +37,7 @@ class MasterTKController extends MasterController
         $master_tk = MasterTK::create([
             'kode_ref'      => $request->kode_ref,
             'nama_tk'       => $request->nama_tk,
+            'tp_id'         => $request->tp_id,
             'narasi'        => $request->narasi,
             'status_aktif'  => $request->status_aktif
         ]);
@@ -52,6 +58,7 @@ class MasterTKController extends MasterController
 
         $this->validate($request, [
             'kode_ref'      => 'required',
+            'tp_id'         => 'required',
             'nama_tk'       => 'required',
             'narasi'        => 'required',
             'status_aktif'  => 'required'
@@ -64,6 +71,7 @@ class MasterTKController extends MasterController
 
             $master_tk->update([
                 'kode_ref'      => $request->kode_ref,
+                'tp_id'         => $request->tp_id,
                 'nama_tk'       => $request->nama_tk,
                 'narasi'        => $request->narasi,
                 'status_aktif'  => $request->status_aktif
@@ -74,6 +82,7 @@ class MasterTKController extends MasterController
             $master_tk->update([
                 // 'image'     => $image->hashName(),
                 'kode_ref'      => $request->kode_ref,
+                'tp_id'         => $request->tp_id,
                 'nama_tk'       => $request->nama_tk,
                 'narasi'        => $request->narasi,
                 'status_aktif'  => $request->status_aktif
