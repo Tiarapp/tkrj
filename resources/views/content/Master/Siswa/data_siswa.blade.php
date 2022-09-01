@@ -145,7 +145,6 @@
     $(document).ready(function() {
         tabledatasiswa()
         $(".basic-select2").select2();
-
         @if ($message = Session::get('success'))
 
             toastr['success'](
@@ -201,12 +200,11 @@
                     ajax: "/Master/Siswa/get_siswa?tahunajaran=" +tahun_ajaran,
                     columns: [
                         { data: 'nis'},
-                        { data: null},
-                        { data: null},
-                        { data: null},
-                        { data: null},
-                        { data: null},
-                        { data: null},
+                        { data: 'nik'},
+                        { data: 'nama'},
+                        { data: 'tahunajaran'},
+                        { data: 'tahun_keluar'},
+                        { data: 'status'},
                     ]
                 })
             } else {
@@ -231,7 +229,6 @@
     // FILTER TAHUN AJARAN PPDB
         $('#thn_ppdb').change(function () {
             var tahunajaran_ppdb = document.getElementById("thn_ppdb").value;
-
             if (!!tahunajaran_ppdb) {
                 $('#table_siswa_ppdb').DataTable({
                     bDestroy: true,

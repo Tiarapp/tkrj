@@ -81,13 +81,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
   });
 
     // MASTER SISWA
-        Route::group(['prefix' => 'Master/Siswa', 'as' => 'master.siswa.'], function() {
-            Route::get('', [MasterSiswaController::class, 'index'])->name('list');
-            Route::post('/add',[MasterSiswaController::class, 'store'])->name('add');
-            Route::put('/edit{id}',[MasterSiswaController::class, 'update'])->name('edit');
-            Route::get('/get_siswa',[MasterSiswaController::class, 'get_siswa'])->name('get_siswa');
-            Route::get('/get_siswa_ppdb',[MasterSiswaController::class, 'get_siswa_ppdb'])->name('get_siswa_ppdb');
-        });
+    Route::group(['prefix' => 'Master/Siswa', 'as' => 'master.siswa.'], function() {
+      Route::get('', [MasterSiswaController::class, 'index'])->name('list');
+      Route::post('/add',[MasterSiswaController::class, 'store'])->name('add');
+      Route::put('/edit{id}',[MasterSiswaController::class, 'update'])->name('edit');
+      Route::get('/get_siswa',[MasterSiswaController::class, 'get_siswa'])->name('get_siswa');
+      Route::get('/get_siswa_ppdb',[MasterSiswaController::class, 'get_siswa_ppdb'])->name('get_siswa_ppdb');
+  });
 
     // MASTER CP
     Route::group(['prefix' => 'Master/Capaian Pembelajaran', 'as' => 'master.cp.'], function() {

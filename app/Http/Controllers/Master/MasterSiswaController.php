@@ -7,8 +7,8 @@ use App\Models\Master\MasterKelas;
 use App\Models\Master\MasterPeriode;
 use App\Models\Master\MasterSiswa;
 use App\Models\Master\MasterTahunAjaran;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MasterSiswaController extends MasterController
 {
