@@ -8,16 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MasterSiswa extends Model
 {
     use HasFactory;
-
-    /**
-    * fillable
-    *
-    * @var array
-    */
-
-    protected $table = 'master_siswas';
-
-    protected $fillable = [
-        'nis','nik', 'nama_siswa', 'status', 'tahun_masuk', 'tahun_keluar'
-    ];
+    protected $table ='master_siswa';
+    protected $fillable = ['id', 'tahunajaran_id', 'tahunajaran', 'pendaftaran_id', 'pendaftaran', 'nik', 'nis', 'nama'];
 }

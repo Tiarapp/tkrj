@@ -21,9 +21,8 @@
                     <div class="mb-1">
                         <label class="form-label">Status Ekstra</label>
                         <select class="basic-select2" name="status" required>
-                            <option value="{{ $g->status_aktif }}" disabled>{{ $g->status_aktif }}</option>
-                            <option value="Aktif" >Aktif</option>
-                            <option value="Non Aktif"  >Non Aktif</option>
+                            <option value="Aktif" @if ($g->status_aktif == "Aktif") selected @endif>Aktif</option>
+                            <option value="Non Aktif"  @if ($g->status_aktif == "Non Aktif") selected @endif>Non Aktif</option>
                         </select>
                     </div>
                 </div>

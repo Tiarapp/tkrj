@@ -12,6 +12,6 @@ class MasterTahunAjaran extends Model
     protected $table = 'tahun_ajaran';
 
     protected $fillable = [
-        'mulai','selesai','tahun_ajaran','status'
+        'id','mulai','selesai','tahun_ajaran','status'
     ];
 }
