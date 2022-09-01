@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Agu 2022 pada 10.39
+-- Waktu pembuatan: 29 Agu 2022 pada 16.11
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -76,11 +76,21 @@ CREATE TABLE `kelas` (
 --
 
 CREATE TABLE `master_areas_dev` (
-  `id_area` int(10) NOT NULL,
+  `id` bigint(10) NOT NULL,
   `nama_area` varchar(30) NOT NULL,
-  `kategori` varchar(20) NOT NULL,
-  `status_aktif` varchar(10) NOT NULL
+  `status` varchar(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `master_areas_dev`
+--
+
+INSERT INTO `master_areas_dev` (`id`, `nama_area`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Pengembangan  Bakat dan Minat', 'Aktif', '2022-08-29 01:57:36', '2022-08-29 01:57:36'),
+(2, 'Muatan Lokal', 'Aktif', '2022-08-29 01:58:21', '2022-08-29 01:58:21'),
+(3, 'Mampu beribadah  dengan benar', 'Tidak Aktif', '2022-08-29 06:01:47', '2022-08-29 06:09:53');
 
 -- --------------------------------------------------------
 
@@ -92,7 +102,6 @@ CREATE TABLE `master_c_p_s` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_cp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_aktif` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `narasi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -102,8 +111,8 @@ CREATE TABLE `master_c_p_s` (
 -- Dumping data untuk tabel `master_c_p_s`
 --
 
-INSERT INTO `master_c_p_s` (`id`, `nama_cp`, `status_aktif`, `narasi`, `keterangan`, `created_at`, `updated_at`) VALUES
-(6, 'Nilai Agama dan Budi Pekerti', 'Aktif', 'Anak percaya kepada Tuhan Yang Maha Esa, mulai mengenal dan mempraktikkan ajaran pokok sesuai dengan agama dan kepercayaanNya.', 'Aspek perkembangan Nilai agama dan moral', '2022-08-23 21:23:24', '2022-08-24 11:36:08');
+INSERT INTO `master_c_p_s` (`id`, `nama_cp`, `status_aktif`, `keterangan`, `created_at`, `updated_at`) VALUES
+(6, 'Nilai Agama dan Budi Pekerti', 'Aktif', 'Aspek perkembangan Nilai agama dan moral', '2022-08-23 21:23:24', '2022-08-24 11:36:08');
 
 -- --------------------------------------------------------
 
@@ -112,11 +121,20 @@ INSERT INTO `master_c_p_s` (`id`, `nama_cp`, `status_aktif`, `narasi`, `keterang
 --
 
 CREATE TABLE `master_dev_achiev` (
-  `id_achievment` int(10) NOT NULL,
-  `nama_achievment` varchar(20) NOT NULL,
-  `kategori` varchar(20) NOT NULL,
-  `status_aktif` varchar(10) NOT NULL
+  `id` bigint(10) NOT NULL,
+  `area_id` bigint(10) NOT NULL,
+  `nama_achievment` varchar(50) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `master_dev_achiev`
+--
+
+INSERT INTO `master_dev_achiev` (`id`, `area_id`, `nama_achievment`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Kegiatan Ekstrakurikuler', 'Aktif', '2022-08-29 06:39:05', '2022-08-29 07:11:05');
 
 -- --------------------------------------------------------
 
@@ -131,6 +149,31 @@ CREATE TABLE `master_ekstras` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `master_elemen_cp`
+--
+
+CREATE TABLE `master_elemen_cp` (
+  `id` bigint(10) NOT NULL,
+  `cp_id` bigint(10) NOT NULL,
+  `nama_elemen` text NOT NULL,
+  `narasi` text NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `master_elemen_cp`
+--
+
+INSERT INTO `master_elemen_cp` (`id`, `cp_id`, `nama_elemen`, `narasi`, `status`, `created_at`, `updated_at`) VALUES
+(1, 6, 'Anak percaya kepada Tuhan Yang Maha Esa, mulai mengenal dan mempraktikkan ajaran pokok sesuai dengan agama dan kepercayaanNya.', 'Anak percaya kepada Tuhan Yang Maha Esa, mulai mengenal dan mempraktikkan ajaran pokok sesuai dengan agama dan kepercayaanNya.', 'Aktif', '2022-08-28 19:42:57', '2022-08-28 19:42:57'),
+(2, 6, 'Anak berpartisipasi aktif dalam menjaga kebersihan, kesehatan dan keselamatan diri sebagai bentuk rasa sayang terhadap dirinya dan rasa syukur pada Tuhan Yang Maha Esa.', 'Anak berpartisipasi aktif dalam menjaga kebersihan, kesehatan dan keselamatan diri sebagai bentuk rasa sayang terhadap dirinya dan rasa syukur pada Tuhan Yang Maha Esa.', 'Aktif', '2022-08-28 19:51:50', '2022-08-28 20:00:41'),
+(3, 6, 'Anak menghargai alam dengan cara merawatnya dan menunjukkan rasa sayang terhadap makhluk hidup yang merupakan ciptaan Tuhan Yang Maha Esa.', 'Anak menghargai alam dengan cara merawatnya dan menunjukkan rasa sayang terhadap makhluk hidup yang merupakan ciptaan Tuhan Yang Maha Esa.', 'Aktif', '2022-08-28 19:52:25', '2022-08-28 19:52:25');
 
 -- --------------------------------------------------------
 
@@ -162,11 +205,20 @@ INSERT INTO `master_gurus` (`id`, `nomor_induk`, `nama_guru`, `status_aktif`, `c
 --
 
 CREATE TABLE `master_indikator` (
-  `id_indikator` int(10) NOT NULL,
+  `id` bigint(10) NOT NULL,
   `nama_indikator` varchar(20) NOT NULL,
-  `kategori` varchar(20) NOT NULL,
-  `status_aktif` varchar(10) NOT NULL
+  `devac_id` bigint(10) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `master_indikator`
+--
+
+INSERT INTO `master_indikator` (`id`, `nama_indikator`, `devac_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Karate', 1, 'Aktif a', '2022-08-29 07:09:12', '2022-08-29 07:09:12');
 
 -- --------------------------------------------------------
 
@@ -257,7 +309,7 @@ CREATE TABLE `master_perkembangan` (
 --
 
 INSERT INTO `master_perkembangan` (`id`, `perkembangan`, `kategori_id`, `status_aktif`, `created_at`, `updated_at`) VALUES
-(1, 'Lingkar kepala', 5, 'Aktif', '2022-08-25 00:10:38', '2022-08-25 00:48:33');
+(1, 'Lingkar kepala', 3, 'Aktif', '2022-08-25 00:10:38', '2022-08-29 06:02:23');
 
 -- --------------------------------------------------------
 
@@ -268,7 +320,8 @@ INSERT INTO `master_perkembangan` (`id`, `perkembangan`, `kategori_id`, `status_
 CREATE TABLE `master_semesters` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_semester` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jenjang` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenjang_id` bigint(10) NOT NULL,
+  `tahun_ajaran_id` bigint(10) NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -278,9 +331,9 @@ CREATE TABLE `master_semesters` (
 -- Dumping data untuk tabel `master_semesters`
 --
 
-INSERT INTO `master_semesters` (`id`, `nama_semester`, `jenjang`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Semester 1', '', 'Tidak Aktif', '2022-08-19 01:53:47', '2022-08-19 02:08:04'),
-(3, 'Semester 2', '', 'Aktif', '2022-08-19 02:13:08', '2022-08-19 02:13:08');
+INSERT INTO `master_semesters` (`id`, `nama_semester`, `jenjang_id`, `tahun_ajaran_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Semester 1', 1, 1, 'Aktif', '2022-08-28 21:42:38', '2022-08-28 22:34:00'),
+(2, 'Semester 2', 1, 1, 'Aktif', '2022-08-28 22:33:13', '2022-08-28 22:33:23');
 
 -- --------------------------------------------------------
 
@@ -338,6 +391,7 @@ INSERT INTO `master_skill_value` (`id`, `skill_value`, `status_aktif`, `created_
 
 CREATE TABLE `master_t_k_s` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `tp_id` bigint(10) NOT NULL,
   `kode_ref` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_tk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `narasi` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -350,10 +404,9 @@ CREATE TABLE `master_t_k_s` (
 -- Dumping data untuk tabel `master_t_k_s`
 --
 
-INSERT INTO `master_t_k_s` (`id`, `kode_ref`, `nama_tk`, `narasi`, `status_aktif`, `created_at`, `updated_at`) VALUES
-(1, '', 'TK SEJAHTER Anjing', 'TK SEJAHTERA adalah TK yang baik bagi anak-anak untuk berkembang menjadi lebih pintar', 'Aktif', '2022-08-18 06:21:32', '2022-08-18 06:35:17'),
-(2, '', 'TK BERJUANG', 'TK BANGSA adalah TK yang baik bagi anak-anak psikopat untuk berkembang menjadi SUPERHERO PSIKOPAT POLL', 'Aktif', '2022-08-18 06:37:28', '2022-08-18 06:37:53'),
-(4, 'LB.B1.1.1.1.2', 'Menirukan lafal syahadat dan artinya', 'Saudara berhasil menirukan dan melafalkan syahadat berserta artinya dan mengamalkannya', 'Aktif', '2022-08-24 01:19:02', '2022-08-24 01:32:35');
+INSERT INTO `master_t_k_s` (`id`, `tp_id`, `kode_ref`, `nama_tk`, `narasi`, `status_aktif`, `created_at`, `updated_at`) VALUES
+(1, 1, 'LB.B1.1.1.1.2', 'Menirukan lafal syahadat dan artinya', 'Menirukan lafal syahadat dan artinya', 'Aktif', '2022-08-28 20:40:22', '2022-08-28 20:40:22'),
+(2, 1, 'LB.B1.1.1.1.7', 'Mengenal dan melafalkan asmaul husna', 'Mengenal dan melafalkan asmaul husna', 'Aktif', '2022-08-28 20:51:20', '2022-08-28 20:53:24');
 
 -- --------------------------------------------------------
 
@@ -363,6 +416,7 @@ INSERT INTO `master_t_k_s` (`id`, `kode_ref`, `nama_tk`, `narasi`, `status_aktif
 
 CREATE TABLE `master_t_p_s` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `elemen_id` bigint(10) NOT NULL,
   `nama_tp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `narasi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_aktif` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -374,10 +428,9 @@ CREATE TABLE `master_t_p_s` (
 -- Dumping data untuk tabel `master_t_p_s`
 --
 
-INSERT INTO `master_t_p_s` (`id`, `nama_tp`, `narasi`, `status_aktif`, `created_at`, `updated_at`) VALUES
-(2, 'Anak percaya bahwa Allah Tuhan Yang Maha Esa.', 'Anak percaya bahwa Allah Tuhan Yang Maha Esa.', 'Aktif', '2022-08-18 23:22:20', '2022-08-24 02:19:09'),
-(3, 'Anak mampu menjaga kebersihan, kesehatan, dan keselamatan diri sebagai bentuk rasa sayang terhadap dirinya dan rasa syukur pada Tuhan Yang Maha Esa.', 'Anak mampu menjaga kebersihan, kesehatan, dan keselamatan diri sebagai bentuk rasa sayang terhadap dirinya dan rasa syukur pada Tuhan Yang Maha Esa.', 'Aktif', '2022-08-18 23:22:29', '2022-08-24 02:19:52'),
-(5, 'Anak mengenal dan mempraktikkan ajaran agama Islam.', 'Anak mengenal dan mempraktikkan ajaran agama Islam.', 'Aktif', '2022-08-24 01:53:46', '2022-08-24 02:18:56');
+INSERT INTO `master_t_p_s` (`id`, `elemen_id`, `nama_tp`, `narasi`, `status_aktif`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Anak percaya bahwa Allah Tuhan Yang Maha Esa.', 'Anak percaya bahwa Allah Tuhan Yang Maha Esa.', 'Aktif', '2022-08-28 20:09:20', '2022-08-28 20:09:20'),
+(2, 1, 'Anak mengenal dan mempraktikkan ajaran agama Islam.', 'Anak mengenal dan mempraktikkan ajaran agama Islam.', 'Aktif', '2022-08-28 20:13:55', '2022-08-28 20:17:06');
 
 -- --------------------------------------------------------
 
@@ -644,7 +697,7 @@ ALTER TABLE `kelas`
 -- Indeks untuk tabel `master_areas_dev`
 --
 ALTER TABLE `master_areas_dev`
-  ADD PRIMARY KEY (`id_area`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `master_c_p_s`
@@ -656,12 +709,18 @@ ALTER TABLE `master_c_p_s`
 -- Indeks untuk tabel `master_dev_achiev`
 --
 ALTER TABLE `master_dev_achiev`
-  ADD PRIMARY KEY (`id_achievment`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `master_ekstras`
 --
 ALTER TABLE `master_ekstras`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `master_elemen_cp`
+--
+ALTER TABLE `master_elemen_cp`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -674,7 +733,7 @@ ALTER TABLE `master_gurus`
 -- Indeks untuk tabel `master_indikator`
 --
 ALTER TABLE `master_indikator`
-  ADD PRIMARY KEY (`id_indikator`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `master_jenjang`
@@ -843,7 +902,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `master_areas_dev`
 --
 ALTER TABLE `master_areas_dev`
-  MODIFY `id_area` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_c_p_s`
@@ -855,13 +914,19 @@ ALTER TABLE `master_c_p_s`
 -- AUTO_INCREMENT untuk tabel `master_dev_achiev`
 --
 ALTER TABLE `master_dev_achiev`
-  MODIFY `id_achievment` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_ekstras`
 --
 ALTER TABLE `master_ekstras`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `master_elemen_cp`
+--
+ALTER TABLE `master_elemen_cp`
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_gurus`
@@ -873,7 +938,7 @@ ALTER TABLE `master_gurus`
 -- AUTO_INCREMENT untuk tabel `master_indikator`
 --
 ALTER TABLE `master_indikator`
-  MODIFY `id_indikator` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_jenjang`
@@ -903,7 +968,7 @@ ALTER TABLE `master_perkembangan`
 -- AUTO_INCREMENT untuk tabel `master_semesters`
 --
 ALTER TABLE `master_semesters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_siswas`
@@ -921,13 +986,13 @@ ALTER TABLE `master_skill_value`
 -- AUTO_INCREMENT untuk tabel `master_t_k_s`
 --
 ALTER TABLE `master_t_k_s`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_t_p_s`
 --
 ALTER TABLE `master_t_p_s`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`

@@ -42,6 +42,12 @@
             "slug": "master.cp.list"
           },
           {
+            "url": "Master/Elemen Capaian Pembelajaran",
+            "name": "Elemen CP",
+            "icon": "database",
+            "slug": "master.elemen.list"
+          },
+          {
             "url": "Master/Tujuan Pembelajaran",
             "name": "Tujuan Pembelajaran",
             "icon": "database",
@@ -75,7 +81,7 @@
             "url": "Master/Areas Dev",
             "name": "Areas Dev",
             "icon": "database",
-            "slug": "master.areasdev.list"
+            "slug": "master.area.list"
           },
           {
             "url": "Master/Dev Achiev",
@@ -88,12 +94,6 @@
             "name": "Indikator",
             "icon": "database",
             "slug": "master.indikator.list"
-          },
-          {
-            "url": "Master/Ekstra",
-            "name": "Ekstra",
-            "icon": "database",
-            "slug": "master.ekstra.list"
           },
           {
             "url": "Master/Jenjang",

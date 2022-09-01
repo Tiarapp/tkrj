@@ -60,7 +60,6 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Narasi</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
                                 <th>Option</th>
@@ -70,11 +69,9 @@
                             @foreach ($MasterCP as $cp)
                                 <tr>
                                     <td>{{ $cp->nama_cp }} </td>
-                                    <td>{{ $cp->narasi }}</td>
                                     <td>{{ $cp->keterangan }}</td>
                                     <td>{{ $cp->status_aktif}}</td>
                                     <td>
-                                        {{-- <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{$t->id}}"> --}}
                                         <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{ $cp->id }}">
                                             <i data-feather="edit"></i>
                                         </button>
