@@ -145,8 +145,6 @@
     $(document).ready(function() {
         tabledatasiswa()
         $(".basic-select2").select2();
-
-
         @if ($message = Session::get('success'))
 
             toastr['success'](
@@ -218,7 +216,6 @@
     // FILTER TAHUN AJARAN SISWA
         $('#tahunajaran_id').change(function () {
                 var tahunajaran = document.getElementById("tahunajaran_id").value;
-
                 if (!!tahunajaran) {
                     document.getElementById("thn_ajaran_masuk").value=tahunajaran;
                     tabledatasiswa(tahunajaran)
@@ -232,9 +229,6 @@
     // FILTER TAHUN AJARAN PPDB
         $('#thn_ppdb').change(function () {
             var tahunajaran_ppdb = document.getElementById("thn_ppdb").value;
-
-            console.log(!!tahunajaran_ppdb);
-
             if (!!tahunajaran_ppdb) {
                 $('#table_siswa_ppdb').DataTable({
                     bDestroy: true,

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Master\MasterController;
+use App\Models\Master\MasterKelas;
+use App\Models\Master\MasterPeriode;
 use App\Models\Master\MasterSiswa;
 use App\Models\Master\MasterTahunAjaran;
 use Illuminate\Http\Request;
@@ -10,51 +12,59 @@ use Illuminate\Support\Facades\DB;
 
 class MasterSiswaController extends MasterController
 {
+    public function __construct() {
+        $this->periode=new MasterPeriode();
+    }
+
     public function index()
     {
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data Master"], ['name' => "Siswa"]];
-        $MasterSiswas = MasterSiswa::latest()->paginate(10);
+        $periode=$this->periode->getPeriodeAktif();
+
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data Master"], ['name' => "Data Siswa"]];
+
+        // $kelas=MasterKelas::where('jenjang_id', 2)
+        //                     ->get();
+        $kelas=MasterKelas::all();
         $tahunajaran_raport=MasterTahunAjaran::all();
 
-        // dd($tahunajaran_raport);
-
         // DATABASE PPDB
-            $datasiswa = DB::connection('mysql_ppdb')->table('smp_datasiswa')
+            $datasiswa = DB::connection('mysql_ppdb')->table('tk_datasiswa')
                                                 ->get();
             $tahunajaran_ppdb = DB::connection('mysql_ppdb')->table('thn_ajaran_ppdb')
                                                         ->get();
-
-        return view('content.Master.Siswa.data_siswa', [
-            'breadcrumbs' => $breadcrumbs,
-            'siswa' => $MasterSiswas,
-            'tahunajaran_raport' => $tahunajaran_raport,
-            'tahunajaran_ppdb' => $tahunajaran_ppdb
-        ]);
+        // dd($tahunajaran_ppdb);
+        return view('content.Master.Siswa.data_siswa', ['breadcrumbs' => $breadcrumbs, 'datasiswa' => $datasiswa, 'tahunajaran_raport' => $tahunajaran_raport, 'tahunajaran_ppdb' => $tahunajaran_ppdb, 'kelas' => $kelas]);
     }
 
-    public function get_siswa(Request $request)
-    {
-        $siswa = MasterSiswa::where('tahunajaran_id', $request->tahunajaran)
-            ->orderBy('nis')
-            ->get();
+    // FILTER TAHUNAJARAN SISWA
+        public function get_siswa(Request $request){
 
-        return response()->json([ 'data' => $siswa ]);
-    }
+            $siswa=MasterSiswa::where('tahunajaran_id', $request->tahunajaran)
+                                ->orderBy('nis')
+                                ->get();
+            return $siswa;
+
+            return response()->json([ 'data' => $siswa ]);
+        }
 
     // FILTER TAHUNAJARAN PPDB
-    public function get_siswa_ppdb(Request $request){
-        $siswa_ppdb = DB::connection('mysql_ppdb')->table('tk_datasiswa')
-                    ->select('tk_datasiswa.*', 'thn_ajaran_ppdb.id as id_tahunajaran', 'thn_ajaran_ppdb.mulai', 'thn_ajaran_ppdb.selesai')
-                    ->join('thn_ajaran_ppdb', 'tk_datasiswa.tahunajaran_id', '=', 'thn_ajaran_ppdb.id')
-                    ->where('tk_datasiswa.tahunajaran_id', $request->tahunajaran_ppdb)
-                    ->orderBy('tk_datasiswa.nm_lengkap')
-                    ->get();
-        return response()->json([ 'data' => $siswa_ppdb ]);
-    }
+        public function get_siswa_ppdb(Request $request){
+            // return $request->tahunajaran_ppdb;
+            // $siswa_ppdb = DB::connection('mysql_ppdb')->table('smp_datasiswa')
+            //             ->select('smp_datasiswa.*', 'thn_ajaran_ppdb.id as id_tahunajaran', 'thn_ajaran_ppdb.mulai', 'thn_ajaran_ppdb.selesai')
+            //             ->join('thn_ajaran_ppdb', 'smp_datasiswa.tahunajaran_id', '=', 'thn_ajaran_ppdb.id')
+            //             ->where('smp_datasiswa.tahunajaran_id', $request->tahunajaran_ppdb)
+                        // ->orderBy('nm_lengkap')
+                        // ->get();
+            $siswa_ppdb = DB::connection('mysql_ppdb')->table('tk_datasiswa')
+                            ->where('tahunajaran_id', $request->tahunajaran_ppdb)
+                            ->orderBy('nm_lengkap')
+                            ->get();
+            return response()->json([ 'data' => $siswa_ppdb ]);
+        }
 
     public function store(Request $request)
     {
-
         $messages = [
             'required'  => 'Pilih Tahun Ajaran di Halaman Awal',
         ];
@@ -74,7 +84,7 @@ class MasterSiswaController extends MasterController
                     // KOLOM DATA YG HARUS DIISI
                     MasterSiswa::create([
                         'tahunajaran_id'=> $thn_ajaran->id,
-                        'tahunajaran'   => $thn_ajaran->tahunajaran,
+                        'tahunajaran'   => $thn_ajaran->tahun_ajaran,
                         'pendaftaran_id'=> $val_pendaftaran_id,
                         'pendaftaran'   => $request['pendaftaran'][$idx_pendaftaran_id],
                         'nik'           => $request['nik'][$idx_pendaftaran_id],
@@ -86,52 +96,5 @@ class MasterSiswaController extends MasterController
         }
 
         return redirect()->route('master.siswa.list')->with('success','Data Berhasil di Simpan');
-    }
-
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-            'nis'          => 'required',
-            'nik'          => 'required',
-            'nama_siswa'   => 'required',
-            'status'       => 'required',
-            'tahun_masuk'  => 'required',
-            'tahun_keluar' => 'nullable',
-        ]);
-
-        //get data MasterSiswa by ID
-        $MasterSiswas = MasterSiswa::findOrFail($id);
-
-        if($request->file('image') == "") {
-
-            $MasterSiswas->update([
-                'nis'          => $request->nis,
-                'nik'          => $request->nik,
-                'nama_siswa'   => $request->nama_siswa,
-                'status'       => $request->status,
-                'tahun_masuk'  => $request->tahun_masuk,
-                'tahun_keluar' => $request->tahun_keluar,
-            ]);
-
-        } else {
-
-            $MasterSiswas->update([
-                'nis'          => $request->nis,
-                'nik'          => $request->nik,
-                'nama_siswa'   => $request->nama_siswa,
-                'status'       => $request->status,
-                'tahun_masuk'  => $request->tahun_masuk,
-                'tahun_keluar' => $request->tahun_keluar,
-            ]);
-
-        }
-
-        if($MasterSiswas){
-            //redirect dengan pesan sukses
-            return redirect()->route('master.siswa.list')->with(['succes' => 'Data Berhasil Diupdate!']);
-        }else{
-            //redirect dengan pesan error
-            return redirect()->route('master.siswa.list')->with(['error' => 'Data Gagal Diupdate!']);
-        }
     }
 }

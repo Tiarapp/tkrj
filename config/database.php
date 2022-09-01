@@ -66,11 +66,11 @@ return [
         'mysql_ppdb' => [
             'driver' => 'mysql',
             // 'url' => env('DATABASE_URL_PPDB'),
-            'host' => env('DB_HOST_PPDB', '127.0.0.1'),
+            'host' => env('DB_HOST_PPDB', '45.130.228.52'),
             'port' => env('DB_PORT_PPDB', '3306'),
-            'database' => env('DB_DATABASE_PPDB', 'raudlatuljannah_baru'),//iki nama db
-            'username' => env('DB_USERNAME_PPDB', 'root'),//username db
-            'password' => env('DB_PASSWORD_PPDB', ''),
+            'database' => env('DB_DATABASE_PPDB', 'u982244996_rj'),//iki nama db
+            'username' => env('DB_USERNAME_PPDB', 'u982244996_ppdb'),//username db
+            'password' => env('DB_PASSWORD_PPDB', '12345Ad6'),
             'unix_socket' => env('DB_SOCKET_PPDB', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

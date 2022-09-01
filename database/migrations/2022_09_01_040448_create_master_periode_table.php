@@ -13,8 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('siswa', function (Blueprint $table) {
+        Schema::create('master_periode', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tahunajaran_id');
+            $table->integer('tahunmulai');
+            $table->integer('tahunselesai');
+            $table->foreignId('semester_id');
+            $table->string('semester');
+            $table->enum('periode', ['PTS', 'PAS']);
+            $table->enum('status', ['0', '1'])->default('0');
+
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswa');
+        Schema::dropIfExists('master_periode');
     }
 };

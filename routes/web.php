@@ -13,6 +13,7 @@ use App\Http\Controllers\Master\MasterJenjangController;
 use App\Http\Controllers\Master\MasterKategoriController;
 use App\Http\Controllers\Master\MasterTahunajaranController;
 use App\Http\Controllers\Master\MasterKelasController;
+use App\Http\Controllers\Master\MasterPeriodeController;
 use App\Http\Controllers\Master\MasterPerkembanganController;
 use App\Http\Controllers\Master\MasterSemesterController;
 use App\Http\Controllers\Master\MasterSiswaController;
@@ -45,19 +46,32 @@ Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name(
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
     // Master Tahun Ajaran
-    Route::group(['prefix' => 'Master/Tahun Ajaran', 'as' => 'master.tahunajaran.'], function() {
-      Route::get('', [MasterTahunajaranController::class, 'index'])->name('list');
-      Route::post('/add',[MasterTahunajaranController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterTahunajaranController::class, 'update'])->name('edit');
-    });
+        Route::group(['prefix' => 'Master/Tahun Ajaran', 'as' => 'master.tahunajaran.'], function() {
+            Route::get('', [MasterTahunajaranController::class, 'index'])->name('list');
+            Route::post('/add',[MasterTahunajaranController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterTahunajaranController::class, 'update'])->name('edit');
+        });
 
-    
+    // MASTER SEMESTER
+        Route::group(['prefix' => 'Master/Semester', 'as' => 'master.semester.'], function() {
+            Route::get('', [MasterSemesterController::class, 'index'])->name('list');
+            Route::post('/add',[MasterSemesterController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterSemesterController::class, 'update'])->name('edit');
+        });
+
+    // MASTER PERIODE
+        Route::group(['prefix' => 'Master/Periode', 'as' => 'master.periode.'], function() {
+            Route::get('', [MasterPeriodeController::class, 'index'])->name('list');
+            Route::post('/add',[MasterPeriodeController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterPeriodeController::class, 'update'])->name('edit');
+        });
+
     // MASTER KELAS
-    Route::group(['prefix' => 'Master/Kelas', 'as' => 'master.kelas.'], function() {
-      Route::get('', [MasterKelasController::class, 'index'])->name('list');
-      Route::post('/add',[MasterKelasController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterKelasController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Kelas', 'as' => 'master.kelas.'], function() {
+            Route::get('', [MasterKelasController::class, 'index'])->name('list');
+            Route::post('/add',[MasterKelasController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterKelasController::class, 'update'])->name('edit');
+        });
 
     // MASTER GURU
     Route::group(['prefix' => 'Master/Guru', 'as' => 'master.guru.'], function() {
@@ -129,13 +143,6 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
       Route::get('', [MasterPerkembanganController::class, 'index'])->name('list');
       Route::post('/add',[MasterPerkembanganController::class, 'store'])->name('add');
       Route::put('/edit{id}',[MasterPerkembanganController::class, 'update'])->name('edit');
-  });
-
-    // MASTER SEMESTER
-    Route::group(['prefix' => 'Master/Semester', 'as' => 'master.semester.'], function() {
-      Route::get('', [MasterSemesterController::class, 'index'])->name('list');
-      Route::post('/add',[MasterSemesterController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterSemesterController::class, 'update'])->name('edit');
   });
 
     // MASTER AREA DEVELOPMENT
