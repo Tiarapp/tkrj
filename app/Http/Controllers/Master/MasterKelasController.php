@@ -8,7 +8,7 @@ use App\Models\Master\MasterKelas;
 use Illuminate\Http\Request;
 
 class MasterKelasController extends MasterController{
-    
+
     public function index()
     {
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data Master"], ['name' => "Kelas"]];
@@ -29,15 +29,15 @@ class MasterKelasController extends MasterController{
             // 'image'     => 'required|image|mimes:png,jpg,jpeg',
             'nama_kelas'     => 'required',
             'jenjang'   => 'required',
-            'status'   => 'required'
         ]);
 
+        $arrayjenjang = explode("#",$request->jenjang);
         // insert data ke dalam database
         $MasterKelas = MasterKelas::create([
             // 'image'     => $image->hashName(),
             'nama_kelas'     => $request->nama_kelas,
-            'jenjang'     => $request->jenjang,
-            'status'   => $request->status
+            'jenjang_id'    => $arrayjenjang[0],
+            'jenjang'       => $arrayjenjang[1],
         ]);
 
         if($MasterKelas){
@@ -57,26 +57,27 @@ class MasterKelasController extends MasterController{
             'status'   => 'required'
         ]);
 
+        $arrayjenjang = explode("#",$request->jenjang);
+
         //get data MasterKelas by ID
         $MasterKelas2 = MasterKelas::findOrFail($id);
-
-        // dd($MasterKelas2);
-
         if($request->file('image') == "") {
 
             $MasterKelas2->update([
-                'nama_kelas'     => $request->nama_kelas,
-                'jenjang'   => $request->jenjang,
-                'status'   => $request->status
+                'nama_kelas'    => $request->nama_kelas,
+                'jenjang_id'    => $arrayjenjang[0],
+                'jenjang'       => $arrayjenjang[1],
+                'status'        => $request->status
             ]);
 
         } else {
 
             $MasterKelas2->update([
                 // 'image'     => $image->hashName(),
-                'nama_kelas'     => $request->nama_kelas,
-                'jenjang'   => $request->jenjang,
-                'status'   => $request->status
+                'nama_kelas'    => $request->nama_kelas,
+                'jenjang_id'    => $arrayjenjang[0],
+                'jenjang'       => $arrayjenjang[1],
+                'status'        => $request->status
             ]);
 
         }

@@ -42,20 +42,11 @@ class MasterSiswaController extends MasterController
             $siswa=MasterSiswa::where('tahunajaran_id', $request->tahunajaran)
                                 ->orderBy('nis')
                                 ->get();
-            return $siswa;
-
             return response()->json([ 'data' => $siswa ]);
         }
 
     // FILTER TAHUNAJARAN PPDB
         public function get_siswa_ppdb(Request $request){
-            // return $request->tahunajaran_ppdb;
-            // $siswa_ppdb = DB::connection('mysql_ppdb')->table('smp_datasiswa')
-            //             ->select('smp_datasiswa.*', 'thn_ajaran_ppdb.id as id_tahunajaran', 'thn_ajaran_ppdb.mulai', 'thn_ajaran_ppdb.selesai')
-            //             ->join('thn_ajaran_ppdb', 'smp_datasiswa.tahunajaran_id', '=', 'thn_ajaran_ppdb.id')
-            //             ->where('smp_datasiswa.tahunajaran_id', $request->tahunajaran_ppdb)
-                        // ->orderBy('nm_lengkap')
-                        // ->get();
             $siswa_ppdb = DB::connection('mysql_ppdb')->table('tk_datasiswa')
                             ->where('tahunajaran_id', $request->tahunajaran_ppdb)
                             ->orderBy('nm_lengkap')

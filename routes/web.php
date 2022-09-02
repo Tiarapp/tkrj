@@ -1,25 +1,31 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\Master\MasterAreaController;
-use App\Http\Controllers\Master\MasterCPController;
-use App\Http\Controllers\Master\MasterDevacController;
-use App\Http\Controllers\Master\MasterElemenCPController;
-use App\Http\Controllers\Master\MasterGuruController;
-use App\Http\Controllers\Master\MasterIndikatorController;
-use App\Http\Controllers\Master\MasterJenjangController;
-use App\Http\Controllers\Master\MasterKategoriController;
-use App\Http\Controllers\Master\MasterTahunajaranController;
-use App\Http\Controllers\Master\MasterKelasController;
-use App\Http\Controllers\Master\MasterPeriodeController;
-use App\Http\Controllers\Master\MasterPerkembanganController;
-use App\Http\Controllers\Master\MasterSemesterController;
-use App\Http\Controllers\Master\MasterSiswaController;
-use App\Http\Controllers\Master\MasterSkillValueController;
-use App\Http\Controllers\Master\MasterTKController;
-use App\Http\Controllers\Master\MasterTPController;
+
+// MASTER
+    use App\Http\Controllers\Master\MasterAreaController;
+    use App\Http\Controllers\Master\MasterCPController;
+    use App\Http\Controllers\Master\MasterDevacController;
+    use App\Http\Controllers\Master\MasterElemenCPController;
+    use App\Http\Controllers\Master\MasterGuruController;
+    use App\Http\Controllers\Master\MasterIndikatorController;
+    use App\Http\Controllers\Master\MasterJenjangController;
+    use App\Http\Controllers\Master\MasterKategoriController;
+    use App\Http\Controllers\Master\MasterTahunajaranController;
+    use App\Http\Controllers\Master\MasterKelasController;
+    use App\Http\Controllers\Master\MasterPeriodeController;
+    use App\Http\Controllers\Master\MasterPerkembanganController;
+    use App\Http\Controllers\Master\MasterSemesterController;
+    use App\Http\Controllers\Master\MasterSiswaController;
+    use App\Http\Controllers\Master\MasterSkillValueController;
+    use App\Http\Controllers\Master\MasterTKController;
+    use App\Http\Controllers\Master\MasterTPController;
+
+// DATA
+    use App\Http\Controllers\Data\DataMuridController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,3 +172,14 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
       Route::put('/edit{id}',[MasterIndikatorController::class, 'update'])->name('edit');
   });
 
+    // DATA-------------------------------------------------------------------------------------------
+        // MURID
+            Route::group(['prefix' => 'Data/Murid', 'as' => 'data.datamurid.'], function() {
+                Route::get('', [DataMuridController::class, 'index'])->name('list');
+                Route::post('/add',[DataMuridController::class, 'store'])->name('add');
+                Route::put('/edit{id}',[DataMuridController::class, 'update'])->name('edit');
+                Route::get('/get_murid_tahun',[DataMuridController::class, 'get_murid_tahun'])->name('get_murid_tahun');
+                Route::get('/data_siswa_awal',[DataMuridController::class, 'data_siswa_awal'])->name('data_siswa_awal');
+                Route::get('/data_siswa_baru',[DataMuridController::class, 'data_siswa_baru'])->name('data_siswa_baru');
+                Route::get('/filter_kelas_add',[DataMuridController::class, 'filter_kelas'])->name('filter_kelas_add');
+            });

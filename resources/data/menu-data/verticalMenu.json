@@ -117,12 +117,14 @@
             "name": "Data",
             "icon": "database",
             "slug": "",
-            "submenu": [{
-                "url": "Data/Tahun Ajaran",
-                "name": "Tahun Ajaran",
-                "icon": "database",
-                "slug": "master.tahunajaran.list"
-            }]
+            "submenu": [
+                {
+                    "url": "Data/Murid",
+                    "name": "Murid",
+                    "icon": "user",
+                    "slug": "data.datamurid.list"
+                }
+            ]
         },
         {
             "name": "Page Layouts",

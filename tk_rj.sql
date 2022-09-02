@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Agu 2022 pada 16.11
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.1.2
+-- Waktu pembuatan: 02 Sep 2022 pada 05.16
+-- Versi server: 10.4.20-MariaDB
+-- Versi PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,37 @@ CREATE TABLE `absensi` (
   `absen` varchar(15) NOT NULL,
   `keterangan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_murid`
+--
+
+CREATE TABLE `data_murid` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `absen` int(11) NOT NULL,
+  `kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenjang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `extra` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahunajaran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `siswa_id` bigint(20) UNSIGNED NOT NULL,
+  `kelas_id` bigint(20) UNSIGNED NOT NULL,
+  `jenjang_id` bigint(20) UNSIGNED NOT NULL,
+  `extra_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahunajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `data_murid`
+--
+
+INSERT INTO `data_murid` (`id`, `nis`, `nama`, `absen`, `kelas`, `jenjang`, `extra`, `tahunajaran`, `siswa_id`, `kelas_id`, `jenjang_id`, `extra_id`, `tahunajaran_id`, `created_at`, `updated_at`) VALUES
+(1, 'TK-1', 'Abhipraya Luckman El Fauzie', 1, 'TK A2', 'TK A', NULL, '2022/2023', 1, 1, 2, NULL, 3, '2022-09-01 20:10:21', '2022-09-01 20:10:21');
 
 -- --------------------------------------------------------
 
@@ -196,7 +227,8 @@ CREATE TABLE `master_gurus` (
 
 INSERT INTO `master_gurus` (`id`, `nomor_induk`, `nama_guru`, `status_aktif`, `created_at`, `updated_at`) VALUES
 (1, '1234567890', 'Fadhil Husaini', 'Aktif', '2022-08-24 22:38:36', '2022-08-24 22:38:36'),
-(2, '094321', 'Tiar Ade Perdana Putra', 'Aktif', '2022-08-24 22:42:11', '2022-08-24 22:45:57');
+(2, '094321', 'Tiar Ade Perdana Putra', 'Aktif', '2022-08-24 22:42:11', '2022-08-24 22:45:57'),
+(3, '1011', 'Coba Guru 1', 'Non Aktif', '2022-08-31 20:38:21', '2022-08-31 23:45:09');
 
 -- --------------------------------------------------------
 
@@ -239,7 +271,8 @@ CREATE TABLE `master_jenjang` (
 --
 
 INSERT INTO `master_jenjang` (`id`, `nama_jenjang`, `status_aktif`, `created_at`, `updated_at`) VALUES
-(1, 'TK B', 'Aktif', '2022-08-24 13:15:21', '2022-08-24 13:21:11');
+(1, 'TK B', 'Aktif', '2022-08-24 13:15:21', '2022-08-24 13:21:11'),
+(2, 'TK A', 'Aktif', '2022-08-31 20:37:02', '2022-08-31 20:37:02');
 
 -- --------------------------------------------------------
 
@@ -274,10 +307,11 @@ INSERT INTO `master_kategoris` (`id`, `nama_kategori`, `keterangan`, `status_akt
 --
 
 CREATE TABLE `master_kelas` (
-  `id` bigint(10) UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama_kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jenjang` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenjang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `jenjang_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -286,8 +320,35 @@ CREATE TABLE `master_kelas` (
 -- Dumping data untuk tabel `master_kelas`
 --
 
-INSERT INTO `master_kelas` (`id`, `nama_kelas`, `jenjang`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'TK BESAR', 'TK B', 'Non Aktif', '2022-08-24 21:28:41', '2022-08-24 21:36:37');
+INSERT INTO `master_kelas` (`id`, `nama_kelas`, `jenjang`, `status`, `jenjang_id`, `created_at`, `updated_at`) VALUES
+(1, 'TK A2', 'TK A', '1', 2, '2022-09-01 20:00:42', '2022-09-01 20:08:01'),
+(2, 'TK B1', 'TK B', '1', 1, '2022-09-01 20:00:55', '2022-09-01 20:00:55');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `master_periode`
+--
+
+CREATE TABLE `master_periode` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tahunajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `tahunmulai` int(11) NOT NULL,
+  `tahunselesai` int(11) NOT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
+  `semester` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `periode` enum('PTS','PAS') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `master_periode`
+--
+
+INSERT INTO `master_periode` (`id`, `tahunajaran_id`, `tahunmulai`, `tahunselesai`, `semester_id`, `semester`, `periode`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 2022, 2023, 1, 'Semester 1', 'PTS', '1', '2022-08-31 23:32:32', '2022-08-31 23:36:46');
 
 -- --------------------------------------------------------
 
@@ -338,28 +399,31 @@ INSERT INTO `master_semesters` (`id`, `nama_semester`, `jenjang_id`, `tahun_ajar
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_siswas`
+-- Struktur dari tabel `master_siswa`
 --
 
-CREATE TABLE `master_siswas` (
+CREATE TABLE `master_siswa` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nis` int(11) NOT NULL,
-  `nik` int(11) NOT NULL,
-  `nama_siswa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tahun_masuk` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tahun_keluar` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahunajaran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pendaftaran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nik` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tahun_keluar` date DEFAULT NULL,
+  `status` enum('Aktif','Lulus','Pindah') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Aktif',
+  `pendaftaran_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tahunajaran_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `master_siswas`
+-- Dumping data untuk tabel `master_siswa`
 --
 
-INSERT INTO `master_siswas` (`id`, `nis`, `nik`, `nama_siswa`, `status`, `tahun_masuk`, `tahun_keluar`, `created_at`, `updated_at`) VALUES
-(1, 123456, 9876, 'Tiar', 'Aktif', '2021/2022', '2023/2024', '2022-08-24 11:06:28', '2022-08-24 11:12:28'),
-(2, 12333, 222, 'Rendi', 'Aktif', '2021/2022', NULL, '2022-08-24 11:07:07', '2022-08-24 11:07:07');
+INSERT INTO `master_siswa` (`id`, `tahunajaran`, `pendaftaran`, `nik`, `nis`, `nama`, `tahun_keluar`, `status`, `pendaftaran_id`, `tahunajaran_id`, `created_at`, `updated_at`) VALUES
+(1, '2022/2023', 'Reguler', '3578021507170003', 'TK-1', 'Abhipraya Luckman El Fauzie', NULL, 'Aktif', '179', 3, '2022-09-01 01:00:09', '2022-09-01 01:00:09'),
+(2, '2022/2023', 'Reguler', '3515184609170004', 'TK-2', 'Adreena Kanya Mardhika', NULL, 'Aktif', '145', 3, '2022-09-01 01:00:09', '2022-09-01 01:00:09');
 
 -- --------------------------------------------------------
 
@@ -455,29 +519,17 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (43, '2019_08_19_000000_create_failed_jobs_table', 3),
 (44, '2019_12_14_000001_create_personal_access_tokens_table', 3),
 (45, '2022_08_13_021919_create_master_siswas_table', 3),
-(46, '2022_08_16_015003_create_master_kelas_table', 3),
 (47, '2022_08_18_023528_create_master_gurus_table', 3),
 (48, '2022_08_18_090031_create_master_t_k_s_table', 3),
 (49, '2022_08_19_024354_create_master_t_p_s_table', 4),
 (50, '2022_08_19_062418_create_master_c_p_s_table', 5),
 (51, '2022_08_19_074733_create_master_semesters_table', 6),
 (52, '2022_08_19_092215_create_master_kategoris_table', 7),
-(53, '2022_08_20_030132_create_master_ekstras_table', 8);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `murid`
---
-
-CREATE TABLE `murid` (
-  `nis` int(20) NOT NULL,
-  `id_kelas` int(10) NOT NULL,
-  `nama_murid` varchar(30) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `jenjang` varchar(10) NOT NULL,
-  `tahun_ajaran` year(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(53, '2022_08_20_030132_create_master_ekstras_table', 8),
+(55, '2022_09_01_040448_create_master_periode_table', 10),
+(57, '2022_09_01_073833_create_master_siswa_table', 11),
+(59, '2022_09_02_004806_create_data_murid_table', 12),
+(61, '2022_09_02_023030_create_master_kelas_table', 13);
 
 -- --------------------------------------------------------
 
@@ -637,7 +689,8 @@ CREATE TABLE `tahun_ajaran` (
 
 INSERT INTO `tahun_ajaran` (`id`, `mulai`, `selesai`, `tahun_ajaran`, `status`, `created_at`, `updated_at`) VALUES
 (1, '2020', '2021', '2020/2021', 'Aktif', '2022-08-24 12:48:47', '2022-08-24 12:57:47'),
-(2, '2021', '2022', '2021/2022', 'Aktif', '2022-08-24 12:58:02', '2022-08-24 12:58:02');
+(2, '2021', '2022', '2021/2022', 'Aktif', '2022-08-24 12:58:02', '2022-08-24 12:58:02'),
+(3, '2022', '2023', '2022/2023', 'Aktif', '2022-08-31 20:36:09', '2022-08-31 20:36:09');
 
 -- --------------------------------------------------------
 
@@ -679,6 +732,12 @@ CREATE TABLE `wali_kelas` (
 --
 ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id_absensi`);
+
+--
+-- Indeks untuk tabel `data_murid`
+--
+ALTER TABLE `data_murid`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `failed_jobs`
@@ -754,6 +813,12 @@ ALTER TABLE `master_kelas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `master_periode`
+--
+ALTER TABLE `master_periode`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `master_perkembangan`
 --
 ALTER TABLE `master_perkembangan`
@@ -766,10 +831,11 @@ ALTER TABLE `master_semesters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `master_siswas`
+-- Indeks untuk tabel `master_siswa`
 --
-ALTER TABLE `master_siswas`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `master_siswa`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `master_siswa_nis_unique` (`nis`);
 
 --
 -- Indeks untuk tabel `master_skill_value`
@@ -794,12 +860,6 @@ ALTER TABLE `master_t_p_s`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `murid`
---
-ALTER TABLE `murid`
-  ADD PRIMARY KEY (`nis`);
 
 --
 -- Indeks untuk tabel `nilai_capai_perkembangan`
@@ -887,6 +947,12 @@ ALTER TABLE `absensi`
   MODIFY `id_absensi` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `data_murid`
+--
+ALTER TABLE `data_murid`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -932,7 +998,7 @@ ALTER TABLE `master_elemen_cp`
 -- AUTO_INCREMENT untuk tabel `master_gurus`
 --
 ALTER TABLE `master_gurus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_indikator`
@@ -944,7 +1010,7 @@ ALTER TABLE `master_indikator`
 -- AUTO_INCREMENT untuk tabel `master_jenjang`
 --
 ALTER TABLE `master_jenjang`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_kategoris`
@@ -956,7 +1022,13 @@ ALTER TABLE `master_kategoris`
 -- AUTO_INCREMENT untuk tabel `master_kelas`
 --
 ALTER TABLE `master_kelas`
-  MODIFY `id` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `master_periode`
+--
+ALTER TABLE `master_periode`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `master_perkembangan`
@@ -971,9 +1043,9 @@ ALTER TABLE `master_semesters`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `master_siswas`
+-- AUTO_INCREMENT untuk tabel `master_siswa`
 --
-ALTER TABLE `master_siswas`
+ALTER TABLE `master_siswa`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -998,13 +1070,7 @@ ALTER TABLE `master_t_p_s`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
---
--- AUTO_INCREMENT untuk tabel `murid`
---
-ALTER TABLE `murid`
-  MODIFY `nis` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_capai_perkembangan`
@@ -1058,7 +1124,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `tahun_ajaran`
 --
 ALTER TABLE `tahun_ajaran`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

@@ -71,10 +71,13 @@
                                     <td>{{ $k->nama_kelas }}</td>
                                     <td>{{ $k->jenjang }}</td>
                                     <td>
-                                        {{ $k->status }}
+                                        @if ($k->status==0)
+                                            Non Aktif
+                                        @elseif ($k->status==1)
+                                            Aktif
+                                        @endif
                                     </td>
                                     <td>
-                                        {{-- <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{$k->id}}"> --}}
                                         <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{ $k->id }}">
                                             <i data-feather="edit"></i>
                                         </button>

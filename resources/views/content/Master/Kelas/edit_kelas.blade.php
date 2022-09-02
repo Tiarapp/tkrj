@@ -20,7 +20,7 @@
                         <select class="basic-select2" name="jenjang" required>
                             <option value="" selected disabled>Pilih Jenjang</option>
                             @foreach ($jenjang as $j)
-                                <option value="{{ $j->nama_jenjang }}" @if ($k->jenjang == $j->nama_jenjang) selected @endif>{{$j->nama_jenjang}}</option>
+                                <option value="{{ $j->id }}#{{ $j->nama_jenjang }}" @if ($k->jenjang == $j->nama_jenjang) selected @endif>{{$j->nama_jenjang}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -28,8 +28,8 @@
                         <label class="form-label">Status</label>
                         <select class="basic-select2" name="status" required>
                             <option value="" selected disabled>Pilih Status</option>
-                            <option value="Aktif" @if ($k->status == "Aktif") selected @endif>Aktif</option>
-                            <option value="Non Aktif" @if ($k->status == "Non Aktif") selected @endif>Non Aktif</option>
+                            <option value="1" @if ($k->status == "1") selected @endif>Aktif</option>
+                            <option value="0" @if ($k->status == "0") selected @endif>Non Aktif</option>
                         </select>
                     </div>
                 </div>

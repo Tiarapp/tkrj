@@ -18,16 +18,8 @@
                         <select class="basic-select2" name="jenjang" required>
                             <option value="" selected disabled>Pilih Jenjang</option>
                             @foreach ($jenjang as $j)
-                                <option value="{{ $j->nama_jenjang }}">{{$j->nama_jenjang}}</option>
+                                <option value="{{ $j->id }}#{{$j->nama_jenjang}}">{{$j->nama_jenjang}}</option>
                             @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-1">
-                        <label class="form-label">Status</label>
-                        <select class="basic-select2" name="status" required>
-                            <option value="" selected disabled>Pilih Status</option>
-                            <option value="Aktif" >Aktif</option>
-                            <option value="Non Aktif" >Non Aktif</option>
                         </select>
                     </div>
                 </div>

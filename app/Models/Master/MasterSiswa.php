@@ -15,7 +15,7 @@ class MasterSiswa extends Model
     * @var array
     */
 
-    protected $table = 'master_siswas';
+    protected $table = 'master_siswa';
 
     protected $fillable = [
        'tahunajaran_id', 'tahun_ajaran', 'pendaftaran_id', 'pendaftaran', 'nis','nik', 'nama_siswa', 'status', 'tahun_keluar'

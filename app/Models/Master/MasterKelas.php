@@ -18,6 +18,6 @@ class MasterKelas extends Model
     protected $table = 'master_kelas';
 
     protected $fillable = [
-        'nama_kelas', 'status','jenjang'
+        'id', 'nama_kelas', 'jenjang', 'status', 'jenjang_id', 'created_at', 'updated_at'
     ];
 }
