@@ -77,9 +77,9 @@ class WalikelasController extends DataController
         $kelas=MasterKelas::find($request->edit_id_kelas);
 
         $walikelas=data_walikelas::find($request->id_data);
-        $walikelas->nip         = $guru->NIP;
-        $walikelas->nama        = $guru->nama;
-        $walikelas->kelas       = $kelas->nama;
+        $walikelas->nip         = $guru->nomor_induk;
+        $walikelas->nama        = $guru->nama_guru;
+        $walikelas->kelas       = $kelas->nama_kelas;
         $walikelas->jenjang     = $kelas->jenjang;
         $walikelas->guru_id     = $guru->id;
         $walikelas->kelas_id    = $kelas->id;

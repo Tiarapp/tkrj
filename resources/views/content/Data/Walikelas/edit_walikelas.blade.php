@@ -16,7 +16,7 @@
                         <label class="form-label" for="basic-default-name">Pilih Guru</label>
                         <select class="select2-size-sm form-select" name="edit_id_guru" id="edit_id_guru" required>
                             @foreach ($guru as $g)
-                                <option value="{{$g->id}}">{{$g->nama}}</option>
+                                <option value="{{$g->id}}">{{$g->nama_guru}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -24,7 +24,7 @@
                         <label class="form-label" for="basic-default-name">Pilih Kelas</label>
                         <select class="select2-size-sm form-select" name="edit_id_kelas" id="edit_id_kelas" required>
                             @foreach ($kelas as $k)
-                                <option value="{{$k->id}}">{{$k->nama}}</option>
+                                <option value="{{$k->id}}">{{$k->nama_kelas}}</option>
                             @endforeach
                         </select>
                     </div>
