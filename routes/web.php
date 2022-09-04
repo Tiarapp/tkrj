@@ -26,6 +26,7 @@ use App\Http\Controllers\LanguageController;
 
 // DATA
     use App\Http\Controllers\Data\DataMuridController;
+    use App\Http\Controllers\Data\WalikelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -182,4 +183,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_siswa_awal',[DataMuridController::class, 'data_siswa_awal'])->name('data_siswa_awal');
                 Route::get('/data_siswa_baru',[DataMuridController::class, 'data_siswa_baru'])->name('data_siswa_baru');
                 Route::get('/filter_kelas_add',[DataMuridController::class, 'filter_kelas'])->name('filter_kelas_add');
+            });
+
+        // WALIKELAS
+            Route::group(['prefix' => 'Data/Walikelas', 'as' => 'data.walikelas.'], function() {
+                Route::get('', [WalikelasController::class, 'index'])->name('list');
+                Route::post('/add',[WalikelasController::class, 'store'])->name('add');
+                Route::put('/edit',[WalikelasController::class, 'update'])->name('edit');
+                Route::get('/data_awal',[WalikelasController::class, 'data_awal'])->name('data_awal');
+                Route::get('/view_walikelas',[WalikelasController::class, 'view_walikelas'])->name('view_walikelas');
             });

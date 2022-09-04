@@ -123,6 +123,12 @@
                     "name": "Murid",
                     "icon": "user",
                     "slug": "data.datamurid.list"
+                },
+                {
+                    "url": "Data/Walikelas",
+                    "name": "Wali Kelas",
+                    "icon": "user",
+                    "slug": "data.walikelas.list"
                 }
             ]
         },
