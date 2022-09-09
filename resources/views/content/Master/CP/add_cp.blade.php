@@ -19,7 +19,11 @@
                         <div class="col-md-5 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Status Aktif</label>
-                                <input type="text" class="form-control" name="status_aktif" id="basic-default-name" placeholder="Status" required/>
+                                <select class="basic-select2" name="status_aktif" required>
+                                    <option value="" selected disabled>Pilih Opsi</option>
+                                    <option value="Aktif" >Aktif</option>
+                                    <option value="Non Aktif" >Non Aktif</option>
+                                </select>
                             </div>
                         </div>
                     </div>

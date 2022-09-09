@@ -34,8 +34,6 @@
                                 <label class="form-label">Status Tahun Ajaran</label>
                                 <select class="basic-select2" name="status" required>
                                     <option value="" selected disabled>Pilih Status</option>
-                                    {{-- <option value="1" @if ($t->status == "1") selected @endif>Aktif</option>
-                                    <option value="0" @if ($t->status == "0") selected @endif>Non Aktif</option> --}}
                                     <option value="Aktif" >Aktif</option>
                                     <option value="Non Aktif" >Non Aktif</option>
                                 </select>
