@@ -66,13 +66,15 @@ class MasterSiswaController extends MasterController
 
         $thn_ajaran=MasterTahunAjaran::find($request->thn_ajaran_masuk);
         $request->tahunajaran_id=$thn_ajaran;
-        // dd($request);
+        // dd($request->pendaftaran_id);
         if (count($request['nis']) > 0) {
             foreach ($request->pendaftaran_id as $idx_pendaftaran_id => $val_pendaftaran_id) {
                 // dd($request->tahunajaran_id);
 
                 if ($request['nis'][$idx_pendaftaran_id] !== NULL) {
                     // KOLOM DATA YG HARUS DIISI
+
+                    dd($request['nik'][$idx_pendaftaran_id]);
                     MasterSiswa::create([
                         'tahunajaran_id'=> $thn_ajaran->id,
                         'tahunajaran'   => $thn_ajaran->tahun_ajaran,

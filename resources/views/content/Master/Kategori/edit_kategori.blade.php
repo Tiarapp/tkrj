@@ -26,8 +26,10 @@
                         <div class="col-md-5 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Status</label>
-                                {{-- <input type="text" class="form-control" name="selesai" id="basic-default-name" value="{{$split[1]}}" oninvalid="this.setCustomValidity('Isi Tahun Ajaran Selesai')" readonly/> --}}
-                                <input type="text" class="form-control" name="status_aktif" id="basic-default-name" value="{{ $kat->status_aktif }}" />
+                                <select class="basic-select2" name="status" required>
+                                    <option value="Aktif" @if ($kat->status_aktif == "Aktif") selected @endif>Aktif</option>
+                                    <option value="Non Aktif"  @if ($kat->status_aktif == "Non Aktif") selected @endif>Non Aktif</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-12 col-12">

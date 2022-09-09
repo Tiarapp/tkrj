@@ -44,7 +44,10 @@
                         <div class="col-md-5 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Status Aktif</label>
-                                <input type="text" class="form-control" name="status_aktif" id="basic-default-name" placeholder="Status" value="{{ $tk->status_aktif }}" required/>
+                                <select class="basic-select2" name="status_aktif" required>
+                                    <option value="Aktif" @if ($tk->status_aktif == "Aktif") selected @endif>Aktif</option>
+                                    <option value="Non Aktif" @if ($tk->status_aktif == "Non Aktif") selected @endif>Non Aktif</option>
+                                </select>
                             </div>
                         </div>
                     </div>

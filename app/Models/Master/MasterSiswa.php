@@ -18,6 +18,6 @@ class MasterSiswa extends Model
     protected $table = 'master_siswa';
 
     protected $fillable = [
-       'tahunajaran_id', 'tahun_ajaran', 'pendaftaran_id', 'pendaftaran', 'nis','nik', 'nama_siswa', 'status', 'tahun_keluar'
+       'tahunajaran_id', 'tahunajaran', 'pendaftaran_id', 'pendaftaran', 'nis','nik', 'nama', 'status', 'tahun_keluar'
     ];
 }
