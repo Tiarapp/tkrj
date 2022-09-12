@@ -16,7 +16,7 @@ class DataMuridController extends DataController
         $murid=data_murid::all()->sortBy('kelas');
         $tahunajaran=MasterTahunAjaran::all();
         $kelas=MasterKelas::all()
-                            ->sortBy('nama');
+                            ->sortBy('nama_kelas');
         return view('content.Data.Murid.murid', ['breadcrumbs' => $breadcrumbs, 'murid' => $murid, 'tahunajaran' => $tahunajaran, 'kelas' => $kelas]);
     }
 
@@ -36,7 +36,9 @@ class DataMuridController extends DataController
 
     // DATA ADD SISWA AWAL
         public function data_siswa_baru(Request $request){
-            $siswa=MasterSiswa::where('tahunajaran_id', $request->tahun_masuk)
+            $tahunajaran=MasterTahunAjaran::find($request->tahun_masuk);
+            $siswa=MasterSiswa::where('tahun_masuk', $tahunajaran->mulai)
+                                ->orderby('nis')
                                 ->get();
 
             return response()->json([ 'data' => $siswa ]);

@@ -22,11 +22,10 @@ class WalikelasController extends DataController
     {
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data"], ['name' => "Walikelas"]];
         $tahunajaran=MasterTahunAjaran::all();
-        $jenjang=MasterJenjang::where('id', '>', 1)
-                                ->get();
+        $jenjang=MasterJenjang::all();
         $guru=MasterGuru::where('status_aktif', "Aktif")
                             ->get();
-        $kelas=MasterKelas::all();
+        $kelas=MasterKelas::all()->sortBy('nama_kelas');
 
         return view('content.Data.Walikelas.walikelas', ['breadcrumbs' => $breadcrumbs, 'tahunajaran'=>$tahunajaran, 'jenjang'=>$jenjang, 'guru'=>$guru, 'kelas'=>$kelas]);
     }

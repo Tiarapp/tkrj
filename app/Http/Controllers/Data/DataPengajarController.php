@@ -15,8 +15,8 @@ class DataPengajarController extends DataController
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data"], ['name' => "Pengajar"]];
 
         $pengajar=data_pengajar::all()->sortBy('nama');
-        $guru=MasterGuru::all()->sortBy('nama');
-        $kelas=MasterKelas::all()->sortBy('nama');
+        $guru=MasterGuru::all()->sortBy('nama_guru');
+        $kelas=MasterKelas::all()->sortBy('nama_kelas');
         $tahunajaran=MasterTahunAjaran::all()->sortBy('tahunajaran');
         return view('content.Data.Pengajar.pengajar', ['breadcrumbs' => $breadcrumbs, 'pengajar'=>$pengajar, 'guru'=>$guru, 'kelas'=>$kelas, 'tahunajaran'=>$tahunajaran]);
     }
