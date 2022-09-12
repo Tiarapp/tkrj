@@ -26,7 +26,8 @@ use App\Http\Controllers\LanguageController;
 
 // DATA
     use App\Http\Controllers\Data\DataMuridController;
-    use App\Http\Controllers\Data\WalikelasController;
+use App\Http\Controllers\Data\DataPengajarController;
+use App\Http\Controllers\Data\WalikelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -183,6 +184,17 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_siswa_awal',[DataMuridController::class, 'data_siswa_awal'])->name('data_siswa_awal');
                 Route::get('/data_siswa_baru',[DataMuridController::class, 'data_siswa_baru'])->name('data_siswa_baru');
                 Route::get('/filter_kelas_add',[DataMuridController::class, 'filter_kelas'])->name('filter_kelas_add');
+            });
+
+        // PENGAJAR
+            Route::group(['prefix' => 'Data/Pengajar', 'as' => 'data.pengajar.'], function() {
+                Route::get('', [DataPengajarController::class, 'index'])->name('list');
+                Route::post('/add',[DataPengajarController::class, 'store'])->name('add');
+                Route::put('/edit',[DataPengajarController::class, 'update'])->name('edit');
+                Route::get('/data', [DataPengajarController::class, 'data'])->name('data');
+                Route::get('/data_awal_pertahun', [DataPengajarController::class, 'data_awal_pertahun'])->name('data_awal_pertahun');
+                Route::get('/filter_pengajar', [DataPengajarController::class, 'filter_pengajar'])->name('filter_pengajar');
+                Route::get('/mapel_add', [DataPengajarController::class, 'mapel_add'])->name('mapel_add');
             });
 
         // WALIKELAS

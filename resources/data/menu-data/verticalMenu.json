@@ -129,6 +129,12 @@
                     "name": "Wali Kelas",
                     "icon": "user",
                     "slug": "data.walikelas.list"
+                },
+                {
+                    "url": "Data/Pengajar",
+                    "name": "Pengajar",
+                    "icon": "user",
+                    "slug": "data.pengajar.list"
                 }
             ]
         },
