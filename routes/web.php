@@ -161,7 +161,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
   });
 
     // MASTER Development Achievment
-    Route::group(['prefix' => 'Master/Dev Achiev', 'as' => 'master.devac.'], function() {
+    Route::group(['prefix' => 'Master/DevAchiev', 'as' => 'master.devac.'], function() {
       Route::get('', [MasterDevacController::class, 'index'])->name('list');
       Route::post('/add',[MasterDevacController::class, 'store'])->name('add');
       Route::put('/edit{id}',[MasterDevacController::class, 'update'])->name('edit');

@@ -15,15 +15,27 @@ return new class extends Migration
     {
         Schema::create('master_siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('tahunajaran');
-            $table->string('pendaftaran');
-            $table->string('nik');
+            $table->integer('tahun_masuk');
+            $table->string('tahunajaran_masuk');
             $table->string('nis')->unique();
             $table->string('nama');
-            $table->date('tahun_keluar')->nullable();
-            $table->enum('status', ['Aktif', 'Lulus', 'Pindah'])->default('Aktif');
-            $table->string('pendaftaran_id');
-            $table->foreignId('tahunajaran_id');
+            $table->string('panggilan');
+            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
+            $table->string('tempat_lahir');
+            $table->string('tanggal_lahir');
+            $table->string('alamat');
+            $table->string('no_tlp');
+            $table->integer('anak_ke');
+            $table->integer('nik');
+            $table->string('registrasi_akte_kelahiran_anak');
+            $table->string('nama_bapak');
+            $table->string('pekerjaan_bapak');
+            $table->string('nama_ibu');
+            $table->string('pekerjaan_ibu');
+            $table->integer('pendaftaran_id');
+            $table->string('ppdb');
+            $table->string('status');
+            $table->integer('tahun_keluar');
             $table->timestamps();
         });
     }
