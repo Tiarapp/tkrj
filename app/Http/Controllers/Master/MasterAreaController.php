@@ -14,7 +14,7 @@ class MasterAreaController extends MasterController
         $area = MasterArea::all();
 
         return view('content.Master.Area.data_area', [
-            'breadcrumbs' => $breadcrumbs, 
+            'breadcrumbs' => $breadcrumbs,
             'area' => $area
         ]);
     }
@@ -23,8 +23,13 @@ class MasterAreaController extends MasterController
     {
         $this->validate($request, [
             'nama_area'     => 'required',
-            'status'   => 'required'
         ]);
+
+        if($request->status=="on"){
+            $request->status="Aktif";
+        }else{
+            $request->status="Non Aktif";
+        }
 
         $area = MasterArea::create([
             'nama_area' => $request->nama_area,
@@ -44,8 +49,13 @@ class MasterAreaController extends MasterController
     {
         $this->validate($request, [
             'nama_area'     => 'required',
-            'status'        => 'required'
         ]);
+
+        if($request->status=="on"){
+            $request->status="Aktif";
+        }else{
+            $request->status="Non Aktif";
+        }
 
         //get data MasterJenjang by ID
         $area = MasterArea::findOrFail($id);

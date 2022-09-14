@@ -10,7 +10,7 @@
                 {{csrf_field()}}
                 <div class="modal-body">
                     <div class="row d-flex align-items-end">
-                        <div class="col-md-5 col-12">
+                        <div class="col-md-12 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Nama Achievment</label>
                                 <input type="text" class="form-control" name="nama_achievment" id="basic-default-name" placeholder="Nama Achievment" required/>

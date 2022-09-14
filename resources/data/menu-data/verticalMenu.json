@@ -28,10 +28,10 @@
                     "slug": "master.periode.list"
                 },
                 {
-                    "url": "Master/Kelas",
-                    "name": "Kelas",
+                    "url": "Master/Jenjang",
+                    "name": "Jenjang",
                     "icon": "database",
-                    "slug": "master.kelas.list"
+                    "slug": "master.jenjang.list"
                 },
                 {
                     "url": "Master/Guru",
@@ -40,10 +40,52 @@
                     "slug": "master.guru.list"
                 },
                 {
+                    "url": "Master/Kelas",
+                    "name": "Kelas",
+                    "icon": "database",
+                    "slug": "master.kelas.list"
+                },
+                {
                     "url": "Master/Siswa",
                     "name": "Siswa",
                     "icon": "database",
                     "slug": "master.siswa.list"
+                },
+                {
+                    "url": "Master/Ekstra",
+                    "name": "Ekstra",
+                    "icon": "database",
+                    "slug": "master.ekstra.list"
+                },
+                {
+                    "url": "Master/Tahfidz",
+                    "name": "Tahfidz",
+                    "icon": "database",
+                    "slug": "master.tahfidz.list"
+                },
+                {
+                    "url": "Master/Tilawah",
+                    "name": "Tilawah",
+                    "icon": "database",
+                    "slug": "master.tilawah.list"
+                },
+                {
+                    "url": "Master/Doaharian",
+                    "name": "Doa Harian",
+                    "icon": "database",
+                    "slug": "master.doaharian.list"
+                },
+                {
+                    "url": "Master/Hadist",
+                    "name": "Hadist",
+                    "icon": "database",
+                    "slug": "master.hadist.list"
+                },
+                {
+                    "url": "Master/CBI",
+                    "name": "CBI Fonik",
+                    "icon": "database",
+                    "slug": "master.cbi.list"
                 },
                 {
                     "url": "Master/Capaian Pembelajaran",
@@ -104,12 +146,6 @@
                     "name": "Indikator",
                     "icon": "database",
                     "slug": "master.indikator.list"
-                },
-                {
-                    "url": "Master/Jenjang",
-                    "name": "Jenjang",
-                    "icon": "database",
-                    "slug": "master.jenjang.list"
                 }
             ]
         },

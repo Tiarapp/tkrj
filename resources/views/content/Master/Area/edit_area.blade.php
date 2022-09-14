@@ -11,16 +11,20 @@
                 {{ method_field('PUT') }}
                 <div class="modal-body">
                     <div class="row d-flex align-items-end">
-                        <div class="col-md-5 col-12">
+                        <div class="col-md-8 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Nama Area</label>
                                 <input type="text" class="form-control" name="nama_area" id="basic-default-name" placeholder="Tahun Ajaran Mulai" value="{{ $a->nama_area }}" required/>
                             </div>
                         </div>
-                        <div class="col-md-5 col-12">
+                        <div class="col-md-4 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Status Aktif</label>
-                                <input type="text" class="form-control" name="status" id="basic-default-name" placeholder="Status" value="{{ $a->status }}" required/>
+                                <div class="d-flex flex-column">
+                                    <div class="form-check form-check-success form-switch">
+                                      <input type="checkbox" name="status" @if ($a->status == "Aktif") checked @endif class="form-check-input" id="customSwitch4" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

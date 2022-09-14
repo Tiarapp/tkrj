@@ -23,11 +23,18 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Master\MasterSkillValueController;
     use App\Http\Controllers\Master\MasterTKController;
     use App\Http\Controllers\Master\MasterTPController;
+    use App\Http\Controllers\Master\MasterEkstraController;
+    use App\Http\Controllers\Master\MasterTahfidzController;
+    use App\Http\Controllers\Master\MasterTilawahController;
+    use App\Http\Controllers\Master\MasterDoaharianController;
+    use App\Http\Controllers\Master\MasterHadistController;
+    use App\Http\Controllers\Master\MasterCbiController;
 
 // DATA
     use App\Http\Controllers\Data\DataMuridController;
-use App\Http\Controllers\Data\DataPengajarController;
-use App\Http\Controllers\Data\WalikelasController;
+    use App\Http\Controllers\Data\DataPengajarController;
+    use App\Http\Controllers\Data\WalikelasController;
+use App\Models\Master\MasterHadist;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,97 +89,139 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
         });
 
     // MASTER GURU
-    Route::group(['prefix' => 'Master/Guru', 'as' => 'master.guru.'], function() {
-      Route::get('', [MasterGuruController::class, 'index'])->name('list');
-      Route::post('/add',[MasterGuruController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterGuruController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Guru', 'as' => 'master.guru.'], function() {
+            Route::get('', [MasterGuruController::class, 'index'])->name('list');
+            Route::post('/add',[MasterGuruController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterGuruController::class, 'update'])->name('edit');
+        });
 
     // MASTER SISWA
-    Route::group(['prefix' => 'Master/Siswa', 'as' => 'master.siswa.'], function() {
-      Route::get('', [MasterSiswaController::class, 'index'])->name('list');
-      Route::post('/add',[MasterSiswaController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterSiswaController::class, 'update'])->name('edit');
-      Route::get('/get_siswa',[MasterSiswaController::class, 'get_siswa'])->name('get_siswa');
-      Route::get('/get_siswa_ppdb',[MasterSiswaController::class, 'get_siswa_ppdb'])->name('get_siswa_ppdb');
-  });
+        Route::group(['prefix' => 'Master/Siswa', 'as' => 'master.siswa.'], function() {
+            Route::get('', [MasterSiswaController::class, 'index'])->name('list');
+            Route::post('/add',[MasterSiswaController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterSiswaController::class, 'update'])->name('edit');
+            Route::get('/get_siswa',[MasterSiswaController::class, 'get_siswa'])->name('get_siswa');
+            Route::get('/get_siswa_ppdb',[MasterSiswaController::class, 'get_siswa_ppdb'])->name('get_siswa_ppdb');
+        });
 
     // MASTER CP
-    Route::group(['prefix' => 'Master/Capaian Pembelajaran', 'as' => 'master.cp.'], function() {
-      Route::get('', [MasterCPController::class, 'index'])->name('list');
-      Route::post('/add',[MasterCPController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterCPController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Capaian Pembelajaran', 'as' => 'master.cp.'], function() {
+            Route::get('', [MasterCPController::class, 'index'])->name('list');
+            Route::post('/add',[MasterCPController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterCPController::class, 'update'])->name('edit');
+        });
 
     // MASTER Elemen CP
-    Route::group(['prefix' => 'Master/Elemen Capaian Pembelajaran', 'as' => 'master.elemen.'], function() {
-      Route::get('', [MasterElemenCPController::class, 'index'])->name('list');
-      Route::post('/add',[MasterElemenCPController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterElemenCPController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Elemen Capaian Pembelajaran', 'as' => 'master.elemen.'], function() {
+            Route::get('', [MasterElemenCPController::class, 'index'])->name('list');
+            Route::post('/add',[MasterElemenCPController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterElemenCPController::class, 'update'])->name('edit');
+        });
 
     // MASTER TP
-    Route::group(['prefix' => 'Master/Tujuan Pembelajaran', 'as' => 'master.tp.'], function() {
-      Route::get('', [MasterTPController::class, 'index'])->name('list');
-      Route::post('/add',[MasterTPController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterTPController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Tujuan Pembelajaran', 'as' => 'master.tp.'], function() {
+            Route::get('', [MasterTPController::class, 'index'])->name('list');
+            Route::post('/add',[MasterTPController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterTPController::class, 'update'])->name('edit');
+        });
 
     // MASTER TK
-    Route::group(['prefix' => 'Master/Tujuan Kegiatan', 'as' => 'master.tk.'], function() {
-      Route::get('', [MasterTKController::class, 'index'])->name('list');
-      Route::post('/add',[MasterTKController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterTKController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Tujuan Kegiatan', 'as' => 'master.tk.'], function() {
+            Route::get('', [MasterTKController::class, 'index'])->name('list');
+            Route::post('/add',[MasterTKController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterTKController::class, 'update'])->name('edit');
+        });
 
     // MASTER Kategori
-    Route::group(['prefix' => 'Master/Kategori', 'as' => 'master.kategori.'], function() {
-      Route::get('', [MasterKategoriController::class, 'index'])->name('list');
-      Route::post('/add',[MasterKategoriController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterKategoriController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Kategori', 'as' => 'master.kategori.'], function() {
+            Route::get('', [MasterKategoriController::class, 'index'])->name('list');
+            Route::post('/add',[MasterKategoriController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterKategoriController::class, 'update'])->name('edit');
+        });
 
     // MASTER Jenjang
-    Route::group(['prefix' => 'Master/Jenjang', 'as' => 'master.jenjang.'], function() {
-      Route::get('', [MasterJenjangController::class, 'index'])->name('list');
-      Route::post('/add',[MasterJenjangController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterJenjangController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Jenjang', 'as' => 'master.jenjang.'], function() {
+            Route::get('', [MasterJenjangController::class, 'index'])->name('list');
+            Route::post('/add',[MasterJenjangController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterJenjangController::class, 'update'])->name('edit');
+        });
 
     // MASTER Skill Value
-    Route::group(['prefix' => 'Master/Skill Value', 'as' => 'master.skillvalue.'], function() {
-      Route::get('', [MasterSkillValueController::class, 'index'])->name('list');
-      Route::post('/add',[MasterSkillValueController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterSkillValueController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Skill Value', 'as' => 'master.skillvalue.'], function() {
+            Route::get('', [MasterSkillValueController::class, 'index'])->name('list');
+            Route::post('/add',[MasterSkillValueController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterSkillValueController::class, 'update'])->name('edit');
+        });
 
     // MASTER Perkembangan
-    Route::group(['prefix' => 'Master/Perkembangan', 'as' => 'master.perkembangan.'], function() {
-      Route::get('', [MasterPerkembanganController::class, 'index'])->name('list');
-      Route::post('/add',[MasterPerkembanganController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterPerkembanganController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Perkembangan', 'as' => 'master.perkembangan.'], function() {
+            Route::get('', [MasterPerkembanganController::class, 'index'])->name('list');
+            Route::post('/add',[MasterPerkembanganController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterPerkembanganController::class, 'update'])->name('edit');
+        });
 
     // MASTER AREA DEVELOPMENT
-    Route::group(['prefix' => 'Master/Areas Dev', 'as' => 'master.area.'], function() {
-      Route::get('', [MasterAreaController::class, 'index'])->name('list');
-      Route::post('/add',[MasterAreaController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterAreaController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Areas Dev', 'as' => 'master.area.'], function() {
+            Route::get('', [MasterAreaController::class, 'index'])->name('list');
+            Route::post('/add',[MasterAreaController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterAreaController::class, 'update'])->name('edit');
+        });
 
     // MASTER Development Achievment
-    Route::group(['prefix' => 'Master/DevAchiev', 'as' => 'master.devac.'], function() {
-      Route::get('', [MasterDevacController::class, 'index'])->name('list');
-      Route::post('/add',[MasterDevacController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterDevacController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/DevAchiev', 'as' => 'master.devac.'], function() {
+            Route::get('', [MasterDevacController::class, 'index'])->name('list');
+            Route::post('/add',[MasterDevacController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterDevacController::class, 'update'])->name('edit');
+        });
 
     // MASTER Indikator
-    Route::group(['prefix' => 'Master/Indikator', 'as' => 'master.indikator.'], function() {
-      Route::get('', [MasterIndikatorController::class, 'index'])->name('list');
-      Route::post('/add',[MasterIndikatorController::class, 'store'])->name('add');
-      Route::put('/edit{id}',[MasterIndikatorController::class, 'update'])->name('edit');
-  });
+        Route::group(['prefix' => 'Master/Indikator', 'as' => 'master.indikator.'], function() {
+            Route::get('', [MasterIndikatorController::class, 'index'])->name('list');
+            Route::post('/add',[MasterIndikatorController::class, 'store'])->name('add');
+            Route::put('/edit{id}',[MasterIndikatorController::class, 'update'])->name('edit');
+        });
+
+    // MASTER EKSTRA
+        Route::group(['prefix' => 'Master/Ekstra', 'as' => 'master.ekstra.'], function() {
+            Route::get('', [MasterEkstraController::class, 'index'])->name('list');
+            Route::post('/add',[MasterEkstraController::class, 'store'])->name('add');
+            Route::put('/edit',[MasterEkstraController::class, 'update'])->name('edit');
+        });
+
+    // MASTER TAHFIDZ
+        Route::group(['prefix' => 'Master/Tahfidz', 'as' => 'master.tahfidz.'], function() {
+            Route::get('', [MasterTahfidzController::class, 'index'])->name('list');
+            Route::post('/add',[MasterTahfidzController::class, 'store'])->name('add');
+            Route::put('/edit',[MasterTahfidzController::class, 'update'])->name('edit');
+        });
+
+    // MASTER TILAWAH
+        Route::group(['prefix' => 'Master/Tilawah', 'as' => 'master.tilawah.'], function() {
+            Route::get('', [MasterTilawahController::class, 'index'])->name('list');
+            Route::post('/add',[MasterTilawahController::class, 'store'])->name('add');
+            Route::put('/edit',[MasterTilawahController::class, 'update'])->name('edit');
+        });
+
+    // MASTER DOA HARIAN
+        Route::group(['prefix' => 'Master/Doaharian', 'as' => 'master.doaharian.'], function() {
+            Route::get('', [MasterDoaharianController::class, 'index'])->name('list');
+            Route::post('/add',[MasterDoaharianController::class, 'store'])->name('add');
+            Route::put('/edit',[MasterDoaharianController::class, 'update'])->name('edit');
+        });
+
+    // MASTER HADIST
+        Route::group(['prefix' => 'Master/Hadist', 'as' => 'master.hadist.'], function() {
+            Route::get('', [MasterHadistController::class, 'index'])->name('list');
+            Route::post('/add',[MasterHadistController::class, 'store'])->name('add');
+            Route::put('/edit',[MasterHadistController::class, 'update'])->name('edit');
+        });
+
+    // MASTER CBI FONIK
+        Route::group(['prefix' => 'Master/CBI', 'as' => 'master.cbi.'], function() {
+            Route::get('', [MasterHadistController::class, 'index'])->name('list');
+            Route::post('/add',[MasterCbiController::class, 'store'])->name('add');
+            Route::put('/edit',[MasterCbiController::class, 'update'])->name('edit');
+        });
 
     // DATA-------------------------------------------------------------------------------------------
         // MURID
