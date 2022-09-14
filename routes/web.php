@@ -28,13 +28,12 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Master\MasterTilawahController;
     use App\Http\Controllers\Master\MasterDoaharianController;
     use App\Http\Controllers\Master\MasterHadistController;
-    use App\Http\Controllers\Master\MasterCbiController;
 
 // DATA
     use App\Http\Controllers\Data\DataMuridController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
-use App\Models\Master\MasterHadist;
+use App\Http\Controllers\Master\MasterCBIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -218,7 +217,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
     // MASTER CBI FONIK
         Route::group(['prefix' => 'Master/CBI', 'as' => 'master.cbi.'], function() {
-            Route::get('', [MasterHadistController::class, 'index'])->name('list');
+            Route::get('', [MasterCBIController::class, 'index'])->name('list');
             Route::post('/add',[MasterCbiController::class, 'store'])->name('add');
             Route::put('/edit',[MasterCbiController::class, 'update'])->name('edit');
         });
