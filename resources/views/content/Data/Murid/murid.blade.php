@@ -423,7 +423,10 @@
                                     return '';
                                 }
                             },
-                        ]
+                        ],
+                        initComplete: function(settings, json) {
+                            feather.replace()
+                        }
                     });
                 } else {
                     $('#murid_awal').DataTable({

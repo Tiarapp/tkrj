@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('tahunselesai');
             $table->foreignId('semester_id');
             $table->string('semester');
-            $table->enum('periode', ['PTS', 'PAS']);
+            $table->enum('periode', ['Tengah', 'Akhir']);
             $table->enum('status', ['0', '1'])->default('0');
 
             $table->timestamps();

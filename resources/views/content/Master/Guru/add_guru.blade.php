@@ -17,17 +17,15 @@
                         <label class="form-label" for="basic-default-name">Nama Guru</label>
                         <input type="text" class="form-control" name="nama_guru" id="basic-default-name" placeholder="Nama Guru" required/>
                     </div>
-                    
-                    <div class="col-md-5 col-12">
-                        <div class="mb-1">
-                            <label class="form-label" for="basic-default-name">Status Aktif</label>
-                            <select class="basic-select2" name="status" required>
-                                <option value="" selected disabled>Pilih Status</option>
-                                <option value="Aktif" >Aktif</option>
-                                <option value="Non Aktif"  >Non Aktif</option>
-                            </select>
-                        </div>
+                    <div class="mb-1">
+                        <label class="form-label" for="basic-default-name">Status Aktif</label>
+                        <select class="basic-select2" name="status" required>
+                            <option value="" selected disabled>Pilih Status</option>
+                            <option value="Aktif" >Aktif</option>
+                            <option value="Non Aktif"  >Non Aktif</option>
+                        </select>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>

@@ -37,8 +37,8 @@
                                 <label class="form-label" for="basic-default-name">Periode</label>
                                 <select class="basic-select2" name="periode" required>
                                     <option value="" selected disabled>Pilih Periode</option>
-                                    <option value="PTS">PTS</option>
-                                    <option value="PAS">PAS</option>
+                                    <option value="Tengah">Tengah</option>
+                                    <option value="Akhir">Akhir</option>
                                 </select>
                             </div>
                         </div>

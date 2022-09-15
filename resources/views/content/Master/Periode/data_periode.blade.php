@@ -78,7 +78,7 @@
                                 <tr>
                                     <td>{{$p->tahunmulai}}/{{$p->tahunselesai}}</td>
                                     <td>{{$p->semester}}</td>
-                                    <td>{{$p->periode}}</td>
+                                    <td>{{$p->periode}} Semester</td>
                                     <td>
                                         @if ($p->status == 0)
                                             Non Aktif

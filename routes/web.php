@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
@@ -28,12 +27,13 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Master\MasterTilawahController;
     use App\Http\Controllers\Master\MasterDoaharianController;
     use App\Http\Controllers\Master\MasterHadistController;
+    use App\Http\Controllers\Master\MasterCBIController;
 
 // DATA
     use App\Http\Controllers\Data\DataMuridController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
-use App\Http\Controllers\Master\MasterCBIController;
+    use App\Http\Controllers\Data\DataIndicatorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -173,13 +173,6 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
             Route::put('/edit{id}',[MasterDevacController::class, 'update'])->name('edit');
         });
 
-    // MASTER Indikator
-        Route::group(['prefix' => 'Master/Indikator', 'as' => 'master.indikator.'], function() {
-            Route::get('', [MasterIndikatorController::class, 'index'])->name('list');
-            Route::post('/add',[MasterIndikatorController::class, 'store'])->name('add');
-            Route::put('/edit{id}',[MasterIndikatorController::class, 'update'])->name('edit');
-        });
-
     // MASTER EKSTRA
         Route::group(['prefix' => 'Master/Ekstra', 'as' => 'master.ekstra.'], function() {
             Route::get('', [MasterEkstraController::class, 'index'])->name('list');
@@ -252,4 +245,20 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::put('/edit',[WalikelasController::class, 'update'])->name('edit');
                 Route::get('/data_awal',[WalikelasController::class, 'data_awal'])->name('data_awal');
                 Route::get('/view_walikelas',[WalikelasController::class, 'view_walikelas'])->name('view_walikelas');
+            });
+
+        // INDICATORS
+            Route::group(['prefix' => 'Data/Indicators', 'as' => 'data.indicators.'], function() {
+                Route::get('', [DataIndicatorsController::class, 'index'])->name('list');
+                Route::get('/data_awal',[DataIndicatorsController::class, 'data_awal'])->name('data_awal');
+                Route::get('/data_ekstra',[DataIndicatorsController::class, 'data_ekstra'])->name('data_ekstra');
+                Route::get('/data_doa_harian',[DataIndicatorsController::class, 'data_doa_harian'])->name('data_doa_harian');
+                Route::get('/data_hadist',[DataIndicatorsController::class, 'data_hadist'])->name('data_hadist');
+                Route::get('/data_tilawah',[DataIndicatorsController::class, 'data_tilawah'])->name('data_tilawah');
+                Route::get('/data_tahfidz',[DataIndicatorsController::class, 'data_tahfidz'])->name('data_tahfidz');
+                Route::get('/data_cbi',[DataIndicatorsController::class, 'data_cbi'])->name('data_cbi');
+                Route::post('/add',[DataIndicatorsController::class, 'store'])->name('add');
+                // Route::put('/edit',[DataIndicatorsController::class, 'update'])->name('edit');
+                // Route::get('/data_awal',[DataIndicatorsController::class, 'data_awal'])->name('data_awal');
+                // Route::get('/view_walikelas',[DataIndicatorsController::class, 'view_walikelas'])->name('view_walikelas');
             });

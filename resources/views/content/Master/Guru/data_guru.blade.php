@@ -75,7 +75,7 @@
                                     </td>
                                     <td>
                                         {{-- <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{$g->id}}"> --}}
-                                            
+
                                         <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{ $g->id }}">
                                             <i data-feather="edit"></i>
                                         </button>

@@ -140,12 +140,6 @@
                     "name": "Dev Achiev",
                     "icon": "database",
                     "slug": "master.devac.list"
-                },
-                {
-                    "url": "Master/Indikator",
-                    "name": "Indikator",
-                    "icon": "database",
-                    "slug": "master.indikator.list"
                 }
             ]
         },
@@ -171,6 +165,12 @@
                     "name": "Pengajar",
                     "icon": "user",
                     "slug": "data.pengajar.list"
+                },
+                {
+                    "url": "Data/Indicators",
+                    "name": "Indicators",
+                    "icon": "user",
+                    "slug": "data.indicators.list"
                 }
             ]
         },

@@ -33,8 +33,8 @@
                                 <label class="form-label" for="basic-default-name">Periode</label>
                                 <select class="basic-select2" name="periode" required>
                                     <option value="" selected disabled>Pilih Periode</option>
-                                    <option value="PTS" @if ($p->periode == "PTS") selected @endif>PTS</option>
-                                    <option value="PAS" @if ($p->periode == "PAS") selected @endif>PAS</option>
+                                    <option value="Tengah" @if ($p->periode == "Tengah") selected @endif>Tengah</option>
+                                    <option value="Akhir" @if ($p->periode == "Akhir") selected @endif>Akhir</option>
                                 </select>
                             </div>
                         </div>
