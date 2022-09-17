@@ -34,6 +34,7 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
+use App\Http\Controllers\Nilai\NilaiEkstraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -258,7 +259,19 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_tahfidz',[DataIndicatorsController::class, 'data_tahfidz'])->name('data_tahfidz');
                 Route::get('/data_cbi',[DataIndicatorsController::class, 'data_cbi'])->name('data_cbi');
                 Route::post('/add',[DataIndicatorsController::class, 'store'])->name('add');
-                // Route::put('/edit',[DataIndicatorsController::class, 'update'])->name('edit');
-                // Route::get('/data_awal',[DataIndicatorsController::class, 'data_awal'])->name('data_awal');
-                // Route::get('/view_walikelas',[DataIndicatorsController::class, 'view_walikelas'])->name('view_walikelas');
+                Route::get('/view_data', [DataIndicatorsController::class, 'view_data'])->name('view_data');
+                Route::put('/edit',[DataIndicatorsController::class, 'update'])->name('edit');
+            });
+
+    // NILAI-----------------------------------------------------------------------------------------------------------
+
+        // NILAI EKSTRA
+            Route::group(['prefix' => 'Nilai/Ekstra', 'as' => 'nilai.ekstra.'], function() {
+                Route::get('', [NilaiEkstraController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiEkstraController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiEkstraController::class, 'store'])->name('add');
+                Route::put('/edit',[NilaiEkstraController::class, 'update'])->name('edit');
+                Route::get('/data_awal',[NilaiEkstraController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiEkstraController::class, 'edit_nilai'])->name('edit_nilai');
+                // Route::get('/view_walikelas',[NilaiEkstraController::class, 'view_walikelas'])->name('view_walikelas');
             });

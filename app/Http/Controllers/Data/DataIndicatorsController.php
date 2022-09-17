@@ -116,4 +116,27 @@ class DataIndicatorsController extends DataController
 
         return redirect()->route('data.indicators.list')->with('succes','Data Berhasil di Simpan');
     }
+
+    // VIEW DATA MODAL
+        public function view_data(Request $request)
+        {
+            $indicators=data_indicators::find($request->id);
+            return response()->json($indicators);
+        }
+
+    public function update(Request $request)
+    {
+        if($request->status=="on"){
+            $request->status="Aktif";
+        }else{
+            $request->status="Non Aktif";
+        }
+        $indicators=data_indicators::find($request->id);
+        $indicators->status  = $request->status;
+
+        $indicators->save();
+
+        return redirect()->route('data.indicators.list')->with('succes','Data Berhasil di Ubah');
+    }
+
 }

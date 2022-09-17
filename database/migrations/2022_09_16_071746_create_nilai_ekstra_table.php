@@ -13,22 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_indicators', function (Blueprint $table) {
+        Schema::create('nilai_ekstra', function (Blueprint $table) {
             $table->id();
 
-            $table->string('area');
-            $table->string('development');
+            $table->string('nis');
+            $table->string('nama');
+            $table->string('kelas');
+            $table->string('nilai');
             $table->string('indicators');
             $table->string('jenjang');
-            $table->string('periode');
-            $table->string('semester');
-            $table->string('tahunajaran');
-            $table->enum('status', ['Aktif', 'Non Aktif'])->default('Aktif');
+            $table->enum('periode_keterangan', ['Tengah', 'Akhir']);
 
-            $table->foreignId('area_id');
-            $table->foreignId('development_id');
+            $table->foreignId('murid_id');
+            $table->foreignId('kelas_id');
             $table->foreignId('jenjang_id');
-            $table->foreignId('master_id');
+            $table->foreignId('areas_id');
+            $table->foreignId('development_id');
+            $table->foreignId('indicators_id');
             $table->foreignId('periode_id');
 
             $table->timestamps();
@@ -42,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_indicators');
+        Schema::dropIfExists('nilai_ekstra');
     }
 };

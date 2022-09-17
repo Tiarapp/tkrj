@@ -57,14 +57,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div style="margin-right: 10px;">
+                                <div style="margin-right: 10px; width: 100px; text-align: left">
                                     <select class="select2-size-sm form-select select2-hidden-accessible"  id="periode_ajaran">
                                         <option selected disabled>Pilih Periode Ajaran</option>
                                         <option value="Tengah">Tengah</option>
                                         <option value="Akhir">Akhir</option>
                                     </select>
                                 </div>
-                                <div style="margin-right: 10px">
+                                <div style="margin-right: 10px; width: 100px; text-align: left" >
                                     <select class="select2-size-sm form-select select2-hidden-accessible" id="jenjang">
                                         <option selected disabled>Pilih Jenjang</option>
                                         @foreach ($jenjang as $j)
@@ -99,16 +99,18 @@
                         <table id="tabel_awal" class="dt-multilingual table">
                             <thead>
                                 <tr>
-                                    <th style="width: 50px">Areas Of Development</th>
-                                    <th style="width: 50px">Development Achiement</th>
-                                    <th style="width: 150px">Indicators</th>
-                                    <th style="width: 70px">Option</th>
+                                    <th>Areas Of Development</th>
+                                    <th>Development Achiement</th>
+                                    <th>Indicators</th>
+                                    <th>Status</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
                     </div>
+                    @include('content.Data.Indicators.edit_indicators')
                 </div>
             </div>
         </div>
@@ -225,6 +227,7 @@
                     {data: 'area'},
                     { data: 'development'},
                     { data: 'indicators'},
+                    { data: 'status'},
                     { data: null,
                         render: function(data, type, row) {
                             const id = data.id ?? ''
@@ -306,6 +309,43 @@
             data_cbi()
         }else if (development == 9) {
             data_cbi()
+        }
+    }
+
+    function view_data(id) {
+        if (id) {
+            $.ajax({
+                type: "GET",
+                url: "/Data/Indicators/view_data?id=" +id,
+                dataType: 'JSON',
+                success:function(result){
+                    $("#id").val(result.id);
+                    $("#edit_areas").val(result.area);
+                    $("#edit_development").val(result.development);
+                    $("#edit_indicators").val(result.indicators);
+                    console.log(result.status);
+                    if (result.status=="Aktif") {
+                        $("#status").prop('checked', true);
+                    }else{
+                        $("#status").prop("checked", false);
+                    }
+                    $('#modal_edit').modal('show');
+                },
+                error:function(result)
+                {
+                    $("#id").empty();
+                    $("#areas").empty();
+                    $("#development").empty();
+                    $("#indicators").empty();
+                    $("#status").prop("checked", false);
+                }
+            });
+        } else {
+            $("#id").empty();
+            $("#areas").empty();
+            $("#development").empty();
+            $("#indicators").empty();
+            $("#status").prop("checked", false);
         }
     }
 
