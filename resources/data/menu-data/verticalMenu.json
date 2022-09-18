@@ -16,6 +16,12 @@
                     "slug": "master.tahunajaran.list"
                 },
                 {
+                    "url": "Master/Akun",
+                    "name": "Akun",
+                    "icon": "database",
+                    "slug": "master.akun.list"
+                },
+                {
                     "url": "Master/Semester",
                     "name": "Semester",
                     "icon": "database",
