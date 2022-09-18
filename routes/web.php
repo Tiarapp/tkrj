@@ -275,3 +275,14 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/edit_nilai',[NilaiEkstraController::class, 'edit_nilai'])->name('edit_nilai');
                 // Route::get('/view_walikelas',[NilaiEkstraController::class, 'view_walikelas'])->name('view_walikelas');
             });
+
+        // NILAI CBI
+            Route::group(['prefix' => 'Nilai/Ekstra', 'as' => 'nilai.ekstra.'], function() {
+                Route::get('', [NilaiEkstraController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiEkstraController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiEkstraController::class, 'store'])->name('add');
+                Route::put('/edit',[NilaiEkstraController::class, 'update'])->name('edit');
+                Route::get('/data_awal',[NilaiEkstraController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiEkstraController::class, 'edit_nilai'])->name('edit_nilai');
+                // Route::get('/view_walikelas',[NilaiEkstraController::class, 'view_walikelas'])->name('view_walikelas');
+            });

@@ -184,6 +184,12 @@
                     "name": "Ekstra",
                     "icon": "circle",
                     "slug": "nilai.ekstra.list"
+                },
+                {
+                    "url": "Nilai/CBI",
+                    "name": "CBI",
+                    "icon": "circle",
+                    "slug": "nilai.cbi.list"
                 }
             ]
         }
