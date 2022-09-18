@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
@@ -34,6 +36,7 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
+use App\Http\Controllers\Master\MasterAkunController;
 use App\Http\Controllers\Nilai\NilaiEkstraController;
 use App\Http\Controllers\Nilai\NilaiIbadahController;
 
@@ -48,7 +51,23 @@ use App\Http\Controllers\Nilai\NilaiIbadahController;
 |
 */
 
-Route::get('/', [StaterkitController::class, 'home'])->name('home');
+// AUTH-------------------------------------------------------------------------------------------------------------
+Route::group(['prefix' => 'Auth', 'as' => 'auth.'], function() {
+    // LOGIN
+        // Route::get('/login_pegawai', [LoginController::class, 'login_pegawai'])->name('login_pegawai');
+        Route::post('/login_pegawai/authenticate_pegawai',[LoginController::class, 'authenticate_pegawai'])->name('authenticate_pegawai');
+        Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    // REGISTER
+        Route::get('/register', [RegisterController::class, 'register'])->name('register');
+
+        Route::get('/register/datasiswa', [RegisterController::class, 'datasiswa'])->name('datasiswa');
+        // Route::get('/register/dataguruekstra', [RegisterController::class, 'dataguruekstra'])->name('dataguruekstra');
+        Route::get('/register/datawalikelas', [RegisterController::class, 'datawalikelas'])->name('datawalikelas');
+        // Route::get('/register/datawalikelas', [RegisterController::class, 'datawalikelas'])->name('datawalikelas');
+});
+
+Route::get('/', [LoginController::class, 'login_pegawai'])->name('login');
 Route::get('home', [StaterkitController::class, 'home'])->name('home');
 // Route Components
 Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
@@ -60,6 +79,13 @@ Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name(
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+
+    // MASTER AKUN
+        Route::group(['prefix' => 'Master/Akun', 'as' => 'master.akun.'], function() {
+            Route::get('', [MasterAkunController::class, 'index'])->name('list');
+            Route::post('/add',[MasterAkunController::class, 'store'])->name('add');
+            Route::put('/edit',[MasterAkunController::class, 'update'])->name('edit');
+        });
 
     // Master Tahun Ajaran
         Route::group(['prefix' => 'Master/Tahun Ajaran', 'as' => 'master.tahunajaran.'], function() {
