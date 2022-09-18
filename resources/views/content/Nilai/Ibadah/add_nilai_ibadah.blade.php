@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
-@section('title', 'Input Ekstra')
+@section('title', 'Input Ibadah')
 
 @section('content')
 <!-- Complex Headers -->
@@ -40,17 +40,17 @@
                         </div>
                     </div>
                     <div class="col-4" style="margin-top: 20px">
-                        <select class="select2-size-sm form-select" name="ekstra_id" id="ekstra_id">
-                            <option selected disabled>Pilih Ekstra</option>
-                            @foreach ($ekstra as $e)
-                                <option value="{{$e->id}}">{{$e->indicators}}</option>
+                        <select class="select2-size-sm form-select" name="ibadah_id" id="ibadah_id">
+                            <option selected disabled>Pilih Ibadah</option>
+                            @foreach ($ibadah as $i)
+                                <option value="{{$i->id}}">{{$i->indicators}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
 
                 <div class="card-datatable">
-                    <form id="jquery-val-form" action="{{route('nilai.ekstra.add')}}" method="post" enctype="multipart/form-data">
+                    <form id="jquery-val-form" action="{{route('nilai.ibadah.add')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
 
                         {{-- ID --}}
@@ -69,7 +69,7 @@
                                 @foreach ($murid as $m)
                                     <tr>
                                         <td>{{$m->absen}}</td>
-                                        <td>{{$m->nama}}</td>
+                                        <td style="width: 400px">{{$m->nama}}</td>
                                         <td>
                                             <select class="select2-size-sm form-select predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}">
                                                 <option value="" selected readonly></option>
@@ -81,7 +81,7 @@
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">
                                         {{-- ID NILAI EKSTRA --}}
-                                            <input class="id_nilai_ekstra" type="hidden" name="id_nilai_ekstra[{{$m->id}}]" id="id_nilai_ekstra_{{$m->id}}">
+                                            <input class="id_nilai_ibadah" type="hidden" name="id_nilai_ibadah[{{$m->id}}]" id="id_nilai_ibadah_{{$m->id}}">
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -159,9 +159,9 @@
         @endif
     } );
 
-    // SELECT TAHUNAJARAN AWAL
-        $('#ekstra_id').change(function () {
-            var id_indicators = document.getElementById("ekstra_id").value;
+    // SELECT INDIKATOR IBADAH
+        $('#ibadah_id').change(function () {
+            var id_indicators = document.getElementById("ibadah_id").value;
             var id_pengajar= document.getElementById("id_pengajar").value;
 
             data_edit(id_indicators, id_pengajar)
@@ -174,7 +174,7 @@
             if (id_indicators, id_pengajar) {
                 $.ajax({
                     type: "GET",
-                    url: "/Nilai/Ekstra/edit_nilai?id_indicators=" +id_indicators+"&id_pengajar="+id_pengajar,
+                    url: "/Nilai/Ibadah/edit_nilai?id_indicators=" +id_indicators+"&id_pengajar="+id_pengajar,
                     dataType: 'JSON',
                     success:function(result){
 
@@ -182,11 +182,11 @@
 
                             const reset = (idx, elem) => (elem.value = null)
 
-                            $('.id_nilai_ekstra').map(reset)
-                            $('.predikat').val("").change()
+                            $('.id_nilai_ibadah').map(reset)
+                            $('.predikat').val("").change();
                         } else {
                             for (let index = 0; index < result.length; index++) {
-                                $("#id_nilai_ekstra_"+result[index].murid_id).val(result[index].id);
+                                $("#id_nilai_ibadah_"+result[index].murid_id).val(result[index].id);
                                 $("#predikat_id_"+result[index].murid_id).val(result[index].nilai).change();
                             }
                         }
@@ -195,15 +195,15 @@
                     {
                         const reset = (idx, elem) => (elem.value = null)
 
-                            $('.id_nilai_ekstra').map(reset)
-                            $('.predikat').val("").change()
+                            $('.id_nilai_ibadah').map(reset).change()
+                            $('.predikat').val("").change();
                     }
                 });
             } else {
                 const reset = (idx, elem) => (elem.value = null)
 
-                    $('.id_nilai_ekstra').map(reset)
-                    $('.predikat').val("").change()
+                    $('.id_nilai_ibadah').map(reset).change()
+                    $('.predikat').val("").change();
             }
         }
 

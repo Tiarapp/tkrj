@@ -294,7 +294,7 @@
         if ( development == 1 ) {
             data_ekstra()
         } else if (development == 2) {
-
+            data_doa_harian()
         }else if (development == 3) {
             data_doa_harian()
         }else if (development == 4) {

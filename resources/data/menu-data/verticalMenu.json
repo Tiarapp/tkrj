@@ -186,6 +186,18 @@
                     "slug": "nilai.ekstra.list"
                 },
                 {
+                    "url": "Nilai/Ibadah",
+                    "name": "Ibadah",
+                    "icon": "circle",
+                    "slug": "nilai.ibadah.list"
+                },
+                {
+                    "url": "Nilai/DoaHarian",
+                    "name": "Doa Harian",
+                    "icon": "circle",
+                    "slug": "nilai.doaharian.list"
+                },
+                {
                     "url": "Nilai/CBI",
                     "name": "CBI",
                     "icon": "circle",

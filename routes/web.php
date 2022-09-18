@@ -35,6 +35,7 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
 use App\Http\Controllers\Nilai\NilaiEkstraController;
+use App\Http\Controllers\Nilai\NilaiIbadahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -281,8 +282,15 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('', [NilaiEkstraController::class, 'index'])->name('list');
                 Route::get('/input{id_pengajar}', [NilaiEkstraController::class, 'add_nilai'])->name('input');
                 Route::post('/add',[NilaiEkstraController::class, 'store'])->name('add');
-                Route::put('/edit',[NilaiEkstraController::class, 'update'])->name('edit');
                 Route::get('/data_awal',[NilaiEkstraController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiEkstraController::class, 'edit_nilai'])->name('edit_nilai');
-                // Route::get('/view_walikelas',[NilaiEkstraController::class, 'view_walikelas'])->name('view_walikelas');
+            });
+
+        // NILAI IBADAH
+            Route::group(['prefix' => 'Nilai/Ibadah', 'as' => 'nilai.ibadah.'], function() {
+                Route::get('', [NilaiIbadahController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiIbadahController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiIbadahController::class, 'store'])->name('add');
+                Route::get('/data_awal',[NilaiIbadahController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiIbadahController::class, 'edit_nilai'])->name('edit_nilai');
             });

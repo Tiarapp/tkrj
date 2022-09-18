@@ -5,21 +5,21 @@ namespace App\Http\Controllers\Nilai;
 use App\Models\Data\data_indicators;
 use App\Models\Data\data_murid;
 use App\Models\Master\MasterPredikat;
-use App\Models\Nilai\nilai_ekstra;
+use App\Models\Nilai\nilai_ibadah;
 use Illuminate\Http\Request;
 
-class NilaiEkstraController extends NilaiController
+class NilaiIbadahController extends NilaiController
 {
     public function index()
     {
         $periode=$this->periode->getPeriodeAktif();
 
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Nilai Ekstra"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Nilai Ibadah"]];
 
         // LIST KELAS YG DIAJAR
             $list_kelas    = $this->list_kelas(13);
 
-        return view('content.Nilai.Ekstra.nilai_ekstra', ['breadcrumbs' => $breadcrumbs, 'list_kelas'=>$list_kelas]);
+        return view('content.Nilai.Ibadah.nilai_ibadah', ['breadcrumbs' => $breadcrumbs, 'list_kelas'=>$list_kelas]);
     }
 
     public function add_nilai($id_pengajar)
@@ -32,15 +32,15 @@ class NilaiEkstraController extends NilaiController
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
 
-        $ekstra=data_indicators::where('area_id', 1)
-                                ->where('development_id', 1)
-                                ->where('jenjang_id', 3)
+        $ibadah=data_indicators::where('area_id', 3)
+                                ->where('development_id', 2)
+                                ->where('jenjang_id', 1)
                                 ->select('id', 'indicators')
                                 ->get();
 
         $predikat=MasterPredikat::all();
 
-        return view('content.Nilai.Ekstra.add_nilai_ekstra', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'ekstra'=>$ekstra, 'predikat'=>$predikat]);
+        return view('content.Nilai.Ibadah.add_nilai_ibadah', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'ibadah'=>$ibadah, 'predikat'=>$predikat]);
     }
 
     public function store(Request $request)
@@ -56,8 +56,8 @@ class NilaiEkstraController extends NilaiController
                 try {
                     $murid=data_murid::find($val_murid_id);
 
-                    $nilai_ekstra=nilai_ekstra::UpdateOrCreate(
-                        [   'id'    => $request['id_nilai_ekstra'][$val_murid_id]],
+                    $nilai_ibadah=nilai_ibadah::UpdateOrCreate(
+                        [   'id'    => $request['id_nilai_ibadah'][$val_murid_id]],
                         [   'nis'               => $murid->nis,
                             'nama'              => $murid->nama,
                             'kelas'             => $murid->kelas,
@@ -79,7 +79,7 @@ class NilaiEkstraController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.ekstra.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->route('nilai.ibadah.list')->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -87,11 +87,11 @@ class NilaiEkstraController extends NilaiController
         $periode=$this->periode->getPeriodeAktif();
         $detail_pengajar = $this->detail_pengajar($request->id_pengajar);
 
-        $nilai_ekstra=nilai_ekstra::where('kelas_id', $detail_pengajar->kelas_id)
+        $nilai_ibadah=nilai_ibadah::where('kelas_id', $detail_pengajar->kelas_id)
                             ->where('indicators_id', $request->id_indicators)
                             ->where('periode_id', $periode->id)
                             ->where('periode_keterangan', $periode->periode)
                             ->get();
-        return $nilai_ekstra;
+        return $nilai_ibadah;
     }
 }

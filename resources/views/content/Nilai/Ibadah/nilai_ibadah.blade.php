@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
-@section('title', 'Nilai Ekstra')
+@section('title', 'Nilai Ibadah')
 
 @section('content')
 <!-- Complex Headers -->
@@ -50,7 +50,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- @include('content.Nilai.Pengetahuan.add_nilai_pengetahuan') --}}
                 <div class="card-datatable">
                     <table id="example" class="dt-multilingual table">
                         <thead>
@@ -64,7 +63,7 @@
                                 <tr>
                                     <td>{{$lk->kelas}}</td>
                                     <td>
-                                        <a href="/Nilai/Ekstra/input{{$lk->id}}" class="btn btn-icon btn-success">
+                                        <a href="/Nilai/Ibadah/input{{$lk->id}}" class="btn btn-icon btn-success">
                                             <i data-feather="edit"></i>
                                         </a>
                                     </td>
@@ -73,7 +72,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- @include('content.Master.Ekstra.edit_ekstra') --}}
             </div>
         </div>
     </div>

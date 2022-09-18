@@ -48,6 +48,7 @@ class DataIndicatorsController extends DataController
             public function data_ekstra(Request $request)
             {
                 $ekstra=MasterEkstra::where('status', "Aktif")
+                                    ->orderby('ekstra')
                                     ->get();
                  return response()->json($ekstra);
             }
@@ -56,6 +57,7 @@ class DataIndicatorsController extends DataController
             public function data_doa_harian(Request $request)
             {
                 $doa_harian=MasterDoaharian::where('status', "Aktif")
+                                    ->orderby('doa_harian')
                                     ->get();
                 return response()->json($doa_harian);
             }
@@ -64,6 +66,7 @@ class DataIndicatorsController extends DataController
             public function data_hadist(Request $request)
             {
                 $hadist=MasterHadist::where('status', "Aktif")
+                                    ->orderby('hadist')
                                     ->get();
                 return response()->json($hadist);
             }
@@ -72,6 +75,7 @@ class DataIndicatorsController extends DataController
             public function data_tilawah(Request $request)
             {
                 $tilawah=MasterTilawah::where('status', "Aktif")
+                                    ->orderby('tilawati')
                                     ->get();
                 return response()->json($tilawah);
             }
@@ -80,6 +84,7 @@ class DataIndicatorsController extends DataController
             public function data_tahfidz(Request $request)
             {
                 $tahfidz=MasterTahfidz::where('status', "Aktif")
+                                    ->orderby('surat')
                                     ->get();
                 return response()->json($tahfidz);
             }
@@ -88,6 +93,7 @@ class DataIndicatorsController extends DataController
             public function data_cbi(Request $request)
             {
                 $cbi=MasterCBI::where('status', "Aktif")
+                                    ->orderby('cbi')
                                     ->get();
                 return response()->json($cbi);
             }
