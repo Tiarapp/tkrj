@@ -42,7 +42,8 @@ use App\Http\Controllers\Nilai\NilaiCBIController;
     use App\Http\Controllers\Nilai\NilaiDoaController;
     use App\Http\Controllers\Nilai\NilaiEkstraController;
     use App\Http\Controllers\Nilai\NilaiIbadahController;
-use App\Http\Controllers\Nilai\NilaiTahfidzController;
+    use App\Http\Controllers\Nilai\NilaiTahfidzController;
+    use App\Http\Controllers\Nilai\NilaiTilawahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -350,4 +351,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[NilaiTahfidzController::class, 'store'])->name('add');
                 Route::get('/data_awal',[NilaiTahfidzController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiTahfidzController::class, 'edit_nilai'])->name('edit_nilai');
+            });
+
+        // NILAI TILAWAH
+            Route::group(['prefix' => 'Nilai/Tilawah', 'as' => 'nilai.tilawah.'], function() {
+                Route::get('', [NilaiTilawahController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiTilawahController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiTilawahController::class, 'store'])->name('add');
+                Route::get('/data_awal',[NilaiTilawahController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiTilawahController::class, 'edit_nilai'])->name('edit_nilai');
             });
