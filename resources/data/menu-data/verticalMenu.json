@@ -208,6 +208,18 @@
                     "name": "CBI",
                     "icon": "circle",
                     "slug": "nilai.cbi.list"
+                },
+                {
+                    "url": "Nilai/Tilawah",
+                    "name": "Tilawah",
+                    "icon": "circle",
+                    "slug": "nilai.tilawah.list"
+                },
+                {
+                    "url": "Nilai/Tahfidz",
+                    "name": "Tahfidz",
+                    "icon": "circle",
+                    "slug": "nilai.tahfidz.list"
                 }
             ]
         }

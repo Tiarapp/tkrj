@@ -5,26 +5,26 @@ namespace App\Http\Controllers\Nilai;
 use App\Models\Data\data_indicators;
 use App\Models\Data\data_murid;
 use App\Models\Master\MasterPredikat;
-use App\Models\Nilai\nilai_doa;
+use App\Models\Nilai\nilai_tahfidz;
 use Illuminate\Http\Request;
 
-class NilaiDoaController extends NilaiController
+class NilaiTahfidzController extends NilaiController
 {
     public function index()
     {
         $periode=$this->periode->getPeriodeAktif();
 
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Nilai Doa Harian"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Nilai Tahfidz"]];
 
         // LIST KELAS YG DIAJAR
             $list_kelas    = $this->list_kelas(13);
 
-        return view('content.Nilai.Doa.nilai_doa', ['breadcrumbs' => $breadcrumbs, 'list_kelas'=>$list_kelas]);
+        return view('content.Nilai.Tahfidz.nilai_tahfidz', ['breadcrumbs' => $breadcrumbs, 'list_kelas'=>$list_kelas]);
     }
 
     public function add_nilai($id_pengajar)
     {
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Input Nilai"], ['name' => "Doa Harian"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Input Nilai"], ['name' => "Tahfidz"]];
 
         $periode=$this->periode->getPeriodeAktif();
 
@@ -32,20 +32,21 @@ class NilaiDoaController extends NilaiController
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
 
-        $doa=data_indicators::where('area_id', 4)
-                                ->where('development_id', 3)
+        $tahfidz=data_indicators::where('area_id', 6)
+                                ->where('development_id', 6)
                                 ->where('jenjang_id', 1)
                                 ->select('id', 'indicators')
+                                ->orderby('indicators')
                                 ->get();
 
         $predikat=MasterPredikat::all();
 
-        return view('content.Nilai.Doa.add_nilai_doa', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'doa'=>$doa, 'predikat'=>$predikat]);
+        return view('content.Nilai.Tahfidz.add_nilai_tahfidz', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'tahfidz'=>$tahfidz, 'predikat'=>$predikat]);
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
+
         $periode=$this->periode->getPeriodeAktif();
 
         $indicators=data_indicators::find($request->id_indicators);
@@ -56,8 +57,8 @@ class NilaiDoaController extends NilaiController
                 try {
                     $murid=data_murid::find($val_murid_id);
 
-                    $nilai_doa=nilai_doa::UpdateOrCreate(
-                        [   'id'    => $request['id_nilai_doa'][$val_murid_id]],
+                    $nilai_tahfidz=nilai_tahfidz::UpdateOrCreate(
+                        [   'id'    => $request['id_nilai_tahfidz'][$val_murid_id]],
                         [   'nis'               => $murid->nis,
                             'nama'              => $murid->nama,
                             'kelas'             => $murid->kelas,
@@ -79,7 +80,7 @@ class NilaiDoaController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.doa.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->route('nilai.tahfidz.list')->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -87,11 +88,11 @@ class NilaiDoaController extends NilaiController
         $periode=$this->periode->getPeriodeAktif();
         $detail_pengajar = $this->detail_pengajar($request->id_pengajar);
 
-        $nilai_doa=nilai_doa::where('kelas_id', $detail_pengajar->kelas_id)
+        $nilai_tahfidz=nilai_tahfidz::where('kelas_id', $detail_pengajar->kelas_id)
                             ->where('indicators_id', $request->id_indicators)
                             ->where('periode_id', $periode->id)
                             ->where('periode_keterangan', $periode->periode)
                             ->get();
-        return $nilai_doa;
+        return $nilai_tahfidz;
     }
 }

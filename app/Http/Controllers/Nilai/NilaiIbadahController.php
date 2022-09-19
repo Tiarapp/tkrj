@@ -24,7 +24,7 @@ class NilaiIbadahController extends NilaiController
 
     public function add_nilai($id_pengajar)
     {
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Input Nilai"], ['name' => "Ekstra"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Input Nilai"], ['name' => "Ibadah"]];
 
         $periode=$this->periode->getPeriodeAktif();
 

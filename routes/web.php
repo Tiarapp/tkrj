@@ -42,6 +42,7 @@ use App\Http\Controllers\Nilai\NilaiCBIController;
     use App\Http\Controllers\Nilai\NilaiDoaController;
     use App\Http\Controllers\Nilai\NilaiEkstraController;
     use App\Http\Controllers\Nilai\NilaiIbadahController;
+use App\Http\Controllers\Nilai\NilaiTahfidzController;
 
 /*
 |--------------------------------------------------------------------------
@@ -340,4 +341,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[NilaiCBIController::class, 'store'])->name('add');
                 Route::get('/data_awal',[NilaiCBIController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiCBIController::class, 'edit_nilai'])->name('edit_nilai');
+            });
+
+        // NILAI TAHFIDZ
+            Route::group(['prefix' => 'Nilai/Tahfidz', 'as' => 'nilai.tahfidz.'], function() {
+                Route::get('', [NilaiTahfidzController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiTahfidzController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiTahfidzController::class, 'store'])->name('add');
+                Route::get('/data_awal',[NilaiTahfidzController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiTahfidzController::class, 'edit_nilai'])->name('edit_nilai');
             });
