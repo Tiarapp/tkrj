@@ -37,7 +37,7 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
-
+use App\Http\Controllers\Nilai\NilaiCBIController;
 // NILAI
     use App\Http\Controllers\Nilai\NilaiDoaController;
     use App\Http\Controllers\Nilai\NilaiEkstraController;
@@ -331,4 +331,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[NilaiDoaController::class, 'store'])->name('add');
                 Route::get('/data_awal',[NilaiDoaController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiDoaController::class, 'edit_nilai'])->name('edit_nilai');
+            });
+
+        // NILAI CBI
+            Route::group(['prefix' => 'Nilai/CBI', 'as' => 'nilai.cbi.'], function() {
+                Route::get('', [NilaiCBIController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiCBIController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiCBIController::class, 'store'])->name('add');
+                Route::get('/data_awal',[NilaiCBIController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiCBIController::class, 'edit_nilai'])->name('edit_nilai');
             });

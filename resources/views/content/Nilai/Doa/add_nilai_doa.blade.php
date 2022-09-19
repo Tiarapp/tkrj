@@ -80,7 +80,7 @@
                                         </td>
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">
-                                        {{-- ID NILAI EKSTRA --}}
+                                        {{-- ID NILAI --}}
                                             <input class="id_nilai_doa" type="hidden" name="id_nilai_doa[{{$m->id}}]" id="id_nilai_doa_{{$m->id}}">
                                     </tr>
                                 @endforeach
