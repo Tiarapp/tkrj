@@ -198,10 +198,10 @@
                     "slug": "nilai.ibadah.list"
                 },
                 {
-                    "url": "Nilai/DoaHarian",
+                    "url": "Nilai/Doa",
                     "name": "Doa Harian",
                     "icon": "circle",
-                    "slug": "nilai.doaharian.list"
+                    "slug": "nilai.doa.list"
                 },
                 {
                     "url": "Nilai/CBI",

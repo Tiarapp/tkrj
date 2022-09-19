@@ -27,7 +27,7 @@
 
 @endsection
 
-@section('title', 'Data Murid')
+@section('title', 'Data Indicators')
 
 @section('content')
 <!-- Multilingual -->

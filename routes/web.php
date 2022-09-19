@@ -30,15 +30,18 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Master\MasterDoaharianController;
     use App\Http\Controllers\Master\MasterHadistController;
     use App\Http\Controllers\Master\MasterCBIController;
+    use App\Http\Controllers\Master\MasterAkunController;
 
 // DATA
     use App\Http\Controllers\Data\DataMuridController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
-use App\Http\Controllers\Master\MasterAkunController;
-use App\Http\Controllers\Nilai\NilaiEkstraController;
-use App\Http\Controllers\Nilai\NilaiIbadahController;
+
+// NILAI
+    use App\Http\Controllers\Nilai\NilaiDoaController;
+    use App\Http\Controllers\Nilai\NilaiEkstraController;
+    use App\Http\Controllers\Nilai\NilaiIbadahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -319,4 +322,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[NilaiIbadahController::class, 'store'])->name('add');
                 Route::get('/data_awal',[NilaiIbadahController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiIbadahController::class, 'edit_nilai'])->name('edit_nilai');
+            });
+
+        // NILAI DOA HARIAN
+            Route::group(['prefix' => 'Nilai/Doa', 'as' => 'nilai.doa.'], function() {
+                Route::get('', [NilaiDoaController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiDoaController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiDoaController::class, 'store'])->name('add');
+                Route::get('/data_awal',[NilaiDoaController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiDoaController::class, 'edit_nilai'])->name('edit_nilai');
             });
