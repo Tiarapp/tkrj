@@ -41,7 +41,8 @@ use App\Http\Controllers\Nilai\NilaiCBIController;
 // NILAI
     use App\Http\Controllers\Nilai\NilaiDoaController;
     use App\Http\Controllers\Nilai\NilaiEkstraController;
-    use App\Http\Controllers\Nilai\NilaiIbadahController;
+use App\Http\Controllers\Nilai\NilaiHadistController;
+use App\Http\Controllers\Nilai\NilaiIbadahController;
     use App\Http\Controllers\Nilai\NilaiTahfidzController;
     use App\Http\Controllers\Nilai\NilaiTilawahController;
 
@@ -326,6 +327,15 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/edit_nilai',[NilaiIbadahController::class, 'edit_nilai'])->name('edit_nilai');
             });
 
+        // NILAI HADIST
+            Route::group(['prefix' => 'Nilai/Hadist', 'as' => 'nilai.hadist.'], function() {
+                Route::get('', [NilaiHadistController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiHadistController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiHadistController::class, 'store'])->name('add');
+                Route::get('/data_awal',[NilaiHadistController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiHadistController::class, 'edit_nilai'])->name('edit_nilai');
+            });
+
         // NILAI DOA HARIAN
             Route::group(['prefix' => 'Nilai/Doa', 'as' => 'nilai.doa.'], function() {
                 Route::get('', [NilaiDoaController::class, 'index'])->name('list');
@@ -361,3 +371,4 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_awal',[NilaiTilawahController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiTilawahController::class, 'edit_nilai'])->name('edit_nilai');
             });
+

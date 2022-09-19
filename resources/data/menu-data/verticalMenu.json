@@ -204,6 +204,12 @@
                     "slug": "nilai.doa.list"
                 },
                 {
+                    "url": "Nilai/Hadist",
+                    "name": "Hadist",
+                    "icon": "circle",
+                    "slug": "nilai.hadist.list"
+                },
+                {
                     "url": "Nilai/CBI",
                     "name": "CBI",
                     "icon": "circle",
