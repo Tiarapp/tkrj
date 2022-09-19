@@ -37,6 +37,7 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
+use App\Http\Controllers\Nilai\NilaiAkademikController;
 use App\Http\Controllers\Nilai\NilaiCBIController;
 // NILAI
     use App\Http\Controllers\Nilai\NilaiDoaController;
@@ -297,6 +298,15 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
             });
 
     // NILAI-----------------------------------------------------------------------------------------------------------
+
+        // NILAI AKADEMIK
+            Route::group(['prefix' => 'Nilai/Akademik', 'as' => 'nilai.akademik.'], function() {
+                Route::get('', [NilaiAkademikController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [NilaiAkademikController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[NilaiAkademikController::class, 'store'])->name('add');
+                Route::get('/data_awal',[NilaiAkademikController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiAkademikController::class, 'edit_nilai'])->name('edit_nilai');
+            });
 
         // NILAI EKSTRA
             Route::group(['prefix' => 'Nilai/Ekstra', 'as' => 'nilai.ekstra.'], function() {

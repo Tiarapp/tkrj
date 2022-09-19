@@ -186,6 +186,12 @@
             "slug": "",
             "submenu": [
                 {
+                    "url": "Nilai/Akademik",
+                    "name": "Akademik",
+                    "icon": "circle",
+                    "slug": "nilai.akademik.list"
+                },
+                {
                     "url": "Nilai/Ekstra",
                     "name": "Ekstra",
                     "icon": "circle",
