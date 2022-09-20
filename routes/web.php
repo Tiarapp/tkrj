@@ -68,7 +68,7 @@ Route::group(['prefix' => 'Auth', 'as' => 'auth.'], function() {
     // REGISTER
         Route::get('/register', [RegisterController::class, 'register'])->name('register');
 
-        Route::get('/register/datasiswa', [RegisterController::class, 'datasiswa'])->name('datasiswa');
+        Route::get('/register/dataguru', [RegisterController::class, 'dataguru'])->name('dataguru');
         // Route::get('/register/dataguruekstra', [RegisterController::class, 'dataguruekstra'])->name('dataguruekstra');
         Route::get('/register/datawalikelas', [RegisterController::class, 'datawalikelas'])->name('datawalikelas');
         // Route::get('/register/datawalikelas', [RegisterController::class, 'datawalikelas'])->name('datawalikelas');

@@ -1,0 +1,64 @@
+{
+    "menu": [{
+            "url": "home",
+            "name": "Home",
+            "icon": "home",
+            "slug": "home"
+        },
+        {
+            "name": "Nilai",
+            "icon": "file-text",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "Nilai/Akademik",
+                    "name": "Akademik",
+                    "icon": "circle",
+                    "slug": "nilai.akademik.list"
+                },
+                {
+                    "url": "Nilai/Ekstra",
+                    "name": "Ekstra",
+                    "icon": "circle",
+                    "slug": "nilai.ekstra.list"
+                },
+                {
+                    "url": "Nilai/Ibadah",
+                    "name": "Ibadah",
+                    "icon": "circle",
+                    "slug": "nilai.ibadah.list"
+                },
+                {
+                    "url": "Nilai/Doa",
+                    "name": "Doa Harian",
+                    "icon": "circle",
+                    "slug": "nilai.doa.list"
+                },
+                {
+                    "url": "Nilai/Hadist",
+                    "name": "Hadist",
+                    "icon": "circle",
+                    "slug": "nilai.hadist.list"
+                },
+                {
+                    "url": "Nilai/CBI",
+                    "name": "CBI",
+                    "icon": "circle",
+                    "slug": "nilai.cbi.list"
+                },
+                {
+                    "url": "Nilai/Tilawah",
+                    "name": "Tilawah",
+                    "icon": "circle",
+                    "slug": "nilai.tilawah.list"
+                },
+                {
+                    "url": "Nilai/Tahfidz",
+                    "name": "Tahfidz",
+                    "icon": "circle",
+                    "slug": "nilai.tahfidz.list"
+                }
+            ]
+        }
+    ]
+}
