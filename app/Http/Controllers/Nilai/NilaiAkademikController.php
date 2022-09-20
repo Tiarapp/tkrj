@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Nilai;
 
 use App\Models\Master\MasterPredikat;
 use App\Models\Master\MasterTema;
+use App\Models\Master\MasterTK;
 use Illuminate\Http\Request;
 
 class NilaiAkademikController extends NilaiController
@@ -32,8 +33,10 @@ class NilaiAkademikController extends NilaiController
 
         $tema=MasterTema::all();
 
+        $tk=MasterTK::all();
+
         $predikat=MasterPredikat::all();
 
-        return view('content.Nilai.Akademik.add_nilai_akademik', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'tema'=>$tema, 'predikat'=>$predikat]);
+        return view('content.Nilai.Akademik.add_nilai_akademik', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'tema'=>$tema, 'tk'=>$tk, 'predikat'=>$predikat]);
     }
 }

@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Kick start -->
-<div class="card">
+{{-- <div class="card">
   <div class="card-header">
     <h4 class="card-title">Kick start your next project 🚀</h4>
   </div>
@@ -26,11 +26,11 @@
       </ul>
     </div>
   </div>
-</div>
+</div> --}}
 <!--/ Kick start -->
 
 <!-- Page layout -->
-<div class="card">
+{{-- <div class="card">
   <div class="card-header">
     <h4 class="card-title">What is page layout?</h4>
   </div>
@@ -59,6 +59,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 <!--/ Page layout -->
 @endsection

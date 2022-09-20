@@ -34,16 +34,25 @@
         <div class="col-12">
             <div class="card">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-5">
                         <div class="card-header">
                             <h4 class="card-title">Input Nilai Jenjang: {{$detail_pengajar->jenjang}} / Kelas: {{$detail_pengajar->kelas}}</h4>
                         </div>
                     </div>
-                    <div class="col-4" style="margin-top: 20px">
+                    <div class="col-3" style="margin-top: 20px">
                         <select class="select2-size-sm form-select" name="tema_id" id="tema_id">
                             <option selected disabled>Pilih Tema</option>
                             @foreach ($tema as $t)
                                 <option value="{{$t->id}}">{{$t->tema}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-4" style="margin-top: 20px">
+                        <select class="select2-size-sm form-select" name="tk_id" id="tk_id">
+                            <option selected disabled>Pilih TK</option>
+                            @foreach ($tk as $t)
+                                <option value="{{$t->id}}">{{$t->kode_ref}} || {{$t->nama_tk}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -60,15 +69,9 @@
                         <table id="example" class="dt-multilingual table">
                             <thead>
                                 <tr>
-                                    <th rowspan="2" style="text-align: center; width: 40px">Absen</th>
-                                    <th rowspan="2" style="text-align: center; ">Nama</th>
-                                    <th colspan="4" style="text-align: center;">Penilaian</th>
-                                </tr>
-                                <tr>
-                                    <th>Sudah Muncul</th>
-                                    <th>Konteks</th>
-                                    <th>Tempat & Waktu Kemunculan</th>
-                                    <th>Kejadian Yang Teramati</th>
+                                    <th style="text-align: center; width: 40px">Absen</th>
+                                    <th style="text-align: center;">Nama</th>
+                                    <th >Sudah Muncul</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,16 +80,7 @@
                                         <td>{{$m->absen}}</td>
                                         <td style="width: 400px">{{$m->nama}}</td>
                                         <td>
-                                            <input type="checkbox" class="form-check-input" id="colorCheck3" checked />
-                                        </td>
-                                        <td>
-                                            <textarea class="form-control predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}" rows="3"></textarea>
-                                        </td>
-                                        <td>
-                                            <textarea class="form-control predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}" rows="3"></textarea>
-                                        </td>
-                                        <td>
-                                            <textarea class="form-control predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}" rows="3"></textarea>
+                                            <input type="checkbox" class="form-check-input" id="colorCheck3" />
                                         </td>
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">
