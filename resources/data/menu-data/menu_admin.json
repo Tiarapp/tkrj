@@ -1,0 +1,184 @@
+{
+    "menu": [{
+            "url": "home",
+            "name": "Home",
+            "icon": "home",
+            "slug": "home"
+        },
+        {
+            "name": "Master",
+            "icon": "database",
+            "slug": "",
+            "submenu": [{
+                    "url": "Master/Tahun Ajaran",
+                    "name": "Tahun Ajaran",
+                    "icon": "database",
+                    "slug": "master.tahunajaran.list"
+                },
+                {
+                    "url": "Master/Akun",
+                    "name": "Akun",
+                    "icon": "database",
+                    "slug": "master.akun.list"
+                },
+                {
+                    "url": "Master/Semester",
+                    "name": "Semester",
+                    "icon": "database",
+                    "slug": "master.semester.list"
+                },
+                {
+                    "url": "Master/Periode",
+                    "name": "Periode",
+                    "icon": "database",
+                    "slug": "master.periode.list"
+                },
+                {
+                    "url": "Master/Jenjang",
+                    "name": "Jenjang",
+                    "icon": "database",
+                    "slug": "master.jenjang.list"
+                },
+                {
+                    "url": "Master/Guru",
+                    "name": "Guru",
+                    "icon": "database",
+                    "slug": "master.guru.list"
+                },
+                {
+                    "url": "Master/Kelas",
+                    "name": "Kelas",
+                    "icon": "database",
+                    "slug": "master.kelas.list"
+                },
+                {
+                    "url": "Master/Siswa",
+                    "name": "Siswa",
+                    "icon": "database",
+                    "slug": "master.siswa.list"
+                },
+                {
+                    "url": "Master/Ekstra",
+                    "name": "Ekstra",
+                    "icon": "database",
+                    "slug": "master.ekstra.list"
+                },
+                {
+                    "url": "Master/Tahfidz",
+                    "name": "Tahfidz",
+                    "icon": "database",
+                    "slug": "master.tahfidz.list"
+                },
+                {
+                    "url": "Master/Tilawah",
+                    "name": "Tilawah",
+                    "icon": "database",
+                    "slug": "master.tilawah.list"
+                },
+                {
+                    "url": "Master/Doaharian",
+                    "name": "Doa Harian",
+                    "icon": "database",
+                    "slug": "master.doaharian.list"
+                },
+                {
+                    "url": "Master/Hadist",
+                    "name": "Hadist",
+                    "icon": "database",
+                    "slug": "master.hadist.list"
+                },
+                {
+                    "url": "Master/CBI",
+                    "name": "CBI Fonik",
+                    "icon": "database",
+                    "slug": "master.cbi.list"
+                },
+                {
+                    "url": "Master/Capaian Pembelajaran",
+                    "name": "Capaian Pembelajaran",
+                    "icon": "database",
+                    "slug": "master.cp.list"
+                },
+                {
+                    "url": "Master/Elemen Capaian Pembelajaran",
+                    "name": "Elemen CP",
+                    "icon": "database",
+                    "slug": "master.elemen.list"
+                },
+                {
+                    "url": "Master/Tujuan Pembelajaran",
+                    "name": "Tujuan Pembelajaran",
+                    "icon": "database",
+                    "slug": "master.tp.list"
+                },
+                {
+                    "url": "Master/Tujuan Kegiatan",
+                    "name": "Tujuan Kegiatan",
+                    "icon": "database",
+                    "slug": "master.tk.list"
+                },
+                {
+                    "url": "Master/Kategori",
+                    "name": "Kategori",
+                    "icon": "database",
+                    "slug": "master.kategori.list"
+                },
+                {
+                    "url": "Master/Skill Value",
+                    "name": "Skill Value",
+                    "icon": "database",
+                    "slug": "master.skillvalue.list"
+                },
+                {
+                    "url": "Master/Perkembangan",
+                    "name": "Perkembangan",
+                    "icon": "database",
+                    "slug": "master.perkembangan.list"
+                },
+                {
+                    "url": "Master/Areas Dev",
+                    "name": "Areas Dev",
+                    "icon": "database",
+                    "slug": "master.area.list"
+                },
+                {
+                    "url": "Master/DevAchiev",
+                    "name": "Dev Achiev",
+                    "icon": "database",
+                    "slug": "master.devac.list"
+                }
+            ]
+        },
+        {
+            "name": "Data",
+            "icon": "database",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "Data/Murid",
+                    "name": "Murid",
+                    "icon": "user",
+                    "slug": "data.datamurid.list"
+                },
+                {
+                    "url": "Data/Walikelas",
+                    "name": "Wali Kelas",
+                    "icon": "user",
+                    "slug": "data.walikelas.list"
+                },
+                {
+                    "url": "Data/Pengajar",
+                    "name": "Pengajar",
+                    "icon": "user",
+                    "slug": "data.pengajar.list"
+                },
+                {
+                    "url": "Data/Indicators",
+                    "name": "Indicators",
+                    "icon": "user",
+                    "slug": "data.indicators.list"
+                }
+            ]
+        }
+    ]
+}

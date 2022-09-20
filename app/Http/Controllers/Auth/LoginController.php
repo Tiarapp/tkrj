@@ -46,6 +46,6 @@ class LoginController extends AuthController
         Session::flush();
         Auth::logout();
 
-        return redirect('login_pegawai');
+        return redirect('/');
     }
 }

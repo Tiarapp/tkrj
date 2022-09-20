@@ -13,6 +13,7 @@
                         <label class="form-label" for="login-email">Pendaftaran</label>
                         <select class="select2 form-select" name="level" id="level" required>
                             <option value="" selected disabled>Pilih Jawaban</option>
+                            <option value="Admin">Admin</option>
                             <option value="Guru">Guru</option>
                             <option value="Walikelas">Walikelas</option>
                             {{-- <option value="Wali Kelas">Wali Kelas</option>

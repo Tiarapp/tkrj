@@ -38,6 +38,7 @@ class MasterAkunController extends MasterController
             'ni'        => $data->ni,
             'nama'      => $data->nama,
             'password'  => Hash::make($request->password),
+            'level'     => $request->level,
             'data_id'   => $data->id,
         ]);
 
