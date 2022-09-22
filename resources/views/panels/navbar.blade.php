@@ -98,7 +98,7 @@
                     </form> --}}
                 @else
                     <a class="dropdown-item"
-                        href="{{ Route::has('login_pegawai') ? route('login_pegawai') : 'javascript:void(0)' }}">
+                        href="{{ Route::has('/login_pegawai') ? route('/login_pegawai') : 'javascript:void(0)' }}">
                         <i class="me-50" data-feather="log-in"></i> Login
                     </a>
                 @endif

@@ -7,6 +7,7 @@ use App\Models\Data\data_murid;
 use App\Models\Master\MasterPredikat;
 use App\Models\Nilai\nilai_ibadah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NilaiIbadahController extends NilaiController
 {
@@ -17,7 +18,7 @@ class NilaiIbadahController extends NilaiController
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Nilai Ibadah"]];
 
         // LIST KELAS YG DIAJAR
-            $list_kelas    = $this->list_kelas(13);
+            $list_kelas    = $this->list_kelas(Auth::user()->data_id);
 
         return view('content.Nilai.Ibadah.nilai_ibadah', ['breadcrumbs' => $breadcrumbs, 'list_kelas'=>$list_kelas]);
     }

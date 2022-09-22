@@ -21,8 +21,8 @@ class MasterTP extends Model
         'nama_tp', 'narasi','status_aktif', 'elemen_id',
     ];
 
-    public function elemencp()
+    public function id_cp()
     {
-        return $this->belongsTo(MasterElemenCP::class, 'elemen_id', 'id');
+        return $this->belongsTo(MasterElemenCP::class, 'cp_id', 'id');
     }
 }

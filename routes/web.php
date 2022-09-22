@@ -37,15 +37,16 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
-use App\Http\Controllers\Nilai\NilaiAkademikController;
-use App\Http\Controllers\Nilai\NilaiCBIController;
+
 // NILAI
     use App\Http\Controllers\Nilai\NilaiDoaController;
     use App\Http\Controllers\Nilai\NilaiEkstraController;
-use App\Http\Controllers\Nilai\NilaiHadistController;
-use App\Http\Controllers\Nilai\NilaiIbadahController;
+    use App\Http\Controllers\Nilai\NilaiHadistController;
+    use App\Http\Controllers\Nilai\NilaiIbadahController;
     use App\Http\Controllers\Nilai\NilaiTahfidzController;
     use App\Http\Controllers\Nilai\NilaiTilawahController;
+    use App\Http\Controllers\Nilai\NilaiAkademikController;
+    use App\Http\Controllers\Nilai\NilaiCBIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,7 @@ use App\Http\Controllers\Nilai\NilaiIbadahController;
 // AUTH-------------------------------------------------------------------------------------------------------------
 Route::group(['prefix' => 'Auth', 'as' => 'auth.'], function() {
     // LOGIN
-        // Route::get('/login_pegawai', [LoginController::class, 'login_pegawai'])->name('login_pegawai');
+        Route::get('/login_pegawai', [LoginController::class, 'login_pegawai'])->name('login_pegawai');
         Route::post('/login_pegawai/authenticate_pegawai',[LoginController::class, 'authenticate_pegawai'])->name('authenticate_pegawai');
         Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 

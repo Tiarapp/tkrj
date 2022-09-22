@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
-@section('title', 'Input CBI')
+@section('title', 'Input Akademik')
 
 @section('content')
 <!-- Complex Headers -->
@@ -34,14 +34,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-4">
                         <div class="card-header">
-                            <h4 class="card-title">Input Nilai Jenjang: {{$detail_pengajar->jenjang}} / Kelas: {{$detail_pengajar->kelas}}</h4>
+                            <h4 class="card-title">Input Nilai Kelas: {{$detail_pengajar->kelas}}</h4>
                         </div>
                     </div>
                     <div class="col-3" style="margin-top: 20px">
                         <select class="select2-size-sm form-select" name="tema_id" id="tema_id">
-                            <option selected disabled>Pilih Tema</option>
+                            <option value="" selected disabled>Pilih Tema</option>
                             @foreach ($tema as $t)
                                 <option value="{{$t->id}}">{{$t->tema}}</option>
                             @endforeach
@@ -50,11 +50,17 @@
 
                     <div class="col-4" style="margin-top: 20px">
                         <select class="select2-size-sm form-select" name="tk_id" id="tk_id">
-                            <option selected disabled>Pilih TK</option>
+                            <option value="" selected disabled>Pilih TK</option>
                             @foreach ($tk as $t)
                                 <option value="{{$t->id}}">{{$t->kode_ref}} || {{$t->nama_tk}}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="col-1" style="margin-top: 20px">
+                        <button type="button" class="btn btn-icon btn-success btn-sm" onclick="refresh()">
+                            <i data-feather='rotate-cw'></i>
+                        </button>
                     </div>
                 </div>
 
@@ -64,7 +70,8 @@
 
                         {{-- ID --}}
                             <input type="hidden" name="id_pengajar" id="id_pengajar" value="{{$detail_pengajar->id}}">
-                            <input type="hidden" name="id_indicators" id="id_indicators">
+                            <input type="hidden" name="id_tk" id="id_tk" required>
+                            <input type="hidden" name="id_tema" id="id_tema" required>
 
                         <table id="example" class="dt-multilingual table">
                             <thead>
@@ -80,12 +87,12 @@
                                         <td>{{$m->absen}}</td>
                                         <td style="width: 400px">{{$m->nama}}</td>
                                         <td>
-                                            <input type="checkbox" class="form-check-input" id="colorCheck3" />
+                                            <input type="checkbox" class="form-check-input nilai" name="nilai[{{$m->id}}]" id="nilai_{{$m->id}}" />
                                         </td>
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">
                                         {{-- ID NILAI --}}
-                                            <input class="id_nilai_cbi" type="hidden" name="id_nilai_cbi[{{$m->id}}]" id="id_nilai_tema_{{$m->id}}">
+                                            <input class="id_nilai_akademik" type="hidden" name="id_nilai_akademik[{{$m->id}}]" id="id_nilai_akademik_{{$m->id}}">
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -141,9 +148,6 @@
     $(document).ready(function() {
 
         $(".basic-select2").select2();
-        // $('#example').DataTable({
-        //     "searching": false
-        // });
 
         @if ($message = Session::get('succes'))
 
@@ -163,22 +167,56 @@
         @endif
     } );
 
+    $('#jquery-val-form').validate({
+        rules: {
+            id_akademik: {
+                required: true,
+            },
+            id_tema: {
+                required: true,
+            }
+        },
+        messages: {
+            id_akademik: {
+                required: "Pilih TK Terlebih Dahulu",
+            },
+            id_tema: {
+                required: "Pilih Tema Terlebih Dahulu",
+            }
+        }
+    });
+
     // SELECT INDIKATOR IBADAH
-        $('#tema_id').change(function () {
-            var id_indicators = document.getElementById("tema_id").value;
+        $('#tk_id').change(function () {
+            var id_tk = document.getElementById("tk_id").value;
+            var id_tema=document.getElementById("tema_id").value
             var id_pengajar= document.getElementById("id_pengajar").value;
 
-            data_edit(id_indicators, id_pengajar)
-
-            document.getElementById("id_indicators").value=id_indicators;
+            document.getElementById("id_tk").value=id_tk;
+            document.getElementById("id_tema").value=id_tema;
         });
 
-    // RESET TABEL
-        const data_edit = function(id_indicators, id_pengajar){
-            if (id_indicators, id_pengajar) {
+    function refresh() {
+        var id_tema= document.getElementById('tema_id').value;
+        var id_tk= document.getElementById('tk_id').value;
+        var id_pengajar= document.getElementById('id_pengajar').value;
+
+        if (id_tema=="" || id_tk=="") {
+            toastr['error'](
+                'Cek Pilihan Tema dan Pilihan TK', 'Error!', {
+                    closeButton: true,
+                    tapToDismiss: false,
+            });
+        }
+        data_edit(id_tema, id_tk, id_pengajar);
+    }
+
+    // DATA EDIT
+        const data_edit = function(id_tema, id_tk, id_pengajar){
+            if (id_tema, id_tk, id_pengajar) {
                 $.ajax({
                     type: "GET",
-                    url: "/Nilai/CBI/edit_nilai?id_indicators=" +id_indicators+"&id_pengajar="+id_pengajar,
+                    url: "/Nilai/Akademik/edit_nilai?id_tema="+id_tema+"&id_tk=" +id_tk+"&id_pengajar="+id_pengajar,
                     dataType: 'JSON',
                     success:function(result){
 
@@ -186,12 +224,13 @@
 
                             const reset = (idx, elem) => (elem.value = null)
 
-                            $('.id_nilai_cbi').map(reset)
-                            $('.predikat').map(reset)
+                            $('.id_nilai_akademik').map(reset)
+                            $('.nilai').prop("checked", false);
                         } else {
                             for (let index = 0; index < result.length; index++) {
-                                $("#id_nilai_tema_"+result[index].murid_id).val(result[index].id);
-                                $("#predikat_id_"+result[index].murid_id).val(result[index].nilai);
+                                $("#id_nilai_akademik_"+result[index].murid_id).val(result[index].id);
+                                $("#nilai_"+result[index].murid_id).prop("checked", true);
+
                             }
                         }
                     },
@@ -199,15 +238,15 @@
                     {
                         const reset = (idx, elem) => (elem.value = null)
 
-                            $('.id_nilai_cbi').map(reset)
-                            $('.predikat').map(reset)
+                            $('.id_nilai_akademik').map(reset)
+                            $('.nilai').prop("checked", false);
                     }
                 });
             } else {
                 const reset = (idx, elem) => (elem.value = null)
 
-                    $('.id_nilai_cbi').map(reset)
-                    $('.predikat').map(reset)
+                    $('.id_nilai_akademik').map(reset)
+                    $('.nilai').prop("checked", false);
             }
         }
 

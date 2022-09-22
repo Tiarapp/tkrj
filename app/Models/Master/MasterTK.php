@@ -21,7 +21,7 @@ class MasterTK extends Model
         'nama_tk', 'narasi', 'status_aktif', 'kode_ref', 'tp_id'
     ];
 
-    public function tp()
+    public function tp_id()
     {
         return $this->belongsTo(MasterTP::class, 'tp_id', 'id');
     }
