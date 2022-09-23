@@ -95,4 +95,27 @@ class NilaiDoaController extends NilaiController
                             ->get();
         return $nilai_doa;
     }
+
+    public function rekap($id_pengajar)
+    {
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => " Rekap Nilai"], ['name' => "Doa Harian"]];
+
+        $periode=$this->periode->getPeriodeAktif();
+
+        $detail_pengajar  = $this->detail_pengajar($id_pengajar);
+
+        // TAMPILAN MURID KELAS
+            $murid   = $this->murid_kelas($id_pengajar);
+
+        // REKAP NILAI
+            $periode=$this->periode->getPeriodeAktif();
+            $detail_pengajar = $this->detail_pengajar($id_pengajar);
+
+            $nilai_doa=nilai_doa::where('kelas_id', $detail_pengajar->kelas_id)
+                                ->where('periode_id', $periode->id)
+                                ->where('periode_keterangan', $periode->periode)
+                                ->get();
+
+        return view('content.Nilai.Doa.rekap_nilai_doa', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_doa'=>$nilai_doa]);
+    }
 }

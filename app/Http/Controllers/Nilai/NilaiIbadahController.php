@@ -95,4 +95,27 @@ class NilaiIbadahController extends NilaiController
                             ->get();
         return $nilai_ibadah;
     }
+
+    public function rekap($id_pengajar)
+    {
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => " Rekap Nilai"], ['name' => "Ibadah"]];
+
+        $periode=$this->periode->getPeriodeAktif();
+
+        $detail_pengajar  = $this->detail_pengajar($id_pengajar);
+
+        // TAMPILAN MURID KELAS
+            $murid   = $this->murid_kelas($id_pengajar);
+
+        // REKAP NILAI
+            $periode=$this->periode->getPeriodeAktif();
+            $detail_pengajar = $this->detail_pengajar($id_pengajar);
+
+            $nilai_ibadah=nilai_ibadah::where('kelas_id', $detail_pengajar->kelas_id)
+                                ->where('periode_id', $periode->id)
+                                ->where('periode_keterangan', $periode->periode)
+                                ->get();
+
+        return view('content.Nilai.Ibadah.rekap_nilai_ibadah', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_ibadah'=>$nilai_ibadah]);
+    }
 }

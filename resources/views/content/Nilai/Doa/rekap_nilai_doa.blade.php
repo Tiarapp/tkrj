@@ -1,12 +1,14 @@
 @extends('layouts/contentLayoutMaster')
 
 @section('vendor-style')
+
     {{-- vendor css files TABLE--}}
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+
     {{-- Vendor Css files INPUT --}}
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
@@ -15,6 +17,7 @@
 @endsection
 
 @section('page-style')
+
     {{-- Page Css files --}}
         <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
@@ -22,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
-@section('title', 'Nilai Akademik')
+@section('title', 'Rekap Nilai Doa Harian')
 
 @section('content')
 <!-- Complex Headers -->
@@ -30,62 +33,60 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header border-bottom p-1">
-                    <div class="dt-action-buttons text-end">
-                        <div class="dt-buttons d-inline-flex">
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle waves-effect" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i data-feather='settings'></i>
-                                </button>
-                                <div class="dropdown-menu" style="">
-                                    <a data-bs-toggle="modal" data-bs-target="#inlineForm" class="dropdown-item" href="#">
-                                        Import
-                                    </a>
-                                    <a data-bs-toggle="modal" data-bs-target="#inlineForm" class="dropdown-item" href="#">
-                                        Export
-                                    </a>
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="card-header">
+                            <h4 class="card-title">Rekap Nilai Kelas: {{$detail_pengajar->kelas}}</h4>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-datatable">
                     <table id="example" class="dt-multilingual table">
                         <thead>
                             <tr>
-                                <th>Kelas</th>
-                                <th>Nilai</th>
-                                <th>Rekap</th>
+                                <th>Absen</th>
+                                <th>Nama </th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($list_kelas as $lk)
+                            {{-- @foreach ($nilai as $n)
                                 <tr>
-                                    <td>{{$lk->kelas}}</td>
-                                    <td>
-                                        <a href="/Nilai/Akademik/input{{$lk->id}}" class="btn btn-icon btn-success">
-                                            <i data-feather="edit"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="/Nilai/Akademik/rekap{{$lk->id}}" class="btn btn-icon btn-success">
-                                            <i data-feather='book-open'></i>
-                                        </a>
-                                    </td>
+                                    <td>{{$n->nama}}</td>
+                                    <td>{{$n}}</td>
+                                </tr>
+                            @endforeach --}}
+
+                            @foreach ($murid as $m)
+                                <tr>
+                                    <td>{{$m->absen}}</td>
+                                    <td>{{$m->nama}}</td>
+
+                                    @foreach ($nilai_doa as $na)
+                                        @if ($m->id==$na->murid_id)
+                                            <tr>
+                                                <td>{{$na->indicators}}</td>
+                                                <td>{{$na->nilai}}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
 </section>
 <!--/ Complex Headers -->
+
 @endsection
 
 @section('vendor-script')
+
     {{-- vendor files TABLE--}}
         <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
         <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>

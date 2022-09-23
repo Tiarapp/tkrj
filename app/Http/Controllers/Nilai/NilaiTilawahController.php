@@ -96,4 +96,27 @@ class NilaiTilawahController extends NilaiController
                             ->get();
         return $nilai_tilawah;
     }
+
+    public function rekap($id_pengajar)
+    {
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => " Rekap Nilai"], ['name' => "Tilawah"]];
+
+        $periode=$this->periode->getPeriodeAktif();
+
+        $detail_pengajar  = $this->detail_pengajar($id_pengajar);
+
+        // TAMPILAN MURID KELAS
+            $murid   = $this->murid_kelas($id_pengajar);
+
+        // REKAP NILAI
+            $periode=$this->periode->getPeriodeAktif();
+            $detail_pengajar = $this->detail_pengajar($id_pengajar);
+
+            $nilai_tilawah=nilai_tilawah::where('kelas_id', $detail_pengajar->kelas_id)
+                                ->where('periode_id', $periode->id)
+                                ->where('periode_keterangan', $periode->periode)
+                                ->get();
+
+        return view('content.Nilai.Tilawah.rekap_nilai_tilawah', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_tilawah'=>$nilai_tilawah]);
+    }
 }

@@ -55,7 +55,8 @@
                         <thead>
                             <tr>
                                 <th>Kelas</th>
-                                <th>Option</th>
+                                <th>Input</th>
+                                <th>Rekap</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,6 +66,11 @@
                                     <td>
                                         <a href="/Nilai/Ibadah/input{{$lk->id}}" class="btn btn-icon btn-success">
                                             <i data-feather="edit"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Nilai/Ibadah/rekap{{$lk->id}}" class="btn btn-icon btn-success">
+                                            <i data-feather='book-open'></i>
                                         </a>
                                     </td>
                                 </tr>

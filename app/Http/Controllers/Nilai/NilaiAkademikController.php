@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Nilai;
 
+use App\Models\Data\data_indicators;
 use App\Models\Data\data_murid;
 use App\Models\Data\data_pengajar;
+use App\Models\Master\MasterArea;
 use App\Models\Master\MasterCP;
 use App\Models\Master\MasterPredikat;
 use App\Models\Master\MasterTema;
@@ -110,5 +112,58 @@ class NilaiAkademikController extends NilaiController
                             ->where('periode_keterangan', $periode->periode)
                             ->get();
         return $nilai_akademik;
+    }
+
+    public function rekap($id_pengajar)
+    {
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => " Rekap Input Nilai"], ['name' => "Akademik"]];
+
+        $periode=$this->periode->getPeriodeAktif();
+
+        $detail_pengajar  = $this->detail_pengajar($id_pengajar);
+
+        // TAMPILAN MURID KELAS
+            $murid   = $this->murid_kelas($id_pengajar);
+
+        $tema=MasterTema::all();
+        $tk=MasterTK::all();
+        $predikat=MasterPredikat::all();
+
+        // REKAP NILAI
+            $periode=$this->periode->getPeriodeAktif();
+            $detail_pengajar = $this->detail_pengajar($id_pengajar);
+
+            $nilai_akademik=nilai_akademik::where('kelas_id', $detail_pengajar->kelas_id)
+                                ->where('periode_id', $periode->id)
+                                ->where('periode_keterangan', $periode->periode)
+                                ->get();
+
+
+        // PROSES SEMUA REKAP NILAI PERANAK
+            // $nilai = function() use($murid, $nilai_akademik) {
+            //     $data = [];
+            //     // LOPING MAPEL
+            //         foreach ($murid as $murid_kelas) {
+            //             $i=0;
+            //             // INISIASI VARIABEL
+            //                 $item =(object) ["nilai_akademik" => null];
+
+            //             // SET ID, NAMA MAPEL
+            //                 $item->absen = $murid_kelas->absen;
+            //                 $item->nama = $murid_kelas->nama;
+
+            //             // SET NILAI PTS BERDASARKAN ID MAPEL, FUNCTION ($PTS) memasukkan item dari NILAI PTS
+            //                 $item->tk = $nilai_akademik->filter(function($na) use($murid_kelas) {
+            //                     return $na->murid_id === $murid_kelas->id;
+            //                 })->first();
+
+            //             // MEMASUKKAN ITEM KE VARIABEL DATA
+            //                 array_push($data, $item);
+            //                 // $i++;
+            //         }
+            //         return $data;
+            // };
+
+        return view('content.Nilai.Akademik.rekap_nilai_akademik', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'tema'=>$tema, 'tk'=>$tk, 'predikat'=>$predikat, 'nilai_akademik'=>$nilai_akademik]);
     }
 }
