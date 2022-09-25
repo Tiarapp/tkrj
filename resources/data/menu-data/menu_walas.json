@@ -61,11 +61,16 @@
             ]
         },
         {
-<<<<<<< Updated upstream
-            "name": "Raport",
+            "name": "Walikelas",
             "icon": "file-text",
             "slug": "",
             "submenu": [
+                {
+                    "url": "Walikelas/Absen",
+                    "name": "Absensi Siswa",
+                    "icon": "circle",
+                    "slug": "walikelas.absen.list"
+                },
                 {
                     "url": "Raport/Ekstra",
                     "name": "Raport Ekstra",
@@ -78,20 +83,7 @@
                     "icon": "circle",
                     "slug": "raport.akademik.list"
                 }
-            ]   
-=======
-            "name": "Wali Kelas",
-            "icon": "database",
-            "slug": "",
-            "submenu": [
-                {
-                    "url": "Walikelas/Absen",
-                    "name": "Absen",
-                    "icon": "user",
-                    "slug": "walikelas.absen.list"
-                }
             ]
->>>>>>> Stashed changes
         }
     ]
 }

@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('nama');
             $table->string('kelas');
             $table->string('jenjang');
-            $table->string('ijin');
-            $table->string('sakit');
-            $table->string('alpha');
+            $table->string('ijin')->nullable();
+            $table->string('sakit')->nullable();
+            $table->string('alpha')->nullable();
             $table->enum('periode_keterangan', ['Tengah', 'Akhir']);
 
             $table->foreignId('murid_id');

@@ -46,7 +46,7 @@
                         {{csrf_field()}}
 
                         {{-- ID --}}
-                            <input type="hidden" name="id_pengajar" id="id_pengajar" value="{{$walikelas->id}}">
+                            <input type="hidden" name="id_walikelas" id="id_walikelas" value="{{$walikelas->id}}">
 
                         <table id="example" class="dt-multilingual table">
                             <thead>
@@ -54,8 +54,8 @@
                                     <th style="text-align: center; width: 40px">Absen</th>
                                     <th style="text-align: center; ">Nama</th>
                                     <th style="text-align: center">Ijin</th>
-                                    <th>Sakit</th>
-                                    <th>Alpha</th>
+                                    <th style="text-align: center">Sakit</th>
+                                    <th style="text-align: center">Alpha</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,18 +64,18 @@
                                         <td>{{$m->absen}}</td>
                                         <td style="width: 400px">{{$m->nama}}</td>
                                         <td>
-                                            <input type="text" class="form-control predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}" rows="3">
+                                            <input type="text" class="form-control ijin" name="ijin[{{$m->id}}]" id="ijin_{{$m->id}}">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}" rows="3">
+                                            <input type="text" class="form-control sakit" name="sakit[{{$m->id}}]" id="sakit_{{$m->id}}">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}" rows="3">
+                                            <input type="text" class="form-control alpha" name="alpha[{{$m->id}}]" id="alpha_{{$m->id}}">
                                         </td>
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">
                                         {{-- ID NILAI --}}
-                                            <input class="id_nilai_cbi" type="hidden" name="id_nilai_cbi[{{$m->id}}]" id="id_nilai_cbi_{{$m->id}}">
+                                            <input class="id_absen" type="hidden" name="id_absen[{{$m->id}}]" id="id_absen_{{$m->id}}">
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -131,9 +131,9 @@
     $(document).ready(function() {
 
         $(".basic-select2").select2();
-        // $('#example').DataTable({
-        //     "searching": false
-        // });
+
+        var id_walikelas = document.getElementById("id_walikelas").value;
+        data_edit(id_walikelas);
 
         @if ($message = Session::get('succes'))
 
@@ -153,22 +153,12 @@
         @endif
     } );
 
-    // SELECT INDIKATOR IBADAH
-        $('#cbi_id').change(function () {
-            var id_indicators = document.getElementById("cbi_id").value;
-            var id_pengajar= document.getElementById("id_pengajar").value;
-
-            data_edit(id_indicators, id_pengajar)
-
-            document.getElementById("id_indicators").value=id_indicators;
-        });
-
     // RESET TABEL
-        const data_edit = function(id_indicators, id_pengajar){
-            if (id_indicators, id_pengajar) {
+        const data_edit = function(id_walikelas){
+            if (id_walikelas) {
                 $.ajax({
                     type: "GET",
-                    url: "/Nilai/CBI/edit_nilai?id_indicators=" +id_indicators+"&id_pengajar="+id_pengajar,
+                    url: "/Walikelas/Absen/edit_absen?id_walikelas=" +id_walikelas,
                     dataType: 'JSON',
                     success:function(result){
 
@@ -176,12 +166,16 @@
 
                             const reset = (idx, elem) => (elem.value = null)
 
-                            $('.id_nilai_cbi').map(reset)
-                            $('.predikat').map(reset)
+                            $('.id_absen').map(reset)
+                            $('.ijin').map(reset)
+                            $('.sakit').map(reset)
+                            $('.alpha').map(reset)
                         } else {
                             for (let index = 0; index < result.length; index++) {
-                                $("#id_nilai_cbi_"+result[index].murid_id).val(result[index].id);
-                                $("#predikat_id_"+result[index].murid_id).val(result[index].nilai);
+                                $("#id_absen_"+result[index].murid_id).val(result[index].id);
+                                $("#ijin_"+result[index].murid_id).val(result[index].ijin);
+                                $("#sakit_"+result[index].murid_id).val(result[index].sakit);
+                                $("#alpha_"+result[index].murid_id).val(result[index].alpha);
                             }
                         }
                     },
@@ -189,15 +183,19 @@
                     {
                         const reset = (idx, elem) => (elem.value = null)
 
-                            $('.id_nilai_cbi').map(reset)
-                            $('.predikat').map(reset)
+                        $('.id_absen').map(reset)
+                        $('.ijin').map(reset)
+                        $('.sakit').map(reset)
+                        $('.alpha').map(reset)
                     }
                 });
             } else {
                 const reset = (idx, elem) => (elem.value = null)
 
-                    $('.id_nilai_cbi').map(reset)
-                    $('.predikat').map(reset)
+                    $('.id_absen').map(reset)
+                    $('.ijin').map(reset)
+                    $('.sakit').map(reset)
+                    $('.alpha').map(reset)
             }
         }
 

@@ -401,29 +401,20 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('', [RaportEkstraController::class, 'index'])->name('list');
                 Route::get('/murid_kelas{id_pengajar}', [RaportEkstraController::class, 'view_murid'])->name('view_murid');
                 Route::get('/raport{murid_id}', [RaportEkstraController::class, 'raport'])->name('print_raport');
-                // Route::post('/add',[NilaiTilawahController::class, 'store'])->name('add');
-                // Route::get('/data_awal',[NilaiTilawahController::class, 'data_awal'])->name('data_awal');
-                // Route::get('/edit_nilai',[NilaiTilawahController::class, 'edit_nilai'])->name('edit_nilai');
-                // Route::get('/rekap{id_pengajar}', [NilaiTilawahController::class, 'rekap'])->name('rekap');
             });
 
-// <<<<<<< Updated upstream
             // Raport Akademik
             Route::group(['prefix' => 'Raport/Akademik', 'as' => 'raport.akademik.'], function() {
                 Route::get('', [RaportAkademikController::class, 'index'])->name('list');
                 Route::get('/murid_kelas{id_pengajar}', [RaportAkademikController::class, 'view_murid'])->name('view_murid');
                 Route::get('/raport{murid_id}', [RaportAkademikController::class, 'raport'])->name('print_raport');
             });
-                // Route::post('/add',[NilaiTilawahController::class, 'store'])->name('add');
-// =======
+
     // WALIKELAS-----------------------------------------------------------------------------------------------------------
         // ABSENSI
             Route::group(['prefix' => 'Walikelas/Absen', 'as' => 'walikelas.absen.'], function() {
                 Route::get('', [AbsenController::class, 'index'])->name('list');
                 Route::post('/add',[AbsenController::class, 'store'])->name('add');
                 Route::get('/input_absen{id_walas}', [AbsenController::class, 'add_absen'])->name('input');
-// >>>>>>> Stashed changes
-                // Route::get('/data_awal',[NilaiTilawahController::class, 'data_awal'])->name('data_awal');
-                // Route::get('/edit_nilai',[NilaiTilawahController::class, 'edit_nilai'])->name('edit_nilai');
-                // Route::get('/rekap{id_pengajar}', [NilaiTilawahController::class, 'rekap'])->name('rekap');
+                Route::get('/edit_absen',[AbsenController::class, 'edit_absen'])->name('edit_absen');
             });
