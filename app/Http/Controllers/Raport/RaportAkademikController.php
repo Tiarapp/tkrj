@@ -21,7 +21,7 @@ class RaportAkademikController extends RaportController
     {
         $periode=$this->periode->getPeriodeAktif();
 
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Nilai Tilawah"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Raport Akademik"]];
 
         // LIST KELAS YG DIAJAR
             $list_kelas    = $this->list_kelas(Auth::user()->data_id);
@@ -31,7 +31,7 @@ class RaportAkademikController extends RaportController
 
     public function view_murid($id_pengajar)
     {
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Input Nilai"], ['name' => "Tahfidz"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "List Murid"]];
 
         $periode=$this->periode->getPeriodeAktif();
 
@@ -39,7 +39,7 @@ class RaportAkademikController extends RaportController
 
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
-        
+
         // $predikat=MasterPredikat::all();
         // dd($periode);
 
@@ -51,10 +51,10 @@ class RaportAkademikController extends RaportController
 
         $murid = data_murid::where('id', '=', $murid_id)
             ->first();
-        
+
         $periode=$this->periode->getPeriodeAktif();
 
-        
+
         $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)->get();
         $cbi = nilai_cbi::where('murid_id', '=', $murid_id)->get();
         $doa = nilai_doa::where('murid_id', '=', $murid_id)->get();

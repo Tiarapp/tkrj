@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
-@section('title', 'Nilai Tilawah')
+@section('title', 'Raport Akademik')
 
 @section('content')
 <!-- Complex Headers -->

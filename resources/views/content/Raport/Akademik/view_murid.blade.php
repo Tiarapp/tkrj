@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
-@section('title', 'Input Nilai Tilawah')
+@section('title', 'List Murid')
 
 @section('content')
 <!-- Complex Headers -->
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="card-header">
-                            <h4 class="card-title">Input Nilai Jenjang: {{$detail_pengajar->jenjang}} / Kelas: {{$detail_pengajar->kelas}}</h4>
+                            <h4 class="card-title">Murid Kelas: {{$detail_pengajar->kelas}}</h4>
                         </div>
                     </div>
                 </div>
