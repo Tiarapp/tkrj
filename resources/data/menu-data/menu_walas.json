@@ -61,6 +61,7 @@
             ]
         },
         {
+<<<<<<< Updated upstream
             "name": "Raport",
             "icon": "file-text",
             "slug": "",
@@ -78,6 +79,19 @@
                     "slug": "raport.akademik.list"
                 }
             ]   
+=======
+            "name": "Wali Kelas",
+            "icon": "database",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "Walikelas/Absen",
+                    "name": "Absen",
+                    "icon": "user",
+                    "slug": "walikelas.absen.list"
+                }
+            ]
+>>>>>>> Stashed changes
         }
     ]
 }

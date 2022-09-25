@@ -34,18 +34,6 @@ class MenuServiceProvider extends ServiceProvider
             if (empty(Auth::user()->id)) {
                 $verticalMenuJson = file_get_contents(base_path('resources\data\menu-data\menu_kosong.json'));
             }else{
-                // $user = Auth::user()->id;
-                // $periode = new MasterPeriode();
-                // $periode_aktif = $periode->getPeriodeAktif();
-                // $hak_akses = HakAkses::where('user_id', $user)
-                //                         ->where('tahunajaran_id', $periode_aktif->tahunajaran_id)
-                //                         ->first();
-
-                // $level=[];
-                // foreach ($hak_akses as $key => $value) {
-                //     array_push($level, $value->level);
-                // }
-                // $fix = implode(",", $level);
                 switch (Auth::user()->level) {
                     case 'Admin':
                         $verticalMenuJson = file_get_contents(base_path('resources\data\menu-data\menu_admin.json'));
