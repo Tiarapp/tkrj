@@ -2,6 +2,7 @@
 
 namespace App\Models\Data;
 
+use App\Models\Master\MasterTahunAjaran;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
