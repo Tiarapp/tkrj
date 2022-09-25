@@ -13,12 +13,12 @@
 @endsection
 
 <head>
-    
+
 <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('css/base/themes/dark-layout.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('css/base/themes/bordered-layout.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('css/base/themes/semi-dark-layout.css')) }}" />
-  
+
 </head>
 
 <style>
@@ -38,7 +38,7 @@
         color: black;
         border: 1px solid black;
     }
-    
+
     .std-profile {
         margin-bottom: 20px;
     }
@@ -68,8 +68,8 @@
     }
 
     @media print {
-        .pagebreak { 
-            page-break-before: always; 
+        .pagebreak {
+            page-break-before: always;
         }
     }
 </style>
@@ -121,8 +121,8 @@
                         </div>
                     </div>
 
-                    
-                    <div class="row nilai" style="text-align: center; padding: 10px">           
+
+                    <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
                                 <th>AREAS OF DEVELOPMENT</th>
@@ -174,7 +174,7 @@
                             </tr>
                             @endforeach
 
-                            
+
                             {{-- Nilai Doa Harian --}}
                             @foreach($doa as $key => $data)
                             @php
@@ -239,7 +239,7 @@
                             <b>Interview Request: Yes / No </b>
                         </div>
                         <div class="col-6" style="text-align: right">
-                            <b>Ijin: 0 hari, Sakit: 6 hari, Alpa: 0 hari</b>
+                            <b>Ijin: {{$absen->ijin}} hari, Sakit: {{$absen->sakit}} hari, Alpa: {{$absen->alpha}} hari</b>
                         </div>
                         <br>
                         <br>
@@ -255,7 +255,7 @@
                                     PRINCIPAL
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
-                                    PARENT	
+                                    PARENT
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
                                     HOMEROOM TEACHER
@@ -265,13 +265,13 @@
                         <div class="sign" >
                             <div class="row">
                                 <div class="col-4" style="height: 120px; border: 1px solid black">
-                                    
+
                                 </div>
                                 <div class="col-4" style="height: 120px; border: 1px solid black">
-                                    	
+
                                 </div>
                                 <div class="col-4" style="height: 120px; border: 1px solid black">
-                                     
+
                                 </div>
                             </div>
                         </div>
@@ -281,7 +281,7 @@
                                     Siti Isnawati, S.Pd.I. S.Pd
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
-                                    {{ $ortu->nama_bapak }}	
+                                    {{ $ortu->nama_bapak }}
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
                                     {{ Auth::user()->nama }}
@@ -317,7 +317,7 @@
                         </div>
                     </div>
 
-                    <div class="row nilai" style="text-align: center; padding: 10px">           
+                    <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
                                 <th>AREAS OF DEVELOPMENT</th>

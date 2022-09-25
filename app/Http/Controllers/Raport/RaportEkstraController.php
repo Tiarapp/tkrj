@@ -15,6 +15,7 @@ use App\Models\Nilai\nilai_hadist;
 use App\Models\Nilai\nilai_ibadah;
 use App\Models\Nilai\nilai_tahfidz;
 use App\Models\Nilai\nilai_tilawah;
+use App\Models\Walikelas\absen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,7 @@ class RaportEkstraController extends RaportController
     {
         $periode=$this->periode->getPeriodeAktif();
 
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Nilai Tilawah"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Raport Ekstra"]];
 
         // LIST KELAS YG DIAJAR
             $list_kelas    = $this->list_kelas(Auth::user()->data_id);
@@ -34,7 +35,7 @@ class RaportEkstraController extends RaportController
 
     public function view_murid($id_pengajar)
     {
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Input Nilai"], ['name' => "Tahfidz"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Murid Kelas"]];
 
         $periode=$this->periode->getPeriodeAktif();
 
@@ -42,7 +43,7 @@ class RaportEkstraController extends RaportController
 
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
-        
+
         // $predikat=MasterPredikat::all();
         // dd($periode);
 
@@ -54,10 +55,13 @@ class RaportEkstraController extends RaportController
 
         $murid = data_murid::where('id', '=', $murid_id)
             ->first();
-        
+
         $periode=$this->periode->getPeriodeAktif();
 
-        
+        $absen=absen::where('murid_id', $murid_id)
+                    ->where('periode_keterangan', $periode->periode)
+                    ->where('periode_id', $periode->id)
+                    ->first();
         $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)->get();
         $cbi = nilai_cbi::where('murid_id', '=', $murid_id)->get();
         $doa = nilai_doa::where('murid_id', '=', $murid_id)->get();
@@ -73,9 +77,9 @@ class RaportEkstraController extends RaportController
         // dd($ortu);
 
         if ($periode->periode == "Tengah") {
-            return view('content.Raport.Ekstra.print_mid_raport', compact('murid','periode','ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
+            return view('content.Raport.Ekstra.print_mid_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
         } else {
-            return view('content.Raport.Ekstra.print_akhir_raport', compact('murid','periode','ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
+            return view('content.Raport.Ekstra.print_akhir_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
         }
 
     }

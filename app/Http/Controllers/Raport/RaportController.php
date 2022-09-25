@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Raport;
 
 use App\Models\Data\data_murid;
 use App\Models\Data\data_pengajar;
+use App\Models\Data\data_walikelas;
 use App\Models\Master\MasterPeriode;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -19,20 +20,32 @@ class RaportController extends BaseController
     }
 
     // LIST KELAS YANG DIAJARKAN
+        // public function list_kelas($id_guru) {
+        //     $periode=$this->periode->getPeriodeAktif();
+
+        //     $list_kelas=data_pengajar::where('guru_id', $id_guru)
+        //                         ->where('tahunajaran_id', $periode->tahunajaran_id)
+        //                         ->get();
+        //     return $list_kelas;
+        // }
+
         public function list_kelas($id_guru) {
             $periode=$this->periode->getPeriodeAktif();
 
-            $list_kelas=data_pengajar::where('guru_id', $id_guru)
-                                ->where('tahunajaran_id', $periode->tahunajaran_id)
-                                ->get();
-            return $list_kelas;
+            return $walas=data_walikelas::where('guru_id', $id_guru)
+                                        ->where('tahunajaran_id', $periode->tahunajaran_id)
+                                        ->get();
         }
 
     // GET DATA PENGAJAR
+        // public function detail_pengajar($id_pengajar) {
+        //     return $pengajar=data_pengajar::where('id', $id_pengajar)
+        //                         ->select('id', 'nip', 'nama', 'kelas', 'jenjang', 'tahunajaran', 'guru_id', 'kelas_id', 'tahunajaran_id')
+        //                         ->first();
+        // }
+
         public function detail_pengajar($id_pengajar) {
-            return $pengajar=data_pengajar::where('id', $id_pengajar)
-                                ->select('id', 'nip', 'nama', 'kelas', 'jenjang', 'tahunajaran', 'guru_id', 'kelas_id', 'tahunajaran_id')
-                                ->first();
+            return $walas=data_walikelas::find($id_pengajar);
         }
 
     // GET MURID KELAS
