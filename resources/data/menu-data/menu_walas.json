@@ -59,6 +59,25 @@
                     "slug": "nilai.tahfidz.list"
                 }
             ]
+        },
+        {
+            "name": "Raport",
+            "icon": "file-text",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "Raport/Ekstra",
+                    "name": "Raport Ekstra",
+                    "icon": "circle",
+                    "slug": "raport.ekstra.list"
+                },
+                {
+                    "url": "Raport/Akademik",
+                    "name": "Raport Akademik",
+                    "icon": "circle",
+                    "slug": "raport.akademik.list"
+                }
+            ]   
         }
     ]
 }
