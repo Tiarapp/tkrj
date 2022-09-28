@@ -35,6 +35,7 @@ class NilaiCBIController extends NilaiController
 
         $cbi=data_indicators::where('area_id', 2)
                                 ->where('jenjang_id', 1)
+                                ->where('status', "Aktif")
                                 ->select('id', 'indicators')
                                 ->get();
 

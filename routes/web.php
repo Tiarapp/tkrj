@@ -47,13 +47,14 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Nilai\NilaiTilawahController;
     use App\Http\Controllers\Nilai\NilaiAkademikController;
     use App\Http\Controllers\Nilai\NilaiCBIController;
-use App\Http\Controllers\raport\RaportAkademikController;
 //Raport
     use App\Http\Controllers\Raport\RaportEkstraController;
-use App\Http\Controllers\Raport\RapotEkstraController;
+    use App\Http\Controllers\Raport\RapotEkstraController;
+    use App\Http\Controllers\Raport\RaportAkademikController;
 
 // WALIKELAS
     use App\Http\Controllers\Walikelas\AbsenController;
+use App\Http\Controllers\Walikelas\NarasiRaportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -417,4 +418,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[AbsenController::class, 'store'])->name('add');
                 Route::get('/input_absen{id_walas}', [AbsenController::class, 'add_absen'])->name('input');
                 Route::get('/edit_absen',[AbsenController::class, 'edit_absen'])->name('edit_absen');
+            });
+
+        // NARASI
+            Route::group(['prefix' => 'Walikelas/Narasi', 'as' => 'walikelas.narasi.'], function() {
+                Route::get('', [NarasiRaportController::class, 'index'])->name('list');
+                Route::get('/list_siswa{id_walas}', [NarasiRaportController::class, 'list_siswa'])->name('list_siswa');
+                Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
+                Route::post('/add',[NarasiRaportController::class, 'store'])->name('add');
+                Route::get('/edit_absen',[NarasiRaportController::class, 'edit_absen'])->name('edit_absen');
             });

@@ -37,6 +37,7 @@ class NilaiEkstraController extends NilaiController
         $ekstra=data_indicators::where('area_id', 1)
                                 ->where('development_id', 1)
                                 ->where('jenjang_id', 3)
+                                ->where('status', "Aktif")
                                 ->select('id', 'indicators')
                                 ->get();
 

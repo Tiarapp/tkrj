@@ -32,21 +32,21 @@ class MenuServiceProvider extends ServiceProvider
 
         view()->composer('*', function ($view){
             if (empty(Auth::user()->id)) {
-                $verticalMenuJson = file_get_contents(base_path('resources\data\menu-data\menu_kosong.json'));
+                $verticalMenuJson = file_get_contents(base_path('resources/data/menu-data/menu_kosong.json'));
             }else{
                 switch (Auth::user()->level) {
                     case 'Admin':
-                        $verticalMenuJson = file_get_contents(base_path('resources\data\menu-data\menu_admin.json'));
+                        $verticalMenuJson = file_get_contents(base_path('resources/data/menu-data/menu_admin.json'));
                         break;
 
                     case 'Guru';
-                        $verticalMenuJson = file_get_contents(base_path('resources\data\menu-data\menu_walas.json'));
+                        $verticalMenuJson = file_get_contents(base_path('resources/data/menu-data/menu_walas.json'));
                         break;
                 }
             }
                     $verticalMenuData = json_decode($verticalMenuJson);
 
-                    $horizontalMenuJson = file_get_contents(base_path('resources\data\menu-data\horizontalMenu.json'));
+                    $horizontalMenuJson = file_get_contents(base_path('resources/data/menu-data/horizontalMenu.json'));
                     $horizontalMenuData = json_decode($horizontalMenuJson);
                     // Share all menuData to all the views
                     View::share('menuData', [$verticalMenuData, $horizontalMenuData]);

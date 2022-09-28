@@ -239,7 +239,7 @@
                             <b>Interview Request: Yes / No </b>
                         </div>
                         <div class="col-6" style="text-align: right">
-                            <b>Ijin: {{$absen->ijin}} hari, Sakit: {{$absen->sakit}} hari, Alpa: {{$absen->alpha}} hari</b>
+                            <b>Ijin: {{$absen->ijin ?? 0}} hari, Sakit: {{$absen->sakit ?? 0}} hari, Alpa: {{$absen->alpha ?? 0}} hari</b>
                         </div>
                         <br>
                         <br>

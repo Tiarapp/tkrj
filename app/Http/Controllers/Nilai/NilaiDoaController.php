@@ -36,6 +36,7 @@ class NilaiDoaController extends NilaiController
         $doa=data_indicators::where('area_id', 4)
                                 ->where('development_id', 3)
                                 ->where('jenjang_id', 1)
+                                ->where('status', "Aktif")
                                 ->select('id', 'indicators')
                                 ->get();
 

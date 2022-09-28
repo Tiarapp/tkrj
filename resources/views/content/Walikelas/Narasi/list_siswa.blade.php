@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="card-header">
-                            <h4 class="card-title">Input Absensi Kelas: {{$walikelas->kelas}}</h4>
+                            <h4 class="card-title">Input Nilai Absensi Kelas: {{$walikelas->kelas}}</h4>
                         </div>
                     </div>
                 </div>
@@ -53,9 +53,7 @@
                                 <tr>
                                     <th style="text-align: center; width: 40px">Absen</th>
                                     <th style="text-align: center; ">Nama</th>
-                                    <th style="text-align: center">Ijin</th>
-                                    <th style="text-align: center">Sakit</th>
-                                    <th style="text-align: center">Alpha</th>
+                                    <th>Narasi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,13 +62,9 @@
                                         <td>{{$m->absen}}</td>
                                         <td style="width: 400px">{{$m->nama}}</td>
                                         <td>
-                                            <input type="text" class="form-control ijin" name="ijin[{{$m->id}}]" id="ijin_{{$m->id}}">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control sakit" name="sakit[{{$m->id}}]" id="sakit_{{$m->id}}">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control alpha" name="alpha[{{$m->id}}]" id="alpha_{{$m->id}}">
+                                            <a href="{{ route('walikelas.narasi.edit_narasi', $m->id) }}">
+                                                <i data-feather="edit"></i>
+                                            </a>
                                         </td>
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">

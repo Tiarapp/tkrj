@@ -72,6 +72,12 @@
                     "slug": "walikelas.absen.list"
                 },
                 {
+                    "url": "Walikelas/Narasi",
+                    "name": "Narasi Raport",
+                    "icon": "circle",
+                    "slug": "walikelas.narasi.list"
+                },
+                {
                     "url": "Raport/Ekstra",
                     "name": "Raport Ekstra",
                     "icon": "circle",

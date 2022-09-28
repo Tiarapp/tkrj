@@ -36,6 +36,7 @@ class NilaiTilawahController extends NilaiController
         $tilawah=data_indicators::where('area_id', 6)
                                 ->where('development_id', 5)
                                 ->where('jenjang_id', 1)
+                                ->where('status', "Aktif")
                                 ->select('id', 'indicators')
                                 ->orderby('indicators')
                                 ->get();

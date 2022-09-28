@@ -37,6 +37,7 @@ class NilaiHadistController extends NilaiController
                                 ->where('development_id', 4)
                                 ->where('jenjang_id', 1)
                                 ->select('id', 'indicators')
+                                ->where('status', "Aktif")
                                 ->orderby('indicators')
                                 ->get();
 
