@@ -36,9 +36,10 @@ class NilaiEkstraController extends NilaiController
 
         $ekstra=data_indicators::where('area_id', 1)
                                 ->where('development_id', 1)
-                                ->where('jenjang_id', 3)
+                                ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
                                 ->select('id', 'indicators')
+                                ->orderby('indicators')
                                 ->get();
 
         $predikat=MasterPredikat::all();
@@ -82,7 +83,7 @@ class NilaiEkstraController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.ekstra.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -119,5 +120,12 @@ class NilaiEkstraController extends NilaiController
                                 ->get();
 
         return view('content.Nilai.Ekstra.rekap_nilai_ekstra', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_ekstra'=>$nilai_ekstra]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_ekstra=nilai_ekstra::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }

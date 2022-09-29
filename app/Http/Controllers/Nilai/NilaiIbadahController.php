@@ -35,9 +35,10 @@ class NilaiIbadahController extends NilaiController
 
         $ibadah=data_indicators::where('area_id', 3)
                                 ->where('development_id', 2)
-                                ->where('jenjang_id', 1)
+                                ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
                                 ->select('id', 'indicators')
+                                ->orderby('indicators')
                                 ->get();
 
         $predikat=MasterPredikat::all();
@@ -81,7 +82,7 @@ class NilaiIbadahController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.ibadah.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -118,5 +119,12 @@ class NilaiIbadahController extends NilaiController
                                 ->get();
 
         return view('content.Nilai.Ibadah.rekap_nilai_ibadah', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_ibadah'=>$nilai_ibadah]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_ibadah=nilai_ibadah::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }

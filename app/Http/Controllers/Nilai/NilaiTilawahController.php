@@ -35,7 +35,7 @@ class NilaiTilawahController extends NilaiController
 
         $tilawah=data_indicators::where('area_id', 6)
                                 ->where('development_id', 5)
-                                ->where('jenjang_id', 1)
+                                ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
                                 ->select('id', 'indicators')
                                 ->orderby('indicators')
@@ -82,7 +82,7 @@ class NilaiTilawahController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.tilawah.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -119,5 +119,12 @@ class NilaiTilawahController extends NilaiController
                                 ->get();
 
         return view('content.Nilai.Tilawah.rekap_nilai_tilawah', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_tilawah'=>$nilai_tilawah]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_tilawah=nilai_tilawah::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }

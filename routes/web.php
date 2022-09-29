@@ -315,6 +315,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[NilaiAkademikController::class, 'store'])->name('add');
                 Route::get('/data_awal',[NilaiAkademikController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiAkademikController::class, 'edit_nilai'])->name('edit_nilai');
+                Route::get('/delete{id_nilai}', [NilaiAkademikController::class, 'delete'])->name('delete ');
             });
 
         // NILAI EKSTRA
@@ -326,15 +327,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_awal',[NilaiEkstraController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiEkstraController::class, 'edit_nilai'])->name('edit_nilai');
                 Route::get('/rekap{id_pengajar}', [NilaiEkstraController::class, 'rekap'])->name('rekap');
-            });
-
-        // NILAI CBI
-            Route::group(['prefix' => 'Nilai/Ekstra', 'as' => 'nilai.ekstra.'], function() {
-                Route::get('', [NilaiEkstraController::class, 'index'])->name('list');
-                Route::get('/input{id_pengajar}', [NilaiEkstraController::class, 'add_nilai'])->name('input');
-                Route::post('/add',[NilaiEkstraController::class, 'store'])->name('add');
-                Route::get('/data_awal',[NilaiEkstraController::class, 'data_awal'])->name('data_awal');
-                Route::get('/edit_nilai',[NilaiEkstraController::class, 'edit_nilai'])->name('edit_nilai');
+                Route::get('/delete{id_nilai}', [NilaiEkstraController::class, 'delete'])->name('delete ');
             });
 
         // NILAI IBADAH
@@ -345,6 +338,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_awal',[NilaiIbadahController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiIbadahController::class, 'edit_nilai'])->name('edit_nilai');
                 Route::get('/rekap{id_pengajar}', [NilaiIbadahController::class, 'rekap'])->name('rekap');
+                Route::get('/delete{id_nilai}', [NilaiIbadahController::class, 'delete'])->name('delete ');
             });
 
         // NILAI HADIST
@@ -353,7 +347,9 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/input{id_pengajar}', [NilaiHadistController::class, 'add_nilai'])->name('input');
                 Route::post('/add',[NilaiHadistController::class, 'store'])->name('add');
                 Route::get('/data_awal',[NilaiHadistController::class, 'data_awal'])->name('data_awal');
+                Route::get('/edit_nilai',[NilaiHadistController::class, 'edit_nilai'])->name('edit_nilai');
                 Route::get('/rekap{id_pengajar}', [NilaiHadistController::class, 'rekap'])->name('rekap');
+                Route::get('/delete{id_nilai}', [NilaiHadistController::class, 'delete'])->name('delete ');
             });
 
         // NILAI DOA HARIAN
@@ -364,6 +360,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_awal',[NilaiDoaController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiDoaController::class, 'edit_nilai'])->name('edit_nilai');
                 Route::get('/rekap{id_pengajar}', [NilaiDoaController::class, 'rekap'])->name('rekap');
+                Route::get('/delete{id_nilai}', [NilaiDoaController::class, 'delete'])->name('delete ');
             });
 
         // NILAI CBI
@@ -374,6 +371,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_awal',[NilaiCBIController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiCBIController::class, 'edit_nilai'])->name('edit_nilai');
                 Route::get('/rekap{id_pengajar}', [NilaiCBIController::class, 'rekap'])->name('rekap');
+                Route::get('/delete{id_nilai}', [NilaiCBIController::class, 'delete'])->name('delete ');
             });
 
         // NILAI TAHFIDZ
@@ -384,6 +382,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/data_awal',[NilaiTahfidzController::class, 'data_awal'])->name('data_awal');
                 Route::get('/edit_nilai',[NilaiTahfidzController::class, 'edit_nilai'])->name('edit_nilai');
                 Route::get('/rekap{id_pengajar}', [NilaiTahfidzController::class, 'rekap'])->name('rekap');
+                Route::get('/delete{id_nilai}', [NilaiTahfidzController::class, 'delete'])->name('delete ');
             });
 
         // NILAI TILAWAH
@@ -425,6 +424,4 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('', [NarasiRaportController::class, 'index'])->name('list');
                 Route::get('/list_siswa{id_walas}', [NarasiRaportController::class, 'list_siswa'])->name('list_siswa');
                 Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
-                Route::post('/add',[NarasiRaportController::class, 'store'])->name('add');
-                Route::get('/edit_absen',[NarasiRaportController::class, 'edit_absen'])->name('edit_absen');
             });

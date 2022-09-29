@@ -45,7 +45,7 @@ class NilaiController extends BaseController
 
             $murid_kelas=data_murid::where('kelas_id', $pengajar->kelas_id)
                                     ->where('tahunajaran_id', $periode->tahunajaran_id)
-                                    ->select('id','nama','absen')
+                                    ->select('id','nama','absen', 'jenjang_id')
                                     ->orderby('absen')
                                     ->get();
             return $murid_kelas;

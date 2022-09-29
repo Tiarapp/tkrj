@@ -35,7 +35,7 @@ class NilaiTahfidzController extends NilaiController
 
         $tahfidz=data_indicators::where('area_id', 6)
                                 ->where('development_id', 6)
-                                ->where('jenjang_id', 1)
+                                ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
                                 ->select('id', 'indicators')
                                 ->orderby('indicators')
@@ -82,7 +82,7 @@ class NilaiTahfidzController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.tahfidz.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -119,5 +119,12 @@ class NilaiTahfidzController extends NilaiController
                                 ->get();
 
         return view('content.Nilai.Tahfidz.rekap_nilai_tahfidz', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_tahfidz'=>$nilai_tahfidz]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_tahfidz=nilai_tahfidz::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }

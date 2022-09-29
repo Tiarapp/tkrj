@@ -57,18 +57,13 @@
                                     <td>{{$n}}</td>
                                 </tr>
                             @endforeach --}}
-
-                            @foreach ($murid as $m)
-                                <tr>
-                                    <td>{{$m->absen}}</td>
-                                    <td>{{$m->nama}}</td>
                                     @foreach ($nilai_akademik as $na)
-                                        @if ($m->id==$na->murid_id)
-                                                <td>{{$na->tk}}</td>
-                                        @endif
+                                    <tr>
+                                        <td>{{$na->absen}}</td>
+                                        <td>{{$na->nama}}</td>
+                                        <td>{{$na->tk}}</td>
+                                    </tr>
                                     @endforeach
-                                </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>

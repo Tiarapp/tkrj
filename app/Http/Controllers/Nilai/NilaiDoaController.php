@@ -32,12 +32,12 @@ class NilaiDoaController extends NilaiController
         $detail_pengajar  = $this->detail_pengajar($id_pengajar);
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
-
         $doa=data_indicators::where('area_id', 4)
                                 ->where('development_id', 3)
-                                ->where('jenjang_id', 1)
+                                ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
                                 ->select('id', 'indicators')
+                                ->orderby('indicators')
                                 ->get();
 
         $predikat=MasterPredikat::all();
@@ -81,7 +81,7 @@ class NilaiDoaController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.doa.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -118,5 +118,12 @@ class NilaiDoaController extends NilaiController
                                 ->get();
 
         return view('content.Nilai.Doa.rekap_nilai_doa', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_doa'=>$nilai_doa]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_doa=nilai_doa::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }

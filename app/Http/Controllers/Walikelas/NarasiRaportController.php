@@ -34,6 +34,7 @@ class NarasiRaportController extends WalasController
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Walikelas"], ['name' => "Edit Narasi Siswa"]];
         $periode=$this->periode->getPeriodeAktif();
 
-        return view('content.Walikelas.Narasi.edit_narasi', ['breadcrumbs' => $breadcrumbs]);
+        $walikelas=$this->walikelas($id_walas);
+        return view('content.Walikelas.Narasi.edit_narasi', ['breadcrumbs' => $breadcrumbs, 'walikelas'=>$walikelas]);
     }
 }

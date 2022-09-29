@@ -60,9 +60,10 @@
                         <table id="example" class="dt-multilingual table">
                             <thead>
                                 <tr>
-                                    <th rowspan="3" style="text-align: center; width: 40px">Absen</th>
-                                    <th rowspan="3" style="text-align: center; ">Nama</th>
-                                    <th colspan="5" style="text-align: center">Nilai</th>
+                                    <th style="text-align: center; width: 40px">Absen</th>
+                                    <th style="text-align: center; ">Nama</th>
+                                    <th style="text-align: center">Nilai</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,6 +78,13 @@
                                                     <option value="{{$p->kode}}">{{$p->kode}}</option>
                                                 @endforeach
                                             </select>
+                                        </td>
+                                        <td>
+                                            <a href="#" id="hreff_{{$m->id}}">
+                                                <button type="button" class="btn btn-icon btn-danger btn-sm" id="delete_{{$m->id}}" hidden>
+                                                    <i data-feather='trash-2'></i>
+                                                </button>
+                                            </a>
                                         </td>
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">
@@ -188,6 +196,8 @@
                             for (let index = 0; index < result.length; index++) {
                                 $("#id_nilai_doa_"+result[index].murid_id).val(result[index].id);
                                 $("#predikat_id_"+result[index].murid_id).val(result[index].nilai).change();
+                                document.getElementById("hreff_"+result[index].murid_id).href="/Nilai/Doa/delete"+result[index].id;
+                                document.getElementById("delete_"+result[index].murid_id).hidden=false;
                             }
                         }
                     },
@@ -206,6 +216,25 @@
                     $('.predikat').val("").change();
             }
         }
+
+    // VALIDASI PINDAH EKSTRA
+        // $('#delete_').on('click', function () {
+        //     Swal.fire({
+        //         title: 'Apakah Yakin Ingin Menghapus Nilai ?',
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Lanjut',
+        //         customClass: {
+        //             confirmButton: 'btn btn-primary',
+        //             cancelButton: 'btn btn-outline-danger ms-1'
+        //         },
+        //         buttonsStyling: false
+        //     }).then(function (result) {
+        //         if (result.value) {
+        //             $('#form_pindah_ekstra').submit();
+        //         }
+        //     });
+        // });
 
 </script>
 @endsection

@@ -34,9 +34,10 @@ class NilaiCBIController extends NilaiController
             $murid   = $this->murid_kelas($id_pengajar);
 
         $cbi=data_indicators::where('area_id', 2)
-                                ->where('jenjang_id', 1)
+                                ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
                                 ->select('id', 'indicators')
+                                ->orderby('indicators')
                                 ->get();
 
         $predikat=MasterPredikat::all();
@@ -80,7 +81,7 @@ class NilaiCBIController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.cbi.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -117,5 +118,12 @@ class NilaiCBIController extends NilaiController
                                 ->get();
 
         return view('content.Nilai.CBI.rekap_nilai_cbi', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_cbi'=>$nilai_cbi]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_cbi=nilai_cbi::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }

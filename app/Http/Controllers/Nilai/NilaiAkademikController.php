@@ -14,6 +14,7 @@ use App\Models\Master\MasterTP;
 use App\Models\Nilai\nilai_akademik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class NilaiAkademikController extends NilaiController
 {
@@ -98,7 +99,7 @@ class NilaiAkademikController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.akademik.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -133,10 +134,12 @@ class NilaiAkademikController extends NilaiController
             $periode=$this->periode->getPeriodeAktif();
             $detail_pengajar = $this->detail_pengajar($id_pengajar);
 
-            $nilai_akademik=nilai_akademik::where('kelas_id', $detail_pengajar->kelas_id)
-                                ->where('periode_id', $periode->id)
-                                ->where('periode_keterangan', $periode->periode)
-                                ->get();
+            $nilai_akademik=data_murid::select('data_murid.id', 'data_murid.nama', 'data_murid.absen', DB::raw('group_concat(nilai_akademik_copy.tk) AS tk'))
+                                        ->leftJoin('nilai_akademik_copy', 'data_murid.id', '=', 'nilai_akademik_copy.murid_id')
+                                        ->where('data_murid.kelas_id', $detail_pengajar->kelas_id)
+                                        ->groupBy('data_murid.id', 'data_murid.nama', 'data_murid.absen')
+                                        ->get();
+
 
 
         // PROSES SEMUA REKAP NILAI PERANAK
@@ -165,5 +168,12 @@ class NilaiAkademikController extends NilaiController
             // };
 
         return view('content.Nilai.Akademik.rekap_nilai_akademik', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'tema'=>$tema, 'tk'=>$tk, 'predikat'=>$predikat, 'nilai_akademik'=>$nilai_akademik]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_akademik=nilai_akademik::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }

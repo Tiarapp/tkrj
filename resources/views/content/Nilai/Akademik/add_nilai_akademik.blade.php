@@ -79,6 +79,7 @@
                                     <th style="text-align: center; width: 40px">Absen</th>
                                     <th style="text-align: center;">Nama</th>
                                     <th >Sudah Muncul</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,6 +89,13 @@
                                         <td style="width: 400px">{{$m->nama}}</td>
                                         <td>
                                             <input type="checkbox" class="form-check-input nilai" name="nilai[{{$m->id}}]" id="nilai_{{$m->id}}" />
+                                        </td>
+                                        <td>
+                                            <a href="#" id="hreff_{{$m->id}}">
+                                                <button type="button" class="btn btn-icon btn-danger btn-sm" id="delete_{{$m->id}}" hidden>
+                                                    <i data-feather='trash-2'></i>
+                                                </button>
+                                            </a>
                                         </td>
                                         {{-- ID MURID --}}
                                             <input type="hidden" name="add_murid_id[{{$m->id}}]" value="{{$m->id}}">
@@ -230,7 +238,8 @@
                             for (let index = 0; index < result.length; index++) {
                                 $("#id_nilai_akademik_"+result[index].murid_id).val(result[index].id);
                                 $("#nilai_"+result[index].murid_id).prop("checked", true);
-
+                                document.getElementById("hreff_"+result[index].murid_id).href="/Nilai/Akademik/delete"+result[index].id;
+                                document.getElementById("delete_"+result[index].murid_id).hidden=false;
                             }
                         }
                     },

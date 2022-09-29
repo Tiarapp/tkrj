@@ -35,7 +35,7 @@ class NilaiHadistController extends NilaiController
 
         $hadist=data_indicators::where('area_id', 5)
                                 ->where('development_id', 4)
-                                ->where('jenjang_id', 1)
+                                ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->select('id', 'indicators')
                                 ->where('status', "Aktif")
                                 ->orderby('indicators')
@@ -82,7 +82,7 @@ class NilaiHadistController extends NilaiController
                 }
             }
         }
-        return redirect()->route('nilai.hadist.list')->with('succes','Data Berhasil di Simpan');
+        return redirect()->back()->with('succes','Data Berhasil di Simpan');
     }
 
     public function edit_nilai(Request $request)
@@ -119,5 +119,12 @@ class NilaiHadistController extends NilaiController
                                 ->get();
 
         return view('content.Nilai.Hadist.rekap_nilai_hadist', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'nilai_hadist'=>$nilai_hadist]);
+    }
+
+    public function delete($id)
+    {
+        //fungsi eloquent untuk menghapus data
+        $nilai_hadist=nilai_hadist::find($id)->delete();
+        return redirect()->back()->with('succes','Data Berhasil di Hapus');
     }
 }
