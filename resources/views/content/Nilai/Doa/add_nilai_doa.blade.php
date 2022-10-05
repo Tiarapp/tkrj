@@ -73,7 +73,7 @@
                                         <td style="width: 400px">{{$m->nama}}</td>
                                         <td>
                                             <select class="select2-size-sm form-select predikat" name="predikat_id[{{$m->id}}]" id="predikat_id_{{$m->id}}">
-                                                <option value="" selected readonly></option>
+                                                <option value="" selected disabled></option>
                                                 @foreach ($predikat as $p)
                                                     <option value="{{$p->kode}}">{{$p->kode}}</option>
                                                 @endforeach

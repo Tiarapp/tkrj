@@ -140,33 +140,6 @@ class NilaiAkademikController extends NilaiController
                                         ->groupBy('data_murid.id', 'data_murid.nama', 'data_murid.absen')
                                         ->get();
 
-
-
-        // PROSES SEMUA REKAP NILAI PERANAK
-            // $nilai = function() use($murid, $nilai_akademik) {
-            //     $data = [];
-            //     // LOPING MAPEL
-            //         foreach ($murid as $murid_kelas) {
-            //             $i=0;
-            //             // INISIASI VARIABEL
-            //                 $item =(object) ["nilai_akademik" => null];
-
-            //             // SET ID, NAMA MAPEL
-            //                 $item->absen = $murid_kelas->absen;
-            //                 $item->nama = $murid_kelas->nama;
-
-            //             // SET NILAI PTS BERDASARKAN ID MAPEL, FUNCTION ($PTS) memasukkan item dari NILAI PTS
-            //                 $item->tk = $nilai_akademik->filter(function($na) use($murid_kelas) {
-            //                     return $na->murid_id === $murid_kelas->id;
-            //                 })->first();
-
-            //             // MEMASUKKAN ITEM KE VARIABEL DATA
-            //                 array_push($data, $item);
-            //                 // $i++;
-            //         }
-            //         return $data;
-            // };
-
         return view('content.Nilai.Akademik.rekap_nilai_akademik', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'tema'=>$tema, 'tk'=>$tk, 'predikat'=>$predikat, 'nilai_akademik'=>$nilai_akademik]);
     }
 

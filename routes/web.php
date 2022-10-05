@@ -423,5 +423,6 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
             Route::group(['prefix' => 'Walikelas/Narasi', 'as' => 'walikelas.narasi.'], function() {
                 Route::get('', [NarasiRaportController::class, 'index'])->name('list');
                 Route::get('/list_siswa{id_walas}', [NarasiRaportController::class, 'list_siswa'])->name('list_siswa');
+                Route::post('/add',[NarasiRaportController::class, 'store'])->name('add');
                 Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
             });

@@ -31,6 +31,7 @@ class WalasController extends BaseController
         public function walikelas($id_walikelas){
             return $walas=data_walikelas::find($id_walikelas);
         }
+
     // GET MURID KELAS
         public function murid_kelas($id_walikelas) {
             $periode=$this->periode->getPeriodeAktif();
@@ -42,5 +43,10 @@ class WalasController extends BaseController
                                     ->orderby('absen')
                                     ->get();
             return $murid_kelas;
+        }
+
+    // GET DATA MURID
+        public function data_murid($id_murid){
+            return $data_murid=data_murid::find($id_murid);
         }
 }
