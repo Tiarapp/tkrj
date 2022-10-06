@@ -143,32 +143,16 @@
                     dataType: 'JSON',
                     success:function(result){
 
-                        if (result.length == 0) {
+                        $("#id_rekap_akademik").val(result.id);
 
-                            const reset = (idx, elem) => (elem.value = null)
-
-                            $('.narasi').map(reset)
-                            $('#rekap_akademik').map(reset)
-
-                        } else {
-                            const reset = (idx, elem) => (elem.value = null)
-                            $('.narasi').map(reset)
-                            $('#id_rekap_akademik').map(reset)
-
-                            $("#id_rekap_akademik").val(result.id);
-                            const narasi = result.narasi.split("||");
-                            for (let index = 0; index < narasi.length; index++) {
-                                console.log(index);
-                                $("#narasi_"+index).val(narasi[index]);
-                            }
+                        const narasi = result.narasi.split("||");
+                        for (let index = 0; index < narasi.length; index++) {
+                            $("#narasi_"+index).val(narasi[index]);
                         }
                     },
                     error:function(result)
                     {
-                        const reset = (idx, elem) => (elem.value = null)
 
-                            $('.narasi').map(reset)
-                            $('#rekap_akademik').map(reset)
                     }
                 });
             } else {
