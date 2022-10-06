@@ -23,6 +23,6 @@ class MasterTP extends Model
 
     public function id_cp()
     {
-        return $this->belongsTo(MasterElemenCP::class, 'cp_id', 'id');
+        return $this->belongsTo(MasterCP::class, 'cp_id', 'id');
     }
 }

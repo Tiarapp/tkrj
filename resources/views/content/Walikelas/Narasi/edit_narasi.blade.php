@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
-@section('title', 'Input Absensi')
+@section('title', 'Edit Narasi Siswa')
 
 @section('content')
     <!-- Complex Headers -->
@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="card-header">
-                                <h4 class="card-title">Edit Narasi Siswa</h4>
+                                <h4 class="card-title">Nama: {{$murid->nama}} / Kelas: {{$murid->kelas}}</h4>
                             </div>
                         </div>
                     </div>
@@ -44,15 +44,22 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-1">
-                                    <label class="form-label" for="exampleFormControlTextarea1">Textarea</label>
                                     <form id="jquery-val-form" action="{{ route('walikelas.narasi.add') }}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
 
                                         {{-- ID --}}
                                         <input type="hidden" name="id_murid" id="id_murid" value="{{ $murid->id }}">
+                                        <input type="hidden" name="id_rekap_akademik" id="id_rekap_akademik">
 
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Textarea"></textarea>
+                                        @php $i="0px"; $key=0; @endphp
+                                        @foreach ($nilai_akademik as $na)
 
+                                            <input type="hidden" value="{{$na->cp}}" name="cp[]" id="cp_[{{$key}}]">
+                                            <h6 class="card-title" style="margin-top: {{$i}}">{{$na->cp}}</h6>
+                                            <textarea class="form-control narasi" name="narasi[]" id="narasi_{{$key}}" rows="3">Alhamdulillah, {{$murid->nama}} sudah dapat {{$na->tk}}</textarea>
+
+                                            @php $i="30px"; $key++;@endphp
+                                        @endforeach
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary me-1">Simpan</button>
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
@@ -106,8 +113,8 @@
 
             $(".basic-select2").select2();
 
-            var id_walikelas = document.getElementById("id_walikelas").value;
-            data_edit(id_walikelas);
+            var id_murid=document.getElementById("id_murid").value;
+            edit_rekap_akademik(id_murid);
 
             @if ($message = Session::get('succes'))
 
@@ -127,5 +134,49 @@
                 @endforeach
             @endif
         });
+
+        const edit_rekap_akademik = function(id_murid){
+            if (id_murid) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Walikelas/Narasi/update_narasi?id_murid=" +id_murid,
+                    dataType: 'JSON',
+                    success:function(result){
+
+                        if (result.length == 0) {
+
+                            const reset = (idx, elem) => (elem.value = null)
+
+                            $('.narasi').map(reset)
+                            $('#rekap_akademik').map(reset)
+
+                        } else {
+                            const reset = (idx, elem) => (elem.value = null)
+                            $('.narasi').map(reset)
+                            $('#id_rekap_akademik').map(reset)
+
+                            $("#id_rekap_akademik").val(result.id);
+                            const narasi = result.narasi.split("||");
+                            for (let index = 0; index < narasi.length; index++) {
+                                console.log(index);
+                                $("#narasi_"+index).val(narasi[index]);
+                            }
+                        }
+                    },
+                    error:function(result)
+                    {
+                        const reset = (idx, elem) => (elem.value = null)
+
+                            $('.narasi').map(reset)
+                            $('#rekap_akademik').map(reset)
+                    }
+                });
+            } else {
+                const reset = (idx, elem) => (elem.value = null)
+
+                $('.narasi').map(reset)
+                $('#rekap_akademik').map(reset)
+            }
+        }
     </script>
 @endsection
