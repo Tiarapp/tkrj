@@ -37,12 +37,14 @@ class NilaiAkademikController extends NilaiController
         $periode=$this->periode->getPeriodeAktif();
 
         $detail_pengajar  = $this->detail_pengajar($id_pengajar);
+
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
 
         $tema=MasterTema::all();
 
-        $tk=MasterTK::all();
+        $tk=MasterTK::where('jenjang', $detail_pengajar->jenjang)
+                    ->get();
 
         $predikat=MasterPredikat::all();
 

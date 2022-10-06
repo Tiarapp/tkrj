@@ -54,8 +54,8 @@
                                         @php $i="0px"; $key=0; @endphp
                                         @foreach ($nilai_akademik as $na)
 
-                                            <input type="hidden" value="{{$na->cp}}" name="cp[]" id="cp_[{{$key}}]">
-                                            <h6 class="card-title" style="margin-top: {{$i}}">{{$na->cp}}</h6>
+                                            <input type="hidden" value="{{$na->cp}}" name="cp[]">
+                                            <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">{{$na->cp}}</h6>
                                             <textarea class="form-control narasi" name="narasi[]" id="narasi_{{$key}}" rows="3">Alhamdulillah, {{$murid->nama}} sudah dapat {{$na->tk}}</textarea>
 
                                             @php $i="30px"; $key++;@endphp
@@ -145,10 +145,16 @@
 
                         $("#id_rekap_akademik").val(result.id);
 
+                        const cp = result.cp.split("||");
+                        for (let index = 0; index < cp.length; index++) {
+                            $("#cp_"+index).val(cp[index]);
+                        }
+
                         const narasi = result.narasi.split("||");
                         for (let index = 0; index < narasi.length; index++) {
                             $("#narasi_"+index).val(narasi[index]);
                         }
+
                     },
                     error:function(result)
                     {
