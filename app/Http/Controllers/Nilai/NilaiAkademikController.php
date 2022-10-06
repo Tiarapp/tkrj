@@ -82,7 +82,7 @@ class NilaiAkademikController extends NilaiController
                         [   'nis'               => $murid->nis,
                             'nama'              => $murid->nama,
                             'kelas'             => $murid->kelas,
-                            'cp'                => $tp->id_cp->cp,
+                            'cp'                => $tp->id_cp->nama_cp,
                             'tp'                => $tp->narasi,
                             'tk'                => $tk->narasi,
                             'jenjang'           => $murid->jenjang,

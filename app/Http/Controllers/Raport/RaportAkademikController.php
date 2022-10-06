@@ -12,6 +12,7 @@ use App\Models\Nilai\nilai_hadist;
 use App\Models\Nilai\nilai_ibadah;
 use App\Models\Nilai\nilai_tahfidz;
 use App\Models\Nilai\nilai_tilawah;
+use App\Models\Rekap\rekap_akademik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,27 +49,20 @@ class RaportAkademikController extends RaportController
 
     public function raport($murid_id)
     {
+        $periode=$this->periode->getPeriodeAktif();
 
         $murid = data_murid::where('id', '=', $murid_id)
             ->first();
 
-        $periode=$this->periode->getPeriodeAktif();
-
-
-        $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)->get();
-        $cbi = nilai_cbi::where('murid_id', '=', $murid_id)->get();
-        $doa = nilai_doa::where('murid_id', '=', $murid_id)->get();
-        $hadist = nilai_hadist::where('murid_id', '=', $murid_id)->get();
-        $ibadah = nilai_ibadah::where('murid_id', '=', $murid_id)->get();
-
-
-        $tahfidz = nilai_tahfidz::where('murid_id', '=', $murid_id)->get();
-        $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id)->get();
+        $rekap_akademik=rekap_akademik::where('murid_id', $murid_id)
+                                        ->where('periode_keterangan', $periode->periode)
+                                        ->where('periode_id', $periode->id)
+                                        ->first();
 
         if ($periode->periode == "Tengah") {
-            return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode','ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah'));
+            return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode', 'rekap_akademik'));
         } else {
-            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode','ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah'));
+            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode', 'rekap_akademik'));
         }
 
     }
