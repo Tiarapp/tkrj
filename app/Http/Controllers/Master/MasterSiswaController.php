@@ -39,7 +39,7 @@ class MasterSiswaController extends MasterController
     // FILTER TAHUNAJARAN SISWA
         public function get_siswa(Request $request){
 
-            $siswa=MasterSiswa::where('tahunajaran_id', $request->tahunajaran)
+            $siswa=MasterSiswa::where('tahun_masuk', $request->tahunajaran)
                                 ->orderBy('nis')
                                 ->get();
             return response()->json([ 'data' => $siswa ]);
@@ -89,5 +89,12 @@ class MasterSiswaController extends MasterController
         }
 
         return redirect()->route('master.siswa.list')->with('success','Data Berhasil di Simpan');
+    }
+
+    public function print($id)
+    {
+        $siswa = MasterSiswa::where('id', '=', $id)->first();
+
+        return view('content.Master.Siswa.print_siswa', compact('siswa'));
     }
 }

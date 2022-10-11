@@ -60,7 +60,7 @@
                             <select class="select2-size-sm form-select" id="tahunajaran_id" name="tahunajaran_id">
                                 <option selected disabled>Pilih Tahun Ajaran</option>
                                 @foreach ($tahunajaran_raport as $tr)
-                                        <option value="{{$tr->id}}">{{$tr->tahun_ajaran}}</option>
+                                        <option value="{{$tr->tahun_ajaran}}">{{$tr->tahun_ajaran}}</option>
                                     @endforeach
                             </select>
                             <div class="btn-group">
@@ -203,9 +203,15 @@
                         { data: 'nis'},
                         { data: 'nik'},
                         { data: 'nama'},
-                        { data: 'tahunajaran'},
+                        { data: 'tahunajaran_masuk'},
                         { data: 'tahun_keluar'},
                         { data: 'status'},
+                        { data: null,
+                            render: function(data, type, row) {
+                                const idsiswa = data.id ?? ''
+                                return '<a href="/Master/Siswa/print'+idsiswa+'">Print</a>';
+                            }
+                        },
                     ]
                 })
             } else {

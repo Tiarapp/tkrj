@@ -145,6 +145,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
             Route::put('/edit{id}',[MasterSiswaController::class, 'update'])->name('edit');
             Route::get('/get_siswa',[MasterSiswaController::class, 'get_siswa'])->name('get_siswa');
             Route::get('/get_siswa_ppdb',[MasterSiswaController::class, 'get_siswa_ppdb'])->name('get_siswa_ppdb');
+            Route::get('/print{id}',[MasterSiswaController::class, 'print'])->name('print');
         });
 
     // MASTER CP
