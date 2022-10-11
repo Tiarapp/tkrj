@@ -56,7 +56,7 @@
 
                                             <input type="hidden" value="{{$na->cp}}" name="cp[]">
                                             <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">{{$na->cp}}</h6>
-                                            <textarea class="form-control narasi" name="narasi[]" id="narasi_{{$key}}" rows="3">Alhamdulillah, {{$murid->nama}} sudah dapat {{$na->tk}}</textarea>
+                                            <textarea class="form-control narasi" name="narasi[]" id="narasi_{{$key}}" rows="3">Alhamdulillah Ananda sudah dapat {{$na->tk}}</textarea>
 
                                             @php $i="30px"; $key++;@endphp
                                         @endforeach

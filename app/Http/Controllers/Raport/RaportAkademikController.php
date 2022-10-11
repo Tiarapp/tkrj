@@ -59,10 +59,21 @@ class RaportAkademikController extends RaportController
                                         ->where('periode_id', $periode->id)
                                         ->first();
 
-        if ($periode->periode == "Tengah") {
-            return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode', 'rekap_akademik'));
+        if (!empty($rekap_akademik)) {
+            $cp = explode('||', $rekap_akademik->cp);
+            $narasi = explode('||', $rekap_akademik->narasi);
+
+            $cp = array_reverse($cp);
+            $narasi = array_reverse($narasi);
         } else {
-            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode', 'rekap_akademik'));
+            $cp='';
+            $narasi='';
+        }
+
+        if ($periode->periode == "Tengah") {
+            return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode', 'rekap_akademik', 'cp', 'narasi'));
+        } else {
+            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode', 'rekap_akademik', 'cp','narasi'));
         }
 
     }
