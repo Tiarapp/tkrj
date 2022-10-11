@@ -16,6 +16,12 @@
                     "slug": "master.tahunajaran.list"
                 },
                 {
+                    "url": "Master/Tahun Ajaran",
+                    "name": "Tahun Ajaran",
+                    "icon": "database",
+                    "slug": "master.tahunajaran.list"
+                },
+                {
                     "url": "Master/Akun",
                     "name": "Akun",
                     "icon": "database",
