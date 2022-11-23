@@ -101,23 +101,21 @@
                         <div class="raport">
                             <label for="" style="text-align: left"><b>CAPAIAN PERKEMBANGAN ANAK</b></label>
                         </div>
-                        
-                        @foreach (explode('||', $rekap_akademik->cp) as $key => $cp)
-                            <div class="narasi">
-                                <div class="jatidiri">
-                                    <h3>{{$cp}}</h3>
-                                        @foreach (explode('||', $rekap_akademik->narasi) as $key2 => $narasi)
-                                            @if ($key==$key2)
-                                                <p>{{$narasi}}</p>
-                                            @endif
-                                        @endforeach
-                                </div>
-                            </div>
-                        @endforeach
+
+                        @php
+                            for ($i=0; $i < count($cp) ; $i++) { 
+                                echo '<div class="narasi">
+                                        <div class="jatidiri">
+                                            <h3>'.$cp[$i].'</h3>';
+                                            for ($j=0; $j < count($narasi) ; $j++) { 
+                                                if ($i==$j) {
+                                                    echo '<p style ="text-align: justify">'.$narasi[$j].'</p>';
+                                                }
+                                            }
+                                echo '</div></div>';
+                            }
+                        @endphp
                     @endif
-
-
-                </div>
             </div>
         </div>
     </div>
