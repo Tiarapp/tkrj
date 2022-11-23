@@ -41,13 +41,13 @@ class NarasiRaportController extends WalasController
 
         $murid=$this->data_murid($id_murid);
 
-        $nilai_akademik=nilai_akademik::select('nilai_akademik.nis', 'nilai_akademik.nama', 'nilai_akademik.kelas',  'nilai_akademik.jenjang', 'nilai_akademik.cp', DB::raw('group_concat(nilai_akademik.tk) AS tk'))
+        $nilai_akademik=nilai_akademik::select('nilai_akademik.nis', 'nilai_akademik.nama', 'nilai_akademik.kelas',  'nilai_akademik.jenjang', 'nilai_akademik.cp', DB::raw('group_concat(lower(nilai_akademik.tk) SEPARATOR ", ") AS tk'))
                                         ->where('murid_id', $murid->id)
                                         ->where('periode_keterangan', $periode->periode)
                                         ->where('periode_id', $periode->id)
                                         ->groupBy('nilai_akademik.nis', 'nilai_akademik.nama', 'nilai_akademik.kelas', 'nilai_akademik.jenjang', 'nilai_akademik.cp')
+                                        ->orderby('nilai_akademik.cp_id')
                                         ->get();
-        // return $nilai_akademik;
         return view('content.Walikelas.Narasi.edit_narasi', ['breadcrumbs' => $breadcrumbs, 'murid'=>$murid, 'nilai_akademik'=>$nilai_akademik]);
     }
 
@@ -59,6 +59,8 @@ class NarasiRaportController extends WalasController
 
         $cp=implode("||", $request['cp']);
         $narasi=implode("||", $request['narasi']);
+        $saran_tema=implode("||", $request['saran_tema']);
+        $saran_ortu=implode("||", $request['saran_ortu']);
         // dd($cp);
         $rekap_akademik=rekap_akademik::UpdateOrCreate(
             [   'id'    => $request->id_rekap_akademik],
@@ -68,6 +70,8 @@ class NarasiRaportController extends WalasController
                 'jenjang'               => $murid->jenjang,
                 'cp'                    => $cp,
                 'narasi'                => $narasi,
+                'saran_tema'            => $saran_tema,
+                'saran_ortu'            => $saran_ortu,
                 'periode_keterangan'    => $periode->periode,
                 'tahunajaran'           => $murid->tahunajaran,
                 'murid_id'              => $murid->id,

@@ -67,7 +67,6 @@ class NilaiAkademikController extends NilaiController
 
         $tema=MasterTema::find($request->id_tema);
         $tk=MasterTK::find($request->id_tk);
-        $tp=MasterTP::find($tk->tp_id);
 
         if (count($request['add_murid_id']) > 0) {
             foreach($request['add_murid_id'] as $idx_murid_id => $val_murid_id) {
@@ -82,17 +81,17 @@ class NilaiAkademikController extends NilaiController
                         [   'nis'               => $murid->nis,
                             'nama'              => $murid->nama,
                             'kelas'             => $murid->kelas,
-                            'cp'                => $tp->id_cp->nama_cp,
-                            'tp'                => $tp->narasi,
-                            'tk'                => $tk->narasi,
+                            'cp'                => $tk->id_cp->nama_cp,
+                            'tp'                => $tk->tujuan_pembelajaran,
+                            'tk'                => $tk->tujuan_kegiatan,
                             'jenjang'           => $murid->jenjang,
                             'tema'              => $tema->tema,
                             'periode_keterangan'=> $periode->periode,
                             'murid_id'          => $murid->id,
                             'kelas_id'          => $murid->kelas_id,
                             'jenjang_id'        => $murid->jenjang_id,
-                            'cp_id'             => $tp->id_cp->id,
-                            'tp_id'             => $tp->id,
+                            'cp_id'             => $tk->id_cp->id,
+                            'tp_id'             => $tk->tp_id,
                             'tk_id'             => $tk->id,
                             'tema_id'           => $tema->id,
                             'periode_id'        => $periode->id
@@ -136,8 +135,8 @@ class NilaiAkademikController extends NilaiController
             $periode=$this->periode->getPeriodeAktif();
             $detail_pengajar = $this->detail_pengajar($id_pengajar);
 
-            $nilai_akademik=data_murid::select('data_murid.id', 'data_murid.nama', 'data_murid.absen', DB::raw('group_concat(nilai_akademik_copy.tk) AS tk'))
-                                        ->leftJoin('nilai_akademik_copy', 'data_murid.id', '=', 'nilai_akademik_copy.murid_id')
+            $nilai_akademik=data_murid::select('data_murid.id', 'data_murid.nama', 'data_murid.absen', DB::raw('group_concat(nilai_akademik.tk) AS tk'))
+                                        ->leftJoin('nilai_akademik', 'data_murid.id', '=', 'nilai_akademik.murid_id')
                                         ->where('data_murid.kelas_id', $detail_pengajar->kelas_id)
                                         ->groupBy('data_murid.id', 'data_murid.nama', 'data_murid.absen')
                                         ->get();

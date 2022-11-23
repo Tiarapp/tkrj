@@ -55,6 +55,7 @@ use App\Http\Controllers\LanguageController;
 // WALIKELAS
     use App\Http\Controllers\Walikelas\AbsenController;
 use App\Http\Controllers\Walikelas\NarasiRaportController;
+use App\Http\Controllers\Walikelas\SaranTemaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -427,4 +428,14 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[NarasiRaportController::class, 'store'])->name('add');
                 Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
                 Route::get('/update_narasi', [NarasiRaportController::class, 'update_narasi'])->name('update_narasi');
+            });
+
+        // SARAN UNTUK TEMA SELANJUTNYA
+            Route::group(['prefix' => 'Walikelas/SaranTema', 'as' => 'walikelas.sarantema.'], function() {
+                Route::get('', [SaranTemaController::class, 'index'])->name('list');
+                Route::get('/input{id_pengajar}', [SaranTemaController::class, 'add_nilai'])->name('input');
+                Route::post('/add',[SaranTemaController::class, 'store'])->name('add');
+                // Route::get('/list_siswa{id_walas}', [NarasiRaportController::class, 'list_siswa'])->name('list_siswa');
+                // Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
+                // Route::get('/update_narasi', [NarasiRaportController::class, 'update_narasi'])->name('update_narasi');
             });

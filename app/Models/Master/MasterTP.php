@@ -18,7 +18,7 @@ class MasterTP extends Model
     protected $table = 'master_t_p_s';
 
     protected $fillable = [
-        'nama_tp', 'narasi','status_aktif', 'elemen_id',
+        'id', 'capaian_pembelajaran', 'tujuan_pembelajaran', 'status_aktif', 'cp_id', 'created_at'
     ];
 
     public function id_cp()

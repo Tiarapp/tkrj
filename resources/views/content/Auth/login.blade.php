@@ -119,7 +119,6 @@ $configData = Helper::applClasses();
 
     <script>
         $(document).ready(function() {
-
             @if (count($errors) > 0)
                 @foreach ($errors->all() as $error)
                     toastr['error'](
@@ -129,6 +128,6 @@ $configData = Helper::applClasses();
                     });
                 @endforeach
             @endif
-    } );
+        } );
     </script>
 @endsection

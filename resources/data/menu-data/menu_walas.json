@@ -73,9 +73,15 @@
                 },
                 {
                     "url": "Walikelas/Narasi",
-                    "name": "Narasi Raport",
+                    "name": "Narasi",
                     "icon": "circle",
                     "slug": "walikelas.narasi.list"
+                },
+                {
+                    "url": "Walikelas/Perkembangan",
+                    "name": "Perkembangan",
+                    "icon": "circle",
+                    "slug": "walikelas.perkembangan.list"
                 },
                 {
                     "url": "Raport/Ekstra",
