@@ -13,7 +13,7 @@
                         <div class="col-md-5 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Nama Perkembangan</label>
-                                <input type="text" class="form-control" name="perkembangan" id="basic-default-name" placeholder="Tahun Ajaran Mulai" required/>
+                                <input type="text" class="form-control" name="perkembangan" id="basic-default-name" placeholder="Nama Perkembangan" required/>
                             </div>
                         </div>
                         <div class="col-md-5 col-12">

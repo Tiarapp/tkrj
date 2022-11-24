@@ -70,7 +70,12 @@
                                 <tr>
                                     <td>{{ $p->perkembangan }}</td>
                                     <td>{{ $p->id_kategori->nama_kategori }}</td>
-                                    <td>{{ $p->status_aktif }}</td>
+                                    @if ($p->status_aktif==1)
+                                        <td>Aktif</td>
+                                    @else
+                                        <td>Non Aktif</td>
+                                    @endif
+                                    {{-- <td>{{ $p->status_aktif }}</td> --}}
                                     <td>
                                         <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{ $p->id }}">
                                             <i data-feather="edit"></i>

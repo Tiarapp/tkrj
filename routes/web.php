@@ -55,6 +55,7 @@ use App\Http\Controllers\LanguageController;
 // WALIKELAS
     use App\Http\Controllers\Walikelas\AbsenController;
 use App\Http\Controllers\Walikelas\NarasiRaportController;
+use App\Http\Controllers\Walikelas\PerkembanganController;
 use App\Http\Controllers\Walikelas\SaranTemaController;
 
 /*
@@ -428,6 +429,16 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[NarasiRaportController::class, 'store'])->name('add');
                 Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
                 Route::get('/update_narasi', [NarasiRaportController::class, 'update_narasi'])->name('update_narasi');
+            });
+
+        // PERKEMBANGAN
+            Route::group(['prefix' => 'Walikelas/Perkembangan', 'as' => 'walikelas.perkembangan.'], function() {
+                Route::get('', [PerkembanganController::class, 'index'])->name('list');
+                Route::get('/list_siswa{id_walas}', [PerkembanganController::class, 'list_siswa'])->name('list_siswa');
+                Route::get('/edit_nilai', [PerkembanganController::class, 'edit_nilai'])->name('edit_nilai');
+                Route::post('/add',[PerkembanganController::class, 'store'])->name('add');
+                // Route::get('/edit_narasi{id_murid}', [PerkembanganController::class, 'edit_narasi'])->name('edit_narasi');
+                // Route::get('/update_narasi', [PerkembanganController::class, 'update_narasi'])->name('update_narasi');
             });
 
         // SARAN UNTUK TEMA SELANJUTNYA
