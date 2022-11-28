@@ -57,6 +57,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Walikelas\NarasiRaportController;
 use App\Http\Controllers\Walikelas\PerkembanganController;
 use App\Http\Controllers\Walikelas\SaranTemaController;
+use App\Http\Controllers\Walikelas\StudentProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -437,8 +438,14 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('/list_siswa{id_walas}', [PerkembanganController::class, 'list_siswa'])->name('list_siswa');
                 Route::get('/edit_nilai', [PerkembanganController::class, 'edit_nilai'])->name('edit_nilai');
                 Route::post('/add',[PerkembanganController::class, 'store'])->name('add');
-                // Route::get('/edit_narasi{id_murid}', [PerkembanganController::class, 'edit_narasi'])->name('edit_narasi');
-                // Route::get('/update_narasi', [PerkembanganController::class, 'update_narasi'])->name('update_narasi');
+            });
+
+        // STUDENT PROFILE
+            Route::group(['prefix' => 'Walikelas/StudentProfile', 'as' => 'walikelas.studentprofile.'], function() {
+                Route::get('', [StudentProfileController::class, 'index'])->name('list');
+                Route::get('/add_nilai{id_pengajar}', [StudentProfileController::class, 'add_nilai'])->name('add_nilai');
+                Route::get('/edit_nilai', [StudentProfileController::class, 'edit_nilai'])->name('edit_nilai');
+                Route::post('/add',[StudentProfileController::class, 'store'])->name('add');
             });
 
         // SARAN UNTUK TEMA SELANJUTNYA

@@ -84,6 +84,12 @@
                     "slug": "walikelas.perkembangan.list"
                 },
                 {
+                    "url": "Walikelas/StudentProfile",
+                    "name": "Student Profile",
+                    "icon": "circle",
+                    "slug": "walikelas.studentprofile.list"
+                },
+                {
                     "url": "Raport/Ekstra",
                     "name": "Raport Ekstra",
                     "icon": "circle",
