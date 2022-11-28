@@ -56,7 +56,20 @@
 
                                             <input type="hidden" value="{{$na->cp}}" name="cp[]">
                                             <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">{{$na->cp}}</h6>
-                                            <textarea class="form-control narasi" name="narasi[]" id="narasi_{{$key}}" rows="3">Alhamdulillah Ananda sudah dapat {{$na->tk}}</textarea>
+                                            <textarea class="form-control narasi" name="narasi[{{$key}}]" id="narasi_{{$key}}" rows="3">Alhamdulillah, {{$murid->nama}} sudah dapat {{$na->tk}}</textarea>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    {{-- INPUT SARAN TEMA SELANJUTNYA --}}
+                                                    <label class="card-title" id="cp_{{$key}}">Saran Tema Selanjutnya</label>
+                                                    <textarea class="form-control narasi" name="saran_tema[{{$key}}]" id="saran_tema_{{$key}}" rows="3"></textarea>
+                                                </div>
+                                                <div class="col-6">
+                                                    {{-- INPUT SARAN ORTU di RUMAH --}}
+                                                    <label class="card-title" id="cp_{{$key}}">Saran Untuk Ortu di Rumah</label>
+                                                    <textarea class="form-control narasi" name="saran_ortu[{{$key}}]" id="saran_ortu_{{$key}}" rows="3"></textarea>
+                                                </div>
+                                            </div>
 
                                             @php $i="30px"; $key++;@endphp
                                         @endforeach
@@ -153,6 +166,16 @@
                         const narasi = result.narasi.split("||");
                         for (let index = 0; index < narasi.length; index++) {
                             $("#narasi_"+index).val(narasi[index]);
+                        }
+
+                        const saran_tema = result.saran_tema.split("||");
+                        for (let index = 0; index < saran_tema.length; index++) {
+                            $("#saran_tema_"+index).val(saran_tema[index]);
+                        }
+                        
+                        const saran_ortu = result.saran_ortu.split("||");
+                        for (let index = 0; index < saran_ortu.length; index++) {
+                            $("#saran_ortu_"+index).val(saran_ortu[index]);
                         }
 
                     },

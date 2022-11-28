@@ -139,6 +139,7 @@ class NilaiAkademikController extends NilaiController
                                         ->leftJoin('nilai_akademik', 'data_murid.id', '=', 'nilai_akademik.murid_id')
                                         ->where('data_murid.kelas_id', $detail_pengajar->kelas_id)
                                         ->groupBy('data_murid.id', 'data_murid.nama', 'data_murid.absen')
+                                        ->orderby('nilai_akademik.cp_id')
                                         ->get();
 
         return view('content.Nilai.Akademik.rekap_nilai_akademik', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'tema'=>$tema, 'tk'=>$tk, 'predikat'=>$predikat, 'nilai_akademik'=>$nilai_akademik]);
