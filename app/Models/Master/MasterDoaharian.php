@@ -11,6 +11,6 @@ class MasterDoaharian extends Model
     protected $table = 'master_doa_harian';
 
     protected $fillable = [
-        'id', 'doa_harian', 'status', 'created_at', 'updated_at'
+        'id', 'doa_harian', 'status', 'urutan', 'created_at', 'updated_at'
     ];
 }

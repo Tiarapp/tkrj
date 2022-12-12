@@ -41,7 +41,7 @@ class NarasiRaportController extends WalasController
 
         $murid=$this->data_murid($id_murid);
 
-        $nilai_akademik=nilai_akademik::select('nilai_akademik.nis', 'nilai_akademik.nama', 'nilai_akademik.kelas',  'nilai_akademik.jenjang', 'nilai_akademik.cp', DB::raw('group_concat(nilai_akademik.tk SEPARATOR " ") AS tk'))
+        $nilai_akademik=nilai_akademik::select('nilai_akademik.nis', 'nilai_akademik.nama', 'nilai_akademik.kelas',  'nilai_akademik.jenjang', 'nilai_akademik.cp', DB::raw('group_concat(lower(nilai_akademik.tk) SEPARATOR ", ") AS tk'))
                                         ->where('murid_id', $murid->id)
                                         ->where('periode_keterangan', $periode->periode)
                                         ->where('periode_id', $periode->id)

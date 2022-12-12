@@ -64,17 +64,19 @@ class RaportEkstraController extends RaportController
                     ->first();
         $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)->get();
         $cbi = nilai_cbi::where('murid_id', '=', $murid_id)->get();
-        $doa = nilai_doa::where('murid_id', '=', $murid_id)->get();
+        $doa = nilai_doa::leftjoin('master_doa_harian', 'nilai_doa_harian.indicators_id', '=', 'master_doa_harian.id')
+                        ->where('murid_id', '=', $murid_id)
+                        ->orderby('master_doa_harian.urutan')->get();
         $hadist = nilai_hadist::where('murid_id', '=', $murid_id)->get();
-        $ibadah = nilai_ibadah::where('murid_id', '=', $murid_id)->get();
+        $ibadah = nilai_ibadah::leftjoin('master_doa_harian', 'nilai_ibadah.indicators_id', '=', 'master_doa_harian.id')
+                                ->where('murid_id', '=', $murid_id)
+                                ->orderby('master_doa_harian.urutan')->get();
 
 
         $tahfidz = nilai_tahfidz::where('murid_id', '=', $murid_id)->get();
         $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id)->get();
 
         $ortu = MasterSiswa::where('id', '=', $murid->siswa_id)->first();
-
-        // dd($ortu);
 
         if ($periode->periode == "Tengah") {
             return view('content.Raport.Ekstra.print_mid_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));

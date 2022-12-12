@@ -135,7 +135,7 @@ class NilaiAkademikController extends NilaiController
             $periode=$this->periode->getPeriodeAktif();
             $detail_pengajar = $this->detail_pengajar($id_pengajar);
 
-            $nilai_akademik=data_murid::select('data_murid.id', 'data_murid.nama', 'data_murid.absen', DB::raw('group_concat(nilai_akademik.tk) AS tk'))
+            $nilai_akademik=data_murid::select('data_murid.id', 'data_murid.nama', 'data_murid.absen', DB::raw('group_concat(lower(nilai_akademik.tk) SEPARATOR ", ") AS tk'))
                                         ->leftJoin('nilai_akademik', 'data_murid.id', '=', 'nilai_akademik.murid_id')
                                         ->where('data_murid.kelas_id', $detail_pengajar->kelas_id)
                                         ->groupBy('data_murid.id', 'data_murid.nama', 'data_murid.absen')
