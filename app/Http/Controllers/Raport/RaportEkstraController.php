@@ -16,6 +16,7 @@ use App\Models\Nilai\nilai_ibadah;
 use App\Models\Nilai\nilai_tahfidz;
 use App\Models\Nilai\nilai_tilawah;
 use App\Models\Walikelas\absen;
+use App\Models\Walikelas\perkembangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,11 +78,15 @@ class RaportEkstraController extends RaportController
         $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id)->get();
 
         $ortu = MasterSiswa::where('id', '=', $murid->siswa_id)->first();
+        $pertumbuhan=perkembangan::leftjoin('master_kategoris', 'nilai_perkembangan.master_kategori_id', '=', 'master_kategoris.id')
+                                ->where('nilai_perkembangan.murid_id', $murid_id)
+                                ->where('nilai_perkembangan.periode_id', $periode->id)->orderby('master_kategoris.id')->get();
+        // dd($pertumbuhan) ;
 
         if ($periode->periode == "Tengah") {
             return view('content.Raport.Ekstra.print_mid_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
         } else {
-            return view('content.Raport.Ekstra.print_akhir_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
+            return view('content.Raport.Ekstra.print_akhir_raport', compact('pertumbuhan','murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
         }
 
     }
