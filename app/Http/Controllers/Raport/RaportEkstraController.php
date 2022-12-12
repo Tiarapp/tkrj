@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Raport\RaportController;
 use App\Models\Data\data_indicators;
 use App\Models\Data\data_murid;
+use App\Models\Master\MasterIndikatorStudentProfile;
 use App\Models\Master\MasterPredikat;
 use App\Models\Master\MasterSiswa;
 use App\Models\Nilai\nilai_cbi;
@@ -16,8 +17,12 @@ use App\Models\Nilai\nilai_ibadah;
 use App\Models\Nilai\nilai_tahfidz;
 use App\Models\Nilai\nilai_tilawah;
 use App\Models\Walikelas\absen;
+use App\Models\Walikelas\perkembangan;
+use App\Models\Walikelas\studentprofile;
+use App\Models\Walikelas\studentprofile_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Util\SpecReader;
 
 class RaportEkstraController extends RaportController
 {
@@ -76,12 +81,30 @@ class RaportEkstraController extends RaportController
         $tahfidz = nilai_tahfidz::where('murid_id', '=', $murid_id)->get();
         $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id)->get();
 
+        $sp = studentprofile::where('murid_id', '=', $murid_id)
+                ->where('periode_keterangan', $periode->periode)
+                ->where('periode_id', $periode->id)
+                ->first();
+
+        $spdetail = studentprofile_detail::where('nilai_studentprofile_id', '=', $sp->id)
+                ->orderBy('master_indikator_studentprofile_id', 'asc')
+                ->get();
+
+        $kesehatan = perkembangan::where('murid_id', '=', $murid_id)
+                        ->where('master_perkembangan', '=', 'Kesehatan')
+                        ->get();
+
+        $kebersihan = perkembangan::where('murid_id', '=', $murid_id)
+                        ->where('master_perkembangan', '=', 'Kebersihan')
+                        ->get();
+        
+
         $ortu = MasterSiswa::where('id', '=', $murid->siswa_id)->first();
 
         if ($periode->periode == "Tengah") {
             return view('content.Raport.Ekstra.print_mid_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
         } else {
-            return view('content.Raport.Ekstra.print_akhir_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
+            return view('content.Raport.Ekstra.print_akhir_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu', 'spdetail', 'kesehatan', 'kebersihan'));
         }
 
     }

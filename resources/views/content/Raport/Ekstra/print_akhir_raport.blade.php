@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> 
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
     {{-- Vendor Css files INPUT --}}
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
@@ -113,16 +114,43 @@
                                 <th colspan="4">Category</th>
                             </tr>
                             <tr>
-                                <th colspan="1">PROFILE</th>
-                                <th colspan="1">Category</th>
-                                <th colspan="1">PROFILE</th>
-                                <th colspan="1">Category</th>
+                                <th colspan="1">Very Good</th>
+                                <th colspan="1">Good</th>
+                                <th colspan="1">Satisfactory</th>
+                                <th colspan="1">Need Improve</th>
                             </tr>
+
+                            @foreach ($spdetail as $sp)    
+                            <tr>
+                                <td colspan="1" rowspan="1">{{ $sp->indikator }}</td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "vg")
+                                        {{-- <i class="fa-sharp fa-solid fa-circle-check"></i> --}}
+                                        <center>cek</center>
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "g")
+                                        cek
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "s")
+                                        cek
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "ni")
+                                        cek
+                                    @endif
+                                </td>
+                            </tr>
+                                @endforeach
                         </table>
                     </div>
                     <div class="row tumbuh-kembang" style="padding: 10px">
                         B. Tumbuh Kembang Anak
-                        <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
+                        <table style="border: 2px solid rgb(125, 103, 103); text-align: center; margin-top: 10px;">
                             <tr>
                                 <th colspan="3" rowspan="1">Indikator Pertumbuhan</th>
                                 <th colspan="2" rowspan="1">Capaian Pertumbuhan</th>
@@ -132,19 +160,23 @@
                                 <td colspan="2" rowspan="1"></td>
                             </tr>
                             {{-- Foreach indikator kesehatan --}}
-                            {{-- <tr style="padding-left: 10px">
-                                <td colspan="3" rowspan="1">A. Kesehatan</td>
-                                <td colspan="2" rowspan="1"></td>
-                            </tr> --}}
+                            @foreach ($kesehatan as $k)
+                            <tr style="padding-left: 10px">
+                                <td colspan="3" rowspan="1" style="padding-left: 10px">{{ $k->master_kategori }}</td>
+                                <td colspan="2" rowspan="1">{{ $k->nilai }}</td>
+                            </tr>
+                            @endforeach
                             <tr>
                                 <td colspan="3" rowspan="1">A. Kebersihan</td>
                                 <td colspan="2" rowspan="1"></td>
                             </tr>
                             {{-- Foreach indikator Kebersihan --}}
-                            {{-- <tr style="padding-left: 10px">
-                                <td colspan="3" rowspan="1">A. Kesehatan</td>
-                                <td colspan="2" rowspan="1"></td>
-                            </tr> --}}
+                            @foreach ($kebersihan as $k)
+                            <tr style="padding-left: 10px">
+                                <td colspan="3" rowspan="1" style="padding-left: 10px">{{ $k->master_kategori }}</td>
+                                <td colspan="2" rowspan="1">{{ $k->nilai }}</td>
+                            </tr>
+                            @endforeach
                         </table>
                     </div>
 
