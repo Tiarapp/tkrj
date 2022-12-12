@@ -55,9 +55,12 @@ use App\Http\Controllers\LanguageController;
 // WALIKELAS
     use App\Http\Controllers\Walikelas\AbsenController;
 use App\Http\Controllers\Walikelas\NarasiRaportController;
+use App\Http\Controllers\Walikelas\NilaiProyekController;
 use App\Http\Controllers\Walikelas\PerkembanganController;
+use App\Http\Controllers\Walikelas\ProyekController;
 use App\Http\Controllers\Walikelas\SaranTemaController;
 use App\Http\Controllers\Walikelas\StudentProfileController;
+use App\Http\Controllers\Walikelas\TemaProyekController;
 
 /*
 |--------------------------------------------------------------------------
@@ -453,7 +456,24 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('', [SaranTemaController::class, 'index'])->name('list');
                 Route::get('/input{id_pengajar}', [SaranTemaController::class, 'add_nilai'])->name('input');
                 Route::post('/add',[SaranTemaController::class, 'store'])->name('add');
-                // Route::get('/list_siswa{id_walas}', [NarasiRaportController::class, 'list_siswa'])->name('list_siswa');
-                // Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
-                // Route::get('/update_narasi', [NarasiRaportController::class, 'update_narasi'])->name('update_narasi');
             });
+
+        // PROYEK
+            Route::group(['prefix' => 'Walikelas/Proyek', 'as' => 'walikelas.proyek.'], function() {
+                Route::get('', [ProyekController::class, 'index'])->name('list');
+            });
+
+            // TEMA PROYEK
+                Route::group(['prefix' => 'Walikelas/Proyek/TemaProyek', 'as' => 'walikelas.proyek.temaproyek.'], function() {
+                    Route::get('', [TemaProyekController::class, 'index'])->name('list');
+                    Route::post('/add',[TemaProyekController::class, 'store'])->name('add');
+                });
+
+            // NILAI PROYEK
+                Route::group(['prefix' => 'Walikelas/Proyek/NilaiProyek', 'as' => 'walikelas.proyek.nilaiproyek.'], function() {
+                    Route::get('', [NilaiProyekController::class, 'index'])->name('list');
+                    Route::get('/tema_proyek_kelas', [NilaiProyekController::class, 'tema_proyek_kelas'])->name('tema_proyek_kelas');
+                    Route::get('/data_murid_kelas', [NilaiProyekController::class, 'data_murid_kelas'])->name('data_murid_kelas');
+                    Route::get('/edit_nilai', [NilaiProyekController::class, 'edit_nilai'])->name('edit_nilai');
+                    Route::post('/add',[NilaiProyekController::class, 'store'])->name('add');
+                });
