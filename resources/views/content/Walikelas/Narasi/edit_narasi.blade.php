@@ -55,7 +55,12 @@
                                         @foreach ($nilai_akademik as $na)
 
                                             <input type="hidden" value="{{$na->cp}}" name="cp[]">
-                                            <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">{{$na->cp}}</h6>
+                                            <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">
+                                                {{$na->cp}}
+                                                <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#inlineForm{{$key}}">
+                                                    <i data-feather='image'></i>
+                                                </button>
+                                            </h6>
                                             <textarea class="form-control narasi" name="narasi[{{$key}}]" id="narasi_{{$key}}" rows="3">Alhamdulillah, {{$murid->nama}} sudah dapat {{$na->tk}}</textarea>
                                             <br>
                                             <div class="row">
@@ -71,7 +76,9 @@
                                                 </div>
                                             </div>
 
+                                            @include('content.Walikelas.Narasi.add_foto')
                                             @php $i="30px"; $key++;@endphp
+
                                         @endforeach
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary me-1">Simpan</button>
@@ -172,7 +179,7 @@
                         for (let index = 0; index < saran_tema.length; index++) {
                             $("#saran_tema_"+index).val(saran_tema[index]);
                         }
-                        
+
                         const saran_ortu = result.saran_ortu.split("||");
                         for (let index = 0; index < saran_ortu.length; index++) {
                             $("#saran_ortu_"+index).val(saran_ortu[index]);

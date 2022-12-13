@@ -47,20 +47,20 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Nilai\NilaiTilawahController;
     use App\Http\Controllers\Nilai\NilaiAkademikController;
     use App\Http\Controllers\Nilai\NilaiCBIController;
-//Raport
+// Raport
     use App\Http\Controllers\Raport\RaportEkstraController;
     use App\Http\Controllers\Raport\RapotEkstraController;
     use App\Http\Controllers\Raport\RaportAkademikController;
 
 // WALIKELAS
     use App\Http\Controllers\Walikelas\AbsenController;
-use App\Http\Controllers\Walikelas\NarasiRaportController;
-use App\Http\Controllers\Walikelas\NilaiProyekController;
-use App\Http\Controllers\Walikelas\PerkembanganController;
-use App\Http\Controllers\Walikelas\ProyekController;
-use App\Http\Controllers\Walikelas\SaranTemaController;
-use App\Http\Controllers\Walikelas\StudentProfileController;
-use App\Http\Controllers\Walikelas\TemaProyekController;
+    use App\Http\Controllers\Walikelas\NarasiRaportController;
+    use App\Http\Controllers\Walikelas\NilaiProyekController;
+    use App\Http\Controllers\Walikelas\PerkembanganController;
+    use App\Http\Controllers\Walikelas\ProyekController;
+    use App\Http\Controllers\Walikelas\SaranTemaController;
+    use App\Http\Controllers\Walikelas\StudentProfileController;
+    use App\Http\Controllers\Walikelas\TemaProyekController;
 
 /*
 |--------------------------------------------------------------------------
