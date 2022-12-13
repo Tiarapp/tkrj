@@ -57,7 +57,7 @@
                                             <input type="hidden" value="{{$na->cp}}" name="cp[]">
                                             <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">
                                                 {{$na->cp}}
-                                                <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#inlineForm{{$key}}">
+                                                <button type="button" class="btn btn-icon btn-success _foto" id="add_foto" data-bs-toggle="modal" data-bs-target="#inlineForm">
                                                     <i data-feather='image'></i>
                                                 </button>
                                             </h6>
@@ -76,7 +76,6 @@
                                                 </div>
                                             </div>
 
-                                            @include('content.Walikelas.Narasi.add_foto')
                                             @php $i="30px"; $key++;@endphp
 
                                         @endforeach
@@ -85,6 +84,7 @@
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </form>
+                                    @include('content.Walikelas.Narasi.add_foto')
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,19 @@
                         });
                 @endforeach
             @endif
+
+            var id_rekap=document.getElementById("id_rekap_akademik").value;
+            if (id_rekap=="") {
+                $("._foto").hide=true;
+            }else{
+                $("._foto").hide=true;
+                document.getElementById("id_nilai_akademik").value=id_rekap;
+            }
         });
+
+        function submit() {
+            document.getElementById("form_foto").submit();
+        }
 
         const edit_rekap_akademik = function(id_murid){
             if (id_murid) {
