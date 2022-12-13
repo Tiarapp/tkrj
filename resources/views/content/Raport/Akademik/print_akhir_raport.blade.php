@@ -117,6 +117,13 @@
                                 echo '</div></div>';
                             }
                         @endphp
+                            <div class="narasi">
+                                <div class="jatidiri">
+                                    <h3>Project Penguatan Profil Pelajar Pancasila</h3>
+                                    <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->detail_proyek }}</p>
+                                    <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->catatan_proyek }}</p>
+                                </div>
+                            </div>
                     @endif
                 </div>
             </div>
