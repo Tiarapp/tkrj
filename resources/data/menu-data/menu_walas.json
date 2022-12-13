@@ -72,6 +72,25 @@
                     "slug": "walikelas.absen.list"
                 },
                 {
+                    "name": "Proyek",
+                    "icon": "file-text",
+                    "slug": "",
+                    "submenu": [
+                        {
+                            "url": "Walikelas/Proyek/TemaProyek",
+                            "name": "Tema Proyek (P5)",
+                            "icon": "circle",
+                            "slug": "walikelas.proyek.temaproyek.list"
+                        },
+                        {
+                            "url": "Walikelas/Proyek/NilaiProyek",
+                            "name": "Nilai Proyek (P5)",
+                            "icon": "circle",
+                            "slug": "walikelas.proyek.nilaiproyek.list"
+                        }
+                    ]
+                },
+                {
                     "url": "Walikelas/Narasi",
                     "name": "Narasi",
                     "icon": "circle",
