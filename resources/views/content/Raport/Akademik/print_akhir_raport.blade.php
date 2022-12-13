@@ -68,7 +68,7 @@
                 <div class="judul" style="padding: 10px">
                     <h3><b>PRESCHOOL RAUDLATUL JANNAH</b></h3>
                     <h3><b>LAPORAN CAPAIAN PERKEMBANGAN ANAK</b></h3>
-                    <h3><b>MID SEMESTER</b></h3>
+                    <h3><b>SEMESTER 1</b></h3>
                     <br>
                     <div class="row" style="margin-bottom: 30px">
                         <div class="col-7">
@@ -117,6 +117,13 @@
                                 echo '</div></div>';
                             }
                         @endphp
+                            <div class="narasi">
+                                <div class="jatidiri">
+                                    <h3>Projek Penguatan Profil Pelajar Pancasila</h3>
+                                    <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->detail_proyek }}</p>
+                                    <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->catatan_proyek }}</p>
+                                </div>
+                            </div>
                     @endif
                 </div>
             </div>

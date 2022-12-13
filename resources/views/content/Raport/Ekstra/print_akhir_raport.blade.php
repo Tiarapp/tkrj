@@ -113,11 +113,41 @@
                                 <th colspan="4">Category</th>
                             </tr>
                             <tr>
-                                <th colspan="1">PROFILE</th>
-                                <th colspan="1">Category</th>
-                                <th colspan="1">PROFILE</th>
-                                <th colspan="1">Category</th>
+                                <th colspan="1">Very Good</th>
+                                <th colspan="1">Good</th>
+                                <th colspan="1">Satisfactory</th>
+                                <th colspan="1">Need Improve</th>
                             </tr>
+
+                            @if ($spdetail != null)
+                                
+                            @foreach ($spdetail as $sp)    
+                            <tr>
+                                <td colspan="1" rowspan="1">{{ $sp->indikator }}</td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "vg")
+                                        {{-- <i class="fa-sharp fa-solid fa-circle-check"></i> --}}
+                                        <center>cek</center>
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "g")
+                                        cek
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "s")
+                                        cek
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "ni")
+                                        cek
+                                    @endif
+                                </td>
+                            </tr>
+                                @endforeach
+                            @endif
                         </table>
                     </div>
                     <div class="row tumbuh-kembang" style="padding: 10px">
