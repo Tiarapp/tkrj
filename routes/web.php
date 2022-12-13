@@ -431,6 +431,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('', [NarasiRaportController::class, 'index'])->name('list');
                 Route::get('/list_siswa{id_walas}', [NarasiRaportController::class, 'list_siswa'])->name('list_siswa');
                 Route::post('/add',[NarasiRaportController::class, 'store'])->name('add');
+                Route::put('/add_foto',[NarasiRaportController::class, 'update_foto'])->name('add_foto');
                 Route::get('/edit_narasi{id_murid}', [NarasiRaportController::class, 'edit_narasi'])->name('edit_narasi');
                 Route::get('/update_narasi', [NarasiRaportController::class, 'update_narasi'])->name('update_narasi');
             });
