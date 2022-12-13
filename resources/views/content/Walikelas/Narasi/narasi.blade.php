@@ -33,7 +33,6 @@
                 <div class="card-header border-bottom p-1">
                     <div class="dt-action-buttons text-end">
                         <div class="dt-buttons d-inline-flex">
-
                             <div class="btn-group">
                                 <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle waves-effect" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i data-feather='settings'></i>
