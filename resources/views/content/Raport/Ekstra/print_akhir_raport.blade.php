@@ -119,6 +119,8 @@
                                 <th colspan="1">Need Improve</th>
                             </tr>
 
+                            @if ($spdetail != null)
+                                
                             @foreach ($spdetail as $sp)    
                             <tr>
                                 <td colspan="1" rowspan="1">{{ $sp->indikator }}</td>
@@ -145,6 +147,7 @@
                                 </td>
                             </tr>
                                 @endforeach
+                            @endif
                         </table>
                     </div>
                     <div class="row tumbuh-kembang" style="padding: 10px">
