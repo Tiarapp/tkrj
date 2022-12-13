@@ -251,25 +251,6 @@
                                 $rowspan = 0;
                             @endphp
 
-                            {{-- Nilai Ekstra --}}
-                            @foreach($ekstra as $key => $data)
-                            @php
-                            $rowid += 1
-                            @endphp
-                            <tr>
-                            @if ($key == 0 || $rowspan == $rowid)
-                                @php
-                                    $rowid = 0;
-                                    $rowspan = count($ekstra);
-                                @endphp
-                                <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
-                                <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
-                            @endif
-                            <td>{{$data->indicators}}</td>
-                            <td class="value">{{$data->nilai}}</td>
-                            </tr>
-                            @endforeach
-
                             {{-- Nilai Ibadah --}}
                             @foreach($ibadah as $key => $data)
                             @php
@@ -346,6 +327,25 @@
                             <td class="value">{{$data->nilai}}</td>
                             </tr>
                             @endforeach
+                            
+                            {{-- Nilai Ekstra --}}
+                            @foreach($ekstra as $key => $data)
+                            @php
+                            $rowid += 1
+                            @endphp
+                            <tr>
+                            @if ($key == 0 || $rowspan == $rowid)
+                                @php
+                                    $rowid = 0;
+                                    $rowspan = count($ekstra);
+                                @endphp
+                                <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
+                                <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
+                            @endif
+                            <td>{{$data->indicators}}</td>
+                            <td class="value">{{$data->nilai}}</td>
+                            </tr>
+                            @endforeach
                         </table>
                     </div>
 
@@ -359,7 +359,7 @@
                         <br>
                         <br>
                         <div class="col-6" style="text-align: left">
-                            <b>Sidoarjo, 17 Desember 2021</b>
+                            <b>Sidoarjo, 24 Desember 2021</b>
                         </div>
                     </div>
 
