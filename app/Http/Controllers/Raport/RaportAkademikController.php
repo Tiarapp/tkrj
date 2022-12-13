@@ -62,25 +62,18 @@ class RaportAkademikController extends RaportController
         if (!empty($rekap_akademik)) {
             $cp = explode('||', $rekap_akademik->cp);
             $narasi = explode('||', $rekap_akademik->narasi);
-            $narasi = explode('||', $rekap_akademik->narasi);
-            $saran_tema = explode('||', $rekap_akademik->saran_tema);
-            $saran_ortu = explode('||', $rekap_akademik->saran_ortu);
 
             $cp = array_reverse($cp);
             $narasi = array_reverse($narasi);
-            $saran_tema = array_reverse($saran_tema);
-            $saran_ortu = array_reverse($saran_ortu);
         } else {
             $cp='';
             $narasi='';
-            $saran_tema='';
-            $saran_ortu='';
         }
 
         if ($periode->periode == "Tengah") {
-            return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu'));
+            return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode', 'rekap_akademik', 'cp', 'narasi'));
         } else {
-            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode', 'rekap_akademik', 'cp','narasi', 'saran_tema', 'saran_ortu'));
+            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode', 'rekap_akademik', 'cp','narasi'));
         }
 
     }
