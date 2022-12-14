@@ -73,7 +73,7 @@
                 },
                 {
                     "name": "Proyek",
-                    "icon": "file-text",
+                    "icon": "circle",
                     "slug": "",
                     "submenu": [
                         {

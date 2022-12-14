@@ -99,14 +99,19 @@
                         <div class="raport">
                             <label for="" style="text-align: left"><b>CAPAIAN PERKEMBANGAN ANAK</b></label>
                         </div>
-
                         @php
+                            $k=1;
                             for ($i=0; $i < count($cp) ; $i++) {
                                 echo '<div class="narasi">
-                                        <div class="jatidiri">
-
-                                            <img src="" alt="">
-                                            <h3>'.$cp[$i].'</h3>';
+                                        <div class="jatidiri">';
+                                            if ($i==0) {
+                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_1.'")}}" alt="Image"/>';
+                                            }elseif($i==1){
+                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_2.'")}}" alt="Image"/>';
+                                            }elseif($i==2){
+                                                echo'<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_3.'")}}" alt="Image"/>';
+                                            }
+                                echo '<h3>'.$cp[$i].'</h3>';
                                             for ($j=0; $j < count($narasi) ; $j++) {
                                                 if ($i==$j) {
                                                     echo '<p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">'.$narasi[$j].'</p>';
@@ -115,16 +120,18 @@
                                                 }
                                             }
                                 echo '</div></div>';
+                                $k++;
                             }
                         @endphp
-                            <div class="narasi">
-                                <div class="jatidiri">
-                                    <h3>Projek Penguatan Profil Pelajar Pancasila</h3>
-                                    <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->detail_proyek }}</p>
-                                    <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->catatan_proyek }}</p>
-                                </div>
-                            </div>
+
                     @endif
+                    <div class="narasi">
+                        <div class="jatidiri">
+                            <h3>Projek Penguatan Profil Pelajar Pancasila</h3>
+                            <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->detail_proyek ?? "" }}</p>
+                            <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->catatan_proyek ?? "" }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

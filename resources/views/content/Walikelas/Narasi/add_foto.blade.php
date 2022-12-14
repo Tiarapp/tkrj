@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src=""  frameborder="0" width="300px" height="300px" style="border: 1px solid black"></iframe>
+                <img class="card-img" style="width: 400px; height: 400px; text-align: left " src="{{ asset('/Tahunajaran/2022/B2/ABRAR DAYYAN HAYDAR ALHANAN_CP_1.png')}}">
 
                 <form id="form_foto" action="{{route('walikelas.narasi.add_foto')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}

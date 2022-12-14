@@ -93,9 +93,12 @@ class NarasiRaportController extends WalasController
 
         $murid=data_murid::find($request->id_murid);
 
-        $imageName = $murid->nama.'.'.$request->foto_cp->extension();
+        $imageName = $murid->nama.'_CP_'.$request->cp_id.'.'.$request->foto_cp->extension();
 
-        $request->foto_cp->move(public_path('Tahunajaran/'.$periode->tahunmulai."/".$murid->kelas."/".$murid->nama), $imageName);
+        $request->foto_cp->move(public_path('Tahunajaran/'.$periode->tahunmulai."/".$murid->kelas), $imageName);
+        // $imageName = 'CP_'.$request->cp_id.'.'.$request->foto_cp->extension();
+
+        // $request->foto_cp->move(public_path($periode->tahunmulai."/".$murid->kelas."/".$murid->absen), $imageName);
 
         if ($request->cp_id==1) {
 

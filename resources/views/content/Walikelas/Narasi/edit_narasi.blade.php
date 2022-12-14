@@ -61,7 +61,8 @@
                                                     <i data-feather='image'></i>
                                                 </button>
                                             </h6>
-                                            <textarea class="form-control narasi" name="narasi[{{$key}}]" id="narasi_{{$key}}" rows="3">Alhamdulillah, {{$murid->nama}} sudah dapat {{$na->tk}}</textarea>
+                                            @php $nama=strtolower($murid->nama); $new_nama=ucwords($nama);@endphp
+                                            <textarea class="form-control narasi" name="narasi[{{$key}}]" id="narasi_{{$key}}" rows="3">Alhamdulillah, Ananda {{$new_nama}} sudah dapat {{$na->tk}}</textarea>
                                             <br>
                                             <div class="row">
                                                 <div class="col-6">
@@ -182,10 +183,10 @@
                             $("#cp_"+index).val(cp[index]);
                         }
 
-                        const narasi = result.narasi.split("||");
-                        for (let index = 0; index < narasi.length; index++) {
-                            $("#narasi_"+index).val(narasi[index]);
-                        }
+                        // const narasi = result.narasi.split("||");
+                        // for (let index = 0; index < narasi.length; index++) {
+                        //     $("#narasi_"+index).val(narasi[index]);
+                        // }
 
                         const saran_tema = result.saran_tema.split("||");
                         for (let index = 0; index < saran_tema.length; index++) {

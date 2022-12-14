@@ -11,11 +11,11 @@ class MasterKategoriController extends MasterController
     public function index()
     {
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data Master"], ['name' => "Kategori"]];
-        $MasterKategori = MasterKategori::latest()->paginate(10);
+        $kategori = MasterKategori::latest()->paginate(10);
 
         return view('content.Master.kategori.data_kategori', [
             'breadcrumbs' => $breadcrumbs,
-            'kategori' => $MasterKategori
+            'kategori' => $kategori
         ]);
     }
 

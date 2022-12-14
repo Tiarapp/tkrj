@@ -78,7 +78,10 @@ class RaportAkademikController extends RaportController
             $saran_ortu='';
         }
 
-        $proyek = nilai_proyek::where('murid_id', '=', $murid_id)->first();
+        $proyek = nilai_proyek::where('murid_id', '=', $murid_id)
+                                ->where('periode_keterangan', $periode->periode)
+                                ->where('periode_id', $periode->id)->first();
+                                
         if ($periode->periode == "Tengah") {
             return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu'));
         } else {

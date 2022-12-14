@@ -47,9 +47,6 @@ class RaportEkstraController extends RaportController
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
 
-        // $predikat=MasterPredikat::all();
-        // dd($periode);
-
         return view('content.Raport.Ekstra.view_murid', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid]);
     }
 
@@ -65,44 +62,51 @@ class RaportEkstraController extends RaportController
                     ->where('periode_keterangan', $periode->periode)
                     ->where('periode_id', $periode->id)
                     ->first();
-        $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)->get();
+        $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)
+                                ->where('periode_keterangan', $periode->periode)
+                                ->where('periode_id', $periode->id)->get();
         $cbi = nilai_cbi::where('murid_id', '=', $murid_id)
                 ->where('periode_keterangan', $periode->periode)
+                ->where('periode_id', $periode->id)
                 ->get();
-        $doa = nilai_doa::leftjoin('master_doa_harian', 'nilai_doa_harian.indicators_id', '=', 'master_doa_harian.id')    
+        $doa = nilai_doa::leftjoin('master_doa_harian', 'nilai_doa_harian.indicators_id', '=', 'master_doa_harian.id')
                         ->where('periode_keterangan', $periode->periode)
+                        ->where('periode_id', $periode->id)
                         ->where('murid_id', '=', $murid_id)
                         ->orderby('master_doa_harian.urutan')->get();
-        // dd($doa);
+
         $hadist = nilai_hadist::where('murid_id', '=', $murid_id)
-                ->where('periode_keterangan', $periode->periode)
-                ->get();
+                                ->where('periode_keterangan', $periode->periode)
+                                ->where('periode_id', $periode->id)->get();
         $ibadah = nilai_ibadah::leftjoin('master_doa_harian', 'nilai_ibadah.indicators_id', '=', 'master_doa_harian.id')
                                 ->where('periode_keterangan', $periode->periode)
+                                ->where('periode_id', $periode->id)
                                 ->where('murid_id', '=', $murid_id)
+                                ->orderby('master_doa_harian.urutan')
                                 ->orderby('master_doa_harian.urutan')->get();
 
 
         $tahfidz = nilai_tahfidz::where('murid_id', '=', $murid_id)
-                    ->where('periode_keterangan', $periode->periode)
-                    ->get();
+                                ->where('periode_keterangan', $periode->periode)
+                                ->where('periode_id', $periode->id)->get();
+
         $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id)
-                    ->where('periode_keterangan', $periode->periode)
-                    ->get();
+                                ->where('periode_keterangan', $periode->periode)
+                                ->where('periode_id', $periode->id)->get();
 
         $ortu = MasterSiswa::where('id', '=', $murid->siswa_id)->first();
         $pertumbuhan=perkembangan::leftjoin('master_kategoris', 'nilai_perkembangan.master_kategori_id', '=', 'master_kategoris.id')
                                 ->where('nilai_perkembangan.murid_id', $murid_id)
                                 ->where('nilai_perkembangan.periode_id', $periode->id)->orderby('master_kategoris.id')->get();
+        // return $pertumbuhan->master_perkembangan;
         $sp = studentprofile::where('murid_id', '=', $murid_id)
-                ->where('periode_keterangan', $periode->periode)
-                ->where('periode_id', $periode->id)
-                ->first();
+                            ->where('periode_keterangan', $periode->periode)
+                            ->where('periode_id', $periode->id)
+                            ->first();
 
         if ($sp != null) {
             $spdetail = studentprofile_detail::where('nilai_studentprofile_id', '=', $sp->id)
-                ->orderBy('master_indikator_studentprofile_id', 'asc')
-                ->get();
+                                                ->orderBy('master_indikator_studentprofile_id', 'asc')->get();
         } else {
             $spdetail = null;
         }
