@@ -87,7 +87,7 @@
                         <div class="col-7">
                             <div class="row">
                                 <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-8" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
                                 <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
+                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: I</b></label>
                             </div>
                         </div>
                     </div>
@@ -109,8 +109,8 @@
                         A. Student Profile
                         <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
                             <tr>
-                                <th colspan="1" rowspan="2">PROFILE</th>
-                                <th colspan="4">Category</th>
+                                <th style="height: 60px" colspan="1" rowspan="2">PROFILE</th>
+                                <th style="20px" colspan="4">Category</th>
                             </tr>
                             <tr>
                                 <th colspan="1">Very Good</th>
@@ -123,7 +123,10 @@
 
                             @foreach ($spdetail as $sp)
                             <tr>
-                                <td colspan="1" rowspan="1">{{ $sp->indikator }}</td>
+                                <td colspan="1" rowspan="1" style="height: 40px">
+
+                                    <center>{{ $sp->indikator }}</center>
+                                </td>
                                 <td colspan="1" rowspan="1">
                                     @if ($sp->nilai == "vg")
                                         {{-- <i class="fa-sharp fa-solid fa-circle-check"></i> --}}
@@ -154,11 +157,11 @@
                         B. Tumbuh Kembang Anak
                         <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
                             <tr>
-                                <th colspan="3" rowspan="1">Indikator Pertumbuhan</th>
+                                <th style="height: 40px;" colspan="3" rowspan="1">Indikator Pertumbuhan</th>
                                 <th colspan="2" rowspan="1">Capaian Pertumbuhan</th>
                             </tr>
                             <tr>
-                                <td colspan="3" rowspan="1">A. Kesehatan</td>
+                                <td style="height: 30px" colspan="3" rowspan="1">A. Kesehatan</td>
                                 <td colspan="2" rowspan="1"></td>
                             </tr>
                             @php
@@ -167,7 +170,7 @@
                             @foreach ($pertumbuhan as $p)
                                 @if ($p->master_perkembangan=="Kesehatan")
                                     <tr style="padding-left: 10px">
-                                        <td style ="text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
+                                        <td style ="height: 25px; text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
                                         <td colspan="2" rowspan="1">{{$p->nilai}}</td>
                                     </tr>
                                 @endif
@@ -176,16 +179,16 @@
                                 @endphp
                             @endforeach
                             <tr>
-                                <td  colspan="3" rowspan="1">B. Kebersihan</td>
+                                <td style ="height: 30px;" colspan="3" rowspan="1">B. Kebersihan</td>
                                 <td colspan="2" rowspan="1"></td>
                             </tr>
                             @php
                                 $k=1;
                             @endphp
                             @foreach ($pertumbuhan as $p)
-                                @if ($p->master_perkembangan=="Kerapian")
+                                @if ($p->master_perkembangan=="Kebersihan")
                                     <tr style="padding-left: 10px">
-                                        <td style ="text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
+                                        <td style ="height: 25px; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
                                         <td colspan="2" rowspan="1">{{$p->nilai}}</td>
                                     </tr>
                                 @endif
@@ -217,13 +220,14 @@
                     <div class="pagebreak"></div>
                     <br>
                     <div class="row" style="margin-bottom: 30px">
-                            <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
-                            <h3><b>AKHIR SEMESTER</b></h3>
+                        <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
+                        <h3><b>AKHIR SEMESTER</b></h3>
+                        <br>
                         <br><br>
                         <div class="col-7">
                             <div class="row">
                                 <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-8" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
                                 <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
@@ -261,10 +265,10 @@
                     <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
-                                <th>AREAS OF DEVELOPMENT</th>
-                                <th>DEVELOPMENT ACHIEVEMENT</th>
-                                <th>INDICATORS</th>
-                                <th style="text-align: center">VALUE</th>
+                                <th> <center>AREAS OF DEVELOPMENT</center> </th>
+                                <th> <center>DEVELOPMENT ACHIEVEMENT</center> </th>
+                                <th> <center>INDICATORS</center> </th>
+                                <th><center>VALUE</center></th>
                             </tr>
 
                             @php
@@ -272,8 +276,10 @@
                                 $rowspan = 0;
                             @endphp
 
-                            {{-- Nilai Ekstra --}}
-                            @foreach($ekstra as $key => $data)
+
+
+                            {{-- Nilai Ibadah --}}
+                            @foreach($ibadah as $key => $data)
                             @php
                             $rowid += 1
                             @endphp
@@ -281,7 +287,7 @@
                             @if ($key == 0 || $rowspan == $rowid)
                                 @php
                                     $rowid = 0;
-                                    $rowspan = count($ekstra);
+                                    $rowspan = count($ibadah);
                                 @endphp
                                 <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
                                 <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
@@ -351,25 +357,6 @@
 
                             {{-- Nilai Ekstra --}}
                             @foreach($ekstra as $key => $data)
-                            @php
-                            $rowid += 1
-                            @endphp
-                            <tr>
-                            @if ($key == 0 || $rowspan == $rowid)
-                                @php
-                                    $rowid = 0;
-                                    $rowspan = count($ekstra);
-                                @endphp
-                                <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
-                                <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
-                            @endif
-                            <td>{{$data->indicators}}</td>
-                            <td class="value">{{$data->nilai}}</td>
-                            </tr>
-                            @endforeach
-
-                            {{-- Nilai Ekstra --}}
-                            @foreach($ekstra as $key => $data)
                                 @php
                                     $rowid += 1
                                 @endphp
@@ -401,7 +388,7 @@
                         <br>
                         <br>
                         <div class="col-6" style="text-align: left">
-                            <b>Sidoarjo, 17 Desember 2021</b>
+                            <b>Sidoarjo, 24 Desember 2022</b>
                         </div>
                     </div>
 
@@ -452,10 +439,14 @@
                     </div>
 
                     <div class="row" style="margin-bottom: 30px">
+                        <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
+                        <h3><b>AKHIR SEMESTER</b></h3>
+                        <br>
+                        <br><br>
                         <div class="col-7">
                             <div class="row">
                                 <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-8" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
                                 <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
@@ -477,10 +468,10 @@
                     <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
-                                <th>AREAS OF DEVELOPMENT</th>
-                                <th>DEVELOPMENT ACHIEVEMENT</th>
-                                <th>INDICATORS</th>
-                                <th style="text-align: center">VALUE</th>
+                                <th> <center>AREAS OF DEVELOPMENT</center> </th>
+                                <th> <center>DEVELOPMENT ACHIEVEMENT</center> </th>
+                                <th> <center>INDICATORS</center> </th>
+                                <th><center>VALUE</center></th>
                             </tr>
                             {{-- Nilai Tilawah --}}
                             @foreach($tilawah as $key => $data)

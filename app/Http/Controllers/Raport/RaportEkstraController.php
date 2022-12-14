@@ -78,13 +78,13 @@ class RaportEkstraController extends RaportController
         $hadist = nilai_hadist::where('murid_id', '=', $murid_id)
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)->get();
+
         $ibadah = nilai_ibadah::leftjoin('master_doa_harian', 'nilai_ibadah.indicators_id', '=', 'master_doa_harian.id')
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)
                                 ->where('murid_id', '=', $murid_id)
-                                ->orderby('master_doa_harian.urutan')
                                 ->orderby('master_doa_harian.urutan')->get();
-
+        // return $ibadah;
 
         $tahfidz = nilai_tahfidz::where('murid_id', '=', $murid_id)
                                 ->where('periode_keterangan', $periode->periode)

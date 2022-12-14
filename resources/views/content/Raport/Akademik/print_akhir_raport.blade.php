@@ -53,6 +53,14 @@
         border: 1px solid black;
     }
 
+    /* MENCOBA AKHIR GARIS */
+    .solid{
+        border-left: 1px red solid;
+        width: 100px;
+        display: inline-block;
+        padding-left: 5px;
+    }
+
     @media print {
         .pagebreak {
             page-break-before: always;
@@ -88,7 +96,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
+                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: I</b></label>
                             </div>
                         </div>
                     </div>
@@ -125,6 +133,7 @@
                         @endphp
 
                     @endif
+                    {{-- <div class="solid"></div> --}}
                     <div class="narasi">
                         <div class="jatidiri">
                             <h3>Projek Penguatan Profil Pelajar Pancasila</h3>
@@ -132,9 +141,11 @@
                             <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->catatan_proyek ?? "" }}</p>
                         </div>
                     </div>
+                    {{-- <hr size="6" width="50%" align="left" color="red"> --}}
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 <!--/ Complex Headers -->
