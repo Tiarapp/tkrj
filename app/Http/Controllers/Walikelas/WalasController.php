@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class WalasController extends BaseController
 {
@@ -20,9 +21,9 @@ class WalasController extends BaseController
     }
 
     // GET DETAIL WALIKELAS
-        public function detail_walikelas($id_guru) {
+        public function detail_walikelas() {
             $periode=$this->periode->getPeriodeAktif();
-            return $walas=data_walikelas::where('guru_id', $id_guru)
+            return $walas=data_walikelas::where('guru_id', Auth::user()->data_id)
                                         ->where('tahunajaran_id', $periode->tahunajaran_id)
                                         ->get();
         }

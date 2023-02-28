@@ -13,6 +13,7 @@ use App\Models\Nilai\nilai_ibadah;
 use App\Models\Nilai\nilai_tahfidz;
 use App\Models\Nilai\nilai_tilawah;
 use App\Models\Rekap\rekap_akademik;
+use App\Models\Walikelas\nilai_proyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,10 +67,10 @@ class RaportAkademikController extends RaportController
             $saran_tema = explode('||', $rekap_akademik->saran_tema);
             $saran_ortu = explode('||', $rekap_akademik->saran_ortu);
 
-            $cp = array_reverse($cp);
-            $narasi = array_reverse($narasi);
-            $saran_tema = array_reverse($saran_tema);
-            $saran_ortu = array_reverse($saran_ortu);
+            // $cp = array_reverse($cp);
+            // $narasi = array_reverse($narasi);
+            // $saran_tema = array_reverse($saran_tema);
+            // $saran_ortu = array_reverse($saran_ortu);
         } else {
             $cp='';
             $narasi='';
@@ -77,10 +78,14 @@ class RaportAkademikController extends RaportController
             $saran_ortu='';
         }
 
+        $proyek = nilai_proyek::where('murid_id', '=', $murid_id)
+                                ->where('periode_keterangan', $periode->periode)
+                                ->where('periode_id', $periode->id)->first();
+                                
         if ($periode->periode == "Tengah") {
             return view('content.Raport.Akademik.print_mid_raport', compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu'));
         } else {
-            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode', 'rekap_akademik', 'cp','narasi', 'saran_tema', 'saran_ortu'));
+            return view('content.Raport.Akademik.print_akhir_raport', compact('murid','periode', 'rekap_akademik', 'cp','narasi', 'saran_tema', 'saran_ortu', 'proyek'));
         }
 
     }

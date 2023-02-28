@@ -55,8 +55,14 @@
                                         @foreach ($nilai_akademik as $na)
 
                                             <input type="hidden" value="{{$na->cp}}" name="cp[]">
-                                            <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">{{$na->cp}}</h6>
-                                            <textarea class="form-control narasi" name="narasi[{{$key}}]" id="narasi_{{$key}}" rows="3">Alhamdulillah, {{$murid->nama}} sudah dapat {{$na->tk}}</textarea>
+                                            <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">
+                                                {{$na->cp}}
+                                                <button type="button" class="btn btn-icon btn-success _foto" id="add_foto" data-bs-toggle="modal" data-bs-target="#inlineForm">
+                                                    <i data-feather='image'></i>
+                                                </button>
+                                            </h6>
+                                            @php $nama=strtolower($murid->nama); $new_nama=ucwords($nama);@endphp
+                                            <textarea class="form-control narasi" name="narasi[{{$key}}]" id="narasi_{{$key}}" rows="3">Alhamdulillah, Ananda {{$new_nama}} sudah dapat {{$na->tk}}</textarea>
                                             <br>
                                             <div class="row">
                                                 <div class="col-6">
@@ -72,12 +78,14 @@
                                             </div>
 
                                             @php $i="30px"; $key++;@endphp
+
                                         @endforeach
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary me-1">Simpan</button>
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </form>
+                                    @include('content.Walikelas.Narasi.add_foto')
                                 </div>
                             </div>
                         </div>
@@ -146,7 +154,19 @@
                         });
                 @endforeach
             @endif
+
+            var id_rekap=document.getElementById("id_rekap_akademik").value;
+            if (id_rekap=="") {
+                $("._foto").hide=true;
+            }else{
+                $("._foto").hide=true;
+                document.getElementById("id_nilai_akademik").value=id_rekap;
+            }
         });
+
+        function submit() {
+            document.getElementById("form_foto").submit();
+        }
 
         const edit_rekap_akademik = function(id_murid){
             if (id_murid) {
@@ -163,16 +183,16 @@
                             $("#cp_"+index).val(cp[index]);
                         }
 
-                        const narasi = result.narasi.split("||");
-                        for (let index = 0; index < narasi.length; index++) {
-                            $("#narasi_"+index).val(narasi[index]);
-                        }
+                        // const narasi = result.narasi.split("||");
+                        // for (let index = 0; index < narasi.length; index++) {
+                        //     $("#narasi_"+index).val(narasi[index]);
+                        // }
 
                         const saran_tema = result.saran_tema.split("||");
                         for (let index = 0; index < saran_tema.length; index++) {
                             $("#saran_tema_"+index).val(saran_tema[index]);
                         }
-                        
+
                         const saran_ortu = result.saran_ortu.split("||");
                         for (let index = 0; index < saran_ortu.length; index++) {
                             $("#saran_ortu_"+index).val(saran_ortu[index]);

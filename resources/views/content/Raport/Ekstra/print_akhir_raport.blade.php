@@ -13,12 +13,12 @@
 @endsection
 
 <head>
-    
+
 <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('css/base/themes/dark-layout.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('css/base/themes/bordered-layout.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('css/base/themes/semi-dark-layout.css')) }}" />
-  
+
 </head>
 
 <style>
@@ -38,7 +38,7 @@
         color: black;
         border: 1px solid black;
     }
-    
+
     .std-profile {
         margin-bottom: 20px;
     }
@@ -68,8 +68,8 @@
     }
 
     @media print {
-        .pagebreak { 
-            page-break-before: always; 
+        .pagebreak {
+            page-break-before: always;
         }
     }
 </style>
@@ -87,7 +87,7 @@
                         <div class="col-7">
                             <div class="row">
                                 <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-6" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
                                 <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
+                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: I</b></label>
                             </div>
                         </div>
                     </div>
@@ -109,52 +109,125 @@
                         A. Student Profile
                         <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
                             <tr>
-                                <th colspan="1" rowspan="2">PROFILE</th>
-                                <th colspan="4">Category</th>
+                                <th style="height: 60px" colspan="1" rowspan="2">PROFILE</th>
+                                <th style="20px" colspan="4">Category</th>
                             </tr>
                             <tr>
-                                <th colspan="1">PROFILE</th>
-                                <th colspan="1">Category</th>
-                                <th colspan="1">PROFILE</th>
-                                <th colspan="1">Category</th>
+                                <th colspan="1">Very Good</th>
+                                <th colspan="1">Good</th>
+                                <th colspan="1">Satisfactory</th>
+                                <th colspan="1">Need Improve</th>
                             </tr>
+
+                            @if ($spdetail != null)
+
+                            @foreach ($spdetail as $sp)
+                            <tr>
+                                <td colspan="1" rowspan="1" style="height: 40px">
+
+                                    <center>{{ $sp->indikator }}</center>
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "vg")
+                                        {{-- <i class="fa-sharp fa-solid fa-circle-check"></i> --}}
+                                        <center>&#10003;</center>
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "g")
+                                        <center>&#10003;</center>
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "s")
+                                        <center>&#10003;</center>
+                                    @endif
+                                </td>
+                                <td colspan="1" rowspan="1">
+                                    @if ($sp->nilai == "ni")
+                                        <center>&#10003;</center>
+                                    @endif
+                                </td>
+                            </tr>
+                                @endforeach
+                            @endif
                         </table>
                     </div>
                     <div class="row tumbuh-kembang" style="padding: 10px">
                         B. Tumbuh Kembang Anak
                         <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
                             <tr>
-                                <th colspan="3" rowspan="1">Indikator Pertumbuhan</th>
+                                <th style="height: 40px;" colspan="3" rowspan="1">Indikator Pertumbuhan</th>
                                 <th colspan="2" rowspan="1">Capaian Pertumbuhan</th>
                             </tr>
                             <tr>
-                                <td colspan="3" rowspan="1">A. Kesehatan</td>
+                                <td style="height: 30px" colspan="3" rowspan="1">A. Kesehatan</td>
                                 <td colspan="2" rowspan="1"></td>
                             </tr>
-                            {{-- Foreach indikator kesehatan --}}
-                            {{-- <tr style="padding-left: 10px">
-                                <td colspan="3" rowspan="1">A. Kesehatan</td>
-                                <td colspan="2" rowspan="1"></td>
-                            </tr> --}}
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach ($pertumbuhan as $p)
+                                @if ($p->master_perkembangan=="Kesehatan")
+                                    <tr style="padding-left: 10px">
+                                        <td style ="height: 25px; text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
+                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                    </tr>
+                                @endif
+                                @php
+                                    $i++
+                                @endphp
+                            @endforeach
                             <tr>
-                                <td colspan="3" rowspan="1">A. Kebersihan</td>
+                                <td style ="height: 30px;" colspan="3" rowspan="1">B. Kebersihan</td>
                                 <td colspan="2" rowspan="1"></td>
                             </tr>
-                            {{-- Foreach indikator Kebersihan --}}
-                            {{-- <tr style="padding-left: 10px">
-                                <td colspan="3" rowspan="1">A. Kesehatan</td>
+                            @php
+                                $k=1;
+                            @endphp
+                            @foreach ($pertumbuhan as $p)
+                                @if ($p->master_perkembangan=="Kebersihan")
+                                    <tr style="padding-left: 10px">
+                                        <td style ="height: 25px; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
+                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                    </tr>
+                                @endif
+                                @php
+                                    $i++
+                                @endphp
+                            @endforeach
+                            {{-- <tr>
+                                <td  colspan="3" rowspan="1">C. Kerapian</td>
                                 <td colspan="2" rowspan="1"></td>
-                            </tr> --}}
+                            </tr>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach ($pertumbuhan as $p)
+                                @if ($p->master_perkembangan=="Kerapian")
+                                    <tr style="padding-left: 10px">
+                                        <td style ="text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
+                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                    </tr>
+                                @endif
+                                @php
+                                    $i++
+                                @endphp
+                            @endforeach --}}
                         </table>
                     </div>
 
                     <div class="pagebreak"></div>
                     <br>
                     <div class="row" style="margin-bottom: 30px">
+                        <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
+                        <h3><b>AKHIR SEMESTER</b></h3>
+                        <br>
+                        <br><br>
                         <div class="col-7">
                             <div class="row">
                                 <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-6" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
                                 <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
@@ -188,14 +261,14 @@
                         </div>
                     </div>
 
-                    
-                    <div class="row nilai" style="text-align: center; padding: 10px">           
+
+                    <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
-                                <th>AREAS OF DEVELOPMENT</th>
-                                <th>DEVELOPMENT ACHIEVEMENT</th>
-                                <th>INDICATORS</th>
-                                <th style="text-align: center">VALUE</th>
+                                <th> <center>AREAS OF DEVELOPMENT</center> </th>
+                                <th> <center>DEVELOPMENT ACHIEVEMENT</center> </th>
+                                <th> <center>INDICATORS</center> </th>
+                                <th><center>VALUE</center></th>
                             </tr>
 
                             @php
@@ -203,24 +276,7 @@
                                 $rowspan = 0;
                             @endphp
 
-                            {{-- Nilai Ekstra --}}
-                            @foreach($ekstra as $key => $data)
-                            @php
-                            $rowid += 1
-                            @endphp
-                            <tr>
-                            @if ($key == 0 || $rowspan == $rowid)
-                                @php
-                                    $rowid = 0;
-                                    $rowspan = count($ekstra);
-                                @endphp
-                                <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
-                                <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
-                            @endif
-                            <td>{{$data->indicators}}</td>
-                            <td class="value">{{$data->nilai}}</td>
-                            </tr>
-                            @endforeach
+
 
                             {{-- Nilai Ibadah --}}
                             @foreach($ibadah as $key => $data)
@@ -241,7 +297,7 @@
                             </tr>
                             @endforeach
 
-                            
+
                             {{-- Nilai Doa Harian --}}
                             @foreach($doa as $key => $data)
                             @php
@@ -298,6 +354,27 @@
                             <td class="value">{{$data->nilai}}</td>
                             </tr>
                             @endforeach
+
+                            {{-- Nilai Ekstra --}}
+                            @foreach($ekstra as $key => $data)
+                                @php
+                                    $rowid += 1
+                                @endphp
+
+                                <tr>
+                                    @if ($key == 0 || $rowspan == $rowid)
+                                        @php
+                                            $rowid = 0;
+                                            $rowspan = count($ekstra);
+                                        @endphp
+                                            <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
+                                            <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
+                                    @endif
+
+                                    <td>{{$data->indicators}}</td>
+                                    <td class="value">{{$data->nilai}}</td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
 
@@ -306,12 +383,12 @@
                             <b>Interview Request: Yes / No </b>
                         </div>
                         <div class="col-6" style="text-align: right">
-                            <b>Ijin: 0 hari, Sakit: 6 hari, Alpa: 0 hari</b>
+                            <b>Ijin: {{$absen->ijin ?? 0}} hari, Sakit: {{$absen->sakit ?? 0}} hari, Alpa: {{$absen->alpha ?? 0}} hari</b>
                         </div>
                         <br>
                         <br>
                         <div class="col-6" style="text-align: left">
-                            <b>Sidoarjo, 17 Desember 2021</b>
+                            <b>Sidoarjo, 24 Desember 2022</b>
                         </div>
                     </div>
 
@@ -322,7 +399,7 @@
                                     PRINCIPAL
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
-                                    PARENT	
+                                    PARENT
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
                                     HOMEROOM TEACHER
@@ -332,13 +409,13 @@
                         <div class="sign" >
                             <div class="row">
                                 <div class="col-4" style="height: 120px; border: 1px solid black">
-                                    
+
                                 </div>
                                 <div class="col-4" style="height: 120px; border: 1px solid black">
-                                    	
+
                                 </div>
                                 <div class="col-4" style="height: 120px; border: 1px solid black">
-                                     
+
                                 </div>
                             </div>
                         </div>
@@ -348,7 +425,7 @@
                                     Siti Isnawati, S.Pd.I. S.Pd
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
-                                    PARENT	
+                                    {{ $ortu->nama_bapak }}
                                 </div>
                                 <div class="col-4" style="border: 1px solid black">
                                     {{ Auth::user()->nama }}
@@ -362,10 +439,14 @@
                     </div>
 
                     <div class="row" style="margin-bottom: 30px">
+                        <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
+                        <h3><b>AKHIR SEMESTER</b></h3>
+                        <br>
+                        <br><br>
                         <div class="col-7">
                             <div class="row">
                                 <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-6" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
                                 <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
@@ -384,13 +465,13 @@
                         </div>
                     </div>
 
-                    <div class="row nilai" style="text-align: center; padding: 10px">           
+                    <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
-                                <th>AREAS OF DEVELOPMENT</th>
-                                <th>DEVELOPMENT ACHIEVEMENT</th>
-                                <th>INDICATORS</th>
-                                <th style="text-align: center">VALUE</th>
+                                <th> <center>AREAS OF DEVELOPMENT</center> </th>
+                                <th> <center>DEVELOPMENT ACHIEVEMENT</center> </th>
+                                <th> <center>INDICATORS</center> </th>
+                                <th><center>VALUE</center></th>
                             </tr>
                             {{-- Nilai Tilawah --}}
                             @foreach($tilawah as $key => $data)
