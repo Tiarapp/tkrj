@@ -64,13 +64,19 @@ class RaportEkstraController extends RaportController
                     ->first();
         $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)->get();
         $cbi = nilai_cbi::where('murid_id', '=', $murid_id)->get();
-        $doa = nilai_doa::leftjoin('master_doa_harian', 'nilai_doa_harian.indicators_id', '=', 'master_doa_harian.id')
+        $doa = nilai_doa::leftjoin('data_indicators', 'nilai_doa_harian.indicators_id', '=', 'data_indicators.id')
+                        ->leftjoin('master_doa_harian', 'data_indicators.master_id', '=', 'master_doa_harian.id')
+                        // ->select('master_doa_harian.urutan')
                         ->where('murid_id', '=', $murid_id)
-                        ->orderby('master_doa_harian.urutan')->get();
+                        ->orderby('master_doa_harian.urutan', 'ASC')->get();
+
+                        // dd($doa);
         $hadist = nilai_hadist::where('murid_id', '=', $murid_id)->get();
-        $ibadah = nilai_ibadah::leftjoin('master_doa_harian', 'nilai_ibadah.indicators_id', '=', 'master_doa_harian.id')
-                                ->where('murid_id', '=', $murid_id)
-                                ->orderby('master_doa_harian.urutan')->get();
+        $ibadah = nilai_ibadah::leftjoin('data_indicators', 'nilai_ibadah.indicators_id', '=', 'data_indicators.id')
+                        ->leftjoin('master_doa_harian', 'data_indicators.master_id', '=', 'master_doa_harian.id')
+                        // ->select('master_doa_harian.urutan')
+                        ->where('murid_id', '=', $murid_id)
+                        ->orderby('master_doa_harian.urutan', 'ASC')->get();
 
 
         $tahfidz = nilai_tahfidz::where('murid_id', '=', $murid_id)->get();
