@@ -196,6 +196,24 @@
                                     $i++
                                 @endphp
                             @endforeach
+                            <tr>
+                                <td style ="height: 30px;" colspan="3" rowspan="1">C. Kerapian</td>
+                                <td colspan="2" rowspan="1"></td>
+                            </tr>
+                            @php
+                                $k=1;
+                            @endphp
+                            @foreach ($pertumbuhan as $p)
+                                @if ($p->master_perkembangan=="Kerapian")
+                                    <tr style="padding-left: 10px">
+                                        <td style ="height: 25px; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
+                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                    </tr>
+                                @endif
+                                @php
+                                    $i++
+                                @endphp
+                            @endforeach
                             {{-- <tr>
                                 <td  colspan="3" rowspan="1">C. Kerapian</td>
                                 <td colspan="2" rowspan="1"></td>

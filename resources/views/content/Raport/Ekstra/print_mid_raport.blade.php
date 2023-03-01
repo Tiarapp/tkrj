@@ -125,9 +125,9 @@
                     <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
-                                <th>AREAS OF DEVELOPMENT</th>
-                                <th>DEVELOPMENT ACHIEVEMENT</th>
-                                <th>INDICATORS</th>
+                                <th style="text-align: center">AREAS OF DEVELOPMENT</th>
+                                <th style="text-align: center">DEVELOPMENT ACHIEVEMENT</th>
+                                <th style="text-align: center">INDICATORS</th>
                                 <th style="text-align: center">VALUE</th>
                             </tr>
 
@@ -244,7 +244,7 @@
                         <br>
                         <br>
                         <div class="col-6" style="text-align: left">
-                            <b>Sidoarjo, 17 Desember 2021</b>
+                            <b>Sidoarjo, 18 Maret 2023</b>
                         </div>
                     </div>
 
@@ -320,9 +320,9 @@
                     <div class="row nilai" style="text-align: center; padding: 10px">
                         <table style="border: 1px solid black">
                             <tr>
-                                <th>AREAS OF DEVELOPMENT</th>
-                                <th>DEVELOPMENT ACHIEVEMENT</th>
-                                <th>INDICATORS</th>
+                                <th style="text-align: center">AREAS OF DEVELOPMENT</th>
+                                <th style="text-align: center">DEVELOPMENT ACHIEVEMENT</th>
+                                <th style="text-align: center">INDICATORS</th>
                                 <th style="text-align: center">VALUE</th>
                             </tr>
                             {{-- Nilai Tilawah --}}

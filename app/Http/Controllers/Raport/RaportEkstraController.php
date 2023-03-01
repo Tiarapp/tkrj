@@ -69,9 +69,10 @@ class RaportEkstraController extends RaportController
                 ->where('periode_keterangan', $periode->periode)
                 ->where('periode_id', $periode->id)
                 ->get();
-        $doa = nilai_doa::leftjoin('master_doa_harian', 'nilai_doa_harian.indicators_id', '=', 'master_doa_harian.id')
+        $doa = nilai_doa::leftjoin('data_indicators', 'nilai_doa_harian.indicators_id', '=', 'data_indicators.id')
+                        ->leftjoin('master_doa_harian', 'data_indicators.master_id', 'master_doa_harian.id')
                         ->where('periode_keterangan', $periode->periode)
-                        ->where('periode_id', $periode->id)
+                        ->where('nilai_doa_harian.periode_id', $periode->id)
                         ->where('murid_id', '=', $murid_id)
                         ->orderby('master_doa_harian.urutan')->get();
 
@@ -79,11 +80,17 @@ class RaportEkstraController extends RaportController
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)->get();
 
-        $ibadah = nilai_ibadah::leftjoin('master_doa_harian', 'nilai_ibadah.indicators_id', '=', 'master_doa_harian.id')
-                                ->where('periode_keterangan', $periode->periode)
-                                ->where('periode_id', $periode->id)
-                                ->where('murid_id', '=', $murid_id)
-                                ->orderby('master_doa_harian.urutan')->get();
+        $ibadah = nilai_ibadah::leftjoin('data_indicators', 'nilai_ibadah.indicators_id', '=', 'data_indicators.id')
+                        ->leftjoin('master_doa_harian', 'data_indicators.master_id', 'master_doa_harian.id')
+                        ->where('periode_keterangan', $periode->periode)
+                        ->where('nilai_ibadah.periode_id', $periode->id)
+                        ->where('murid_id', '=', $murid_id)
+                        ->orderby('master_doa_harian.urutan')->get();
+        // leftjoin('master_doa_harian', 'nilai_ibadah.indicators_id', '=', 'master_doa_harian.id')
+        //                         ->where('periode_keterangan', $periode->periode)
+        //                         ->where('periode_id', $periode->id)
+        //                         ->where('murid_id', '=', $murid_id)
+        //                         ->orderby('master_doa_harian.urutan')->get();
         // return $ibadah;
 
         $tahfidz = nilai_tahfidz::where('murid_id', '=', $murid_id)
