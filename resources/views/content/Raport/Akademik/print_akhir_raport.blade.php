@@ -38,27 +38,21 @@
     }
 
     .jatidiri {
-        border-bottom: 1px solid black;
+        /* border-bottom: 1px solid black; */
         padding: 10px;
     }
 
     .jatidiri img{
         height: 150px;
         width: 200px;
+        font-size: 15px;
     }
 
 
     .narasi {
         height: auto;
-        border: 1px solid black;
-    }
-
-    /* MENCOBA AKHIR GARIS */
-    .solid{
-        border-left: 1px red solid;
-        width: 100px;
-        display: inline-block;
-        padding-left: 5px;
+        font-size: 15px;
+        /* border: 1px solid black; */
     }
 
     @media print {
@@ -74,29 +68,30 @@
         <div class="col-12">
             <div class="card">
                 <div class="judul" style="padding: 10px">
+                    <br><br><br><br>
                     <h3><b>PRESCHOOL RAUDLATUL JANNAH</b></h3>
                     <h3><b>LAPORAN CAPAIAN PERKEMBANGAN ANAK</b></h3>
                     <h3><b>SEMESTER 1</b></h3>
                     <br>
                     <div class="row" style="margin-bottom: 30px">
-                        <div class="col-7">
+                        <div class="col-8">
                             <div class="row">
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-6" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px; font-size: 15px"><b>NAMA ANAK DIDIK </b></label>
+                                <label class="col-7" style="text-align: left; padding-right: 0px; font-size: 15px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
-                                <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
-                                <label class="col-6" style="text-align: left"><b>: {{ $murid->kelas }} / {{ $murid->nis }}</b></label>
+                                <label class="col-5" style="text-align: left; font-size: 15px"><b>KELAS/NO DIDIK</b></label>
+                                <label class="col-7" style="text-align: left; font-size: 15px"><b>: {{ $murid->kelas }} / {{ $murid->nis }}</b></label>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-4">
                             <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
+                                <label class="col-6" style="text-align: left; padding: 0px; font-size: 15px"><b>TAHUN AJARAN</b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px; font-size: 15px"><b>: {{ $murid->tahunajaran }}</b></label>
                             </div>
                             <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: I</b></label>
+                                <label class="col-6" style="text-align: left; padding: 0px; font-size: 15px"><b>SEMESTER</b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px; font-size: 15px"><b>: {{ $periode->semester}}</b></label>
                             </div>
                         </div>
                     </div>
@@ -111,41 +106,70 @@
                             $k=1;
                             for ($i=0; $i < count($cp) ; $i++) {
                                 echo '<div class="narasi">
-                                        <div class="jatidiri">';
+                                        <div class="jatidiri" style="border: 1px solid black;">';
                                             if ($i==0) {
-                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_1.'")}}" alt="Image"/>';
+                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_1.'")}}" alt="Image"/><br>';
                                             }elseif($i==1){
-                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_2.'")}}" alt="Image"/>';
+                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_2.'")}}" alt="Image"/><br>';
                                             }elseif($i==2){
-                                                echo'<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_3.'")}}" alt="Image"/>';
+                                                echo'<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_3.'")}}" alt="Image"/><br>';
                                             }
-                                echo '<h3>'.$cp[$i].'</h3>';
+                                echo '<br><h3>'.$cp[$i].'</h3>';
                                             for ($j=0; $j < count($narasi) ; $j++) {
                                                 if ($i==$j) {
-                                                    echo '<p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">'.$narasi[$j].'</p>';
-                                                    echo '<p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">'.$saran_tema[$j].'</p>';
-                                                    echo '<p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">'.$saran_ortu[$j].'</p>';
+                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$narasi[$j].'</p>';
+                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_tema[$j].'</p>';
+                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_ortu[$j].'</p>';
+
                                                 }
                                             }
                                 echo '</div></div>';
+
+                                echo '<div class="pagebreak"></div>';
+                                echo '</br> </br>';
+                                echo '<div class="judul" style="padding: 10px">
+                                        <h3><b>PRESCHOOL RAUDLATUL JANNAH</b></h3>
+                                        <h3><b>LAPORAN CAPAIAN PERKEMBANGAN ANAK</b></h3>
+                                        <h3><b>SEMESTER 1</b></h3>
+                                        <br>
+                                        <div class="row" style="margin-bottom: 30px">
+                                            <div class="col-8">
+                                                <div class="row">
+                                                    <label class="col-5" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
+                                                    <label class="col-7" style="text-align: left; padding-right: 0px"><b>:'.$murid->nama.'</b></label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-5" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
+                                                    <label class="col-7" style="text-align: left"><b>: '. $murid->kelas .' / '. $murid->nis .'</b></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="row">
+                                                    <label class="col-6" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
+                                                    <label class="col-5" style="text-align: left; padding-right: 0px"><b>: '. $murid->tahunajaran .'</b></label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-6" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
+                                                    <label class="col-5" style="text-align: left; padding-right: 0px"><b>: '. $periode->semester.'</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
                                 $k++;
                             }
                         @endphp
 
                     @endif
-                    {{-- <div class="solid"></div> --}}
                     <div class="narasi">
-                        <div class="jatidiri">
+                        <div class="jatidiri" style="border: 1px solid black">
                             <h3>Projek Penguatan Profil Pelajar Pancasila</h3>
                             <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->detail_proyek ?? "" }}</p>
                             <p style ="text-align: justify; text-align: justify; text-indent: 0.4in;">{{ $proyek->catatan_proyek ?? "" }}</p>
                         </div>
                     </div>
-                    {{-- <hr size="6" width="50%" align="left" color="red"> --}}
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 <!--/ Complex Headers -->
