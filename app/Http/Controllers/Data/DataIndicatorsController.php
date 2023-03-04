@@ -106,6 +106,7 @@ class DataIndicatorsController extends DataController
         $periode=MasterPeriode::find($request->add_periode_id);
 
         data_indicators::create([
+            'urutan' => $request->urutan,
             'area' => $dev->area->nama_area,
             'development' => $dev->nama_achievment,
             'indicators' => $indicators[1],

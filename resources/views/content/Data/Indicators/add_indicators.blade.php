@@ -31,6 +31,11 @@
                             <option value="" selected disabled>Pilih Indicators</option>
                         </select>
                     </div>
+
+                    <div class="mb-1">
+                        <label class="form-label" for="basic-default-name">Urutab</label>
+                        <input type="number" class="form-control" name="urutan" id="basic-default-name" placeholder="No. Urutan" required/>                        
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
