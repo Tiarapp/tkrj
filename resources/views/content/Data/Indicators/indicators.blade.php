@@ -102,6 +102,7 @@
                                     <th>Areas Of Development</th>
                                     <th>Development Achiement</th>
                                     <th>Indicators</th>
+                                    <th>urutan</th>
                                     <th>Status</th>
                                     <th>Option</th>
                                 </tr>
@@ -227,6 +228,7 @@
                     {data: 'area'},
                     { data: 'development'},
                     { data: 'indicators'},
+                    { data: 'urutan'},
                     { data: 'status'},
                     { data: null,
                         render: function(data, type, row) {
