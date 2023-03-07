@@ -79,7 +79,7 @@ class RaportEkstraController extends RaportController
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)->get();
 
-        $ibadah = nilai_ibadah::leftjoin('data_indicators', 'nilai_ibadah.indicators_id', '=', 'data_indicators.id')
+        $ibadah = nilai_ibadah::leftjoin('data_indicators', 'nilai_ibadah.indicators_id', 'data_indicators.id')
                         ->where('periode_keterangan', $periode->periode)
                         ->where('nilai_ibadah.periode_id', $periode->id)
                         ->where('murid_id', '=', $murid_id)
@@ -91,13 +91,13 @@ class RaportEkstraController extends RaportController
         //                         ->orderby('master_doa_harian.urutan')->get();
         // return $ibadah;
 
-        $tahfidz = nilai_tahfidz::leftjoin('data_indicators', 'nilai_tahdidz.indicators_id', '=', 'data_indicators.id')
+        $tahfidz = nilai_tahfidz::leftjoin('data_indicators', 'nilai_tahfidz.indicators_id', 'data_indicators.id')
                                 ->where('murid_id', '=', $murid_id)
                                 ->where('periode_keterangan', $periode->periode)
-                                ->where('periode_id', $periode->id)
+                                ->where('nilai_tahfidz.periode_id', $periode->id)
                                 ->orderby('data_indicators.urutan')->get();
 
-        $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id)
+        $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id) 
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)->get();
 
