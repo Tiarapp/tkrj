@@ -109,7 +109,9 @@
                                             <h3>'.$cp[$i].'</h3>';
                                             for ($j=0; $j < count($narasi) ; $j++) { 
                                                 if ($i==$j) {
-                                                    echo '<p style ="text-align: justify">'.$narasi[$j].'</p>';
+                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$narasi[$j].'</p>';
+                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_tema[$j].'</p>';
+                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_ortu[$j].'</p>';
                                                 }
                                             }
                                 echo '</div></div>';
