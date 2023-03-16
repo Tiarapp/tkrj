@@ -83,7 +83,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="judul" style="padding: 10px">
-                    <img src="{{ asset('gambar/logo.png') }}" alt="">
+                    {{-- <img src="{{ asset('gambar/logo.png') }}" alt=""> --}}
                     <h3>BIODATA SISWA</h3>
                 </div>
                 <div class="isi">
