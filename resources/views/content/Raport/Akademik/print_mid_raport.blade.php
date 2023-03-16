@@ -64,7 +64,7 @@
 <section id="">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="canvas">
                 <div class="judul" style="padding: 10px">
                     <h3><b>PRESCHOOL RAUDLATUL JANNAH</b></h3>
                     <h3><b>LAPORAN CAPAIAN PERKEMBANGAN ANAK</b></h3>
@@ -109,7 +109,7 @@
                                                     echo '<div class="judul" style="padding: 10px">
                                                             <h3><b>PRESCHOOL RAUDLATUL JANNAH</b></h3>
                                                             <h3><b>LAPORAN CAPAIAN PERKEMBANGAN ANAK</b></h3>
-                                                            <h3><b>SEMESTER 1</b></h3>
+                                                            <h3><b>MID SEMESTER</b></h3>
                                                             <br>
                                                             <div class="row" style="margin-bottom: 30px">
                                                                 <div class="col-8">
