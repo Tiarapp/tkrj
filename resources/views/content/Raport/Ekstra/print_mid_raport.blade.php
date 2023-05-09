@@ -78,7 +78,7 @@
 <section id="">
     <div class="row">
         <div class="col-12">
-            <div class="canvas">
+            <div class="card">
                 <div class="judul" style="padding: 10px">
                     <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
                     <h3><b>MID SEMESTER</b></h3>
@@ -297,6 +297,8 @@
                     <div class="row" style="margin-bottom: 30px">
                         <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
                         <h3><b>MID SEMESTER</b></h3>
+                        <br>
+                        <br>
                         <br>
                         <div class="col-7">
                             <div class="row">
