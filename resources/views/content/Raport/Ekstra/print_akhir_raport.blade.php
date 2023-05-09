@@ -521,7 +521,7 @@
                                     $rowid = 0;
                                     $rowspan = count($tahfidz);
                                 @endphp
-                                <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
+                                <td rowspan="{{ $rowspan }}">{{$data->area}}</td>
                                 <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
                             @endif
                             <td>{{$data->indicators}}</td>
