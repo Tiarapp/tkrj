@@ -80,6 +80,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="judul" style="padding: 10px">
+
+                    <?php
+                        if ($periode->semester == "Semester 2") {
+                            if ($murid->jenjang == "TK A") {
+                    ?>
                     <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
                     <h3><b>AKHIR SEMESTER</b></h3>
                     <br>
@@ -105,6 +110,7 @@
                             </div>
                         </div>
                     </div>
+                                
                     <div class="row std-profile" style="padding: 10px">
                         A. Student Profile
                         <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
@@ -234,6 +240,13 @@
                             @endforeach --}}
                         </table>
                     </div>
+
+                    <?php
+                        
+                            }
+                        }
+                    ?>
+
 
                     <div class="pagebreak"></div>
                     <br>
