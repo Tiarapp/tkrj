@@ -36,8 +36,9 @@ class NilaiHadistController extends NilaiController
         $hadist=data_indicators::where('area_id', 5)
                                 ->where('development_id', 4)
                                 ->where('jenjang_id', $murid[0]['jenjang_id'])
+                                ->where('periode', $periode->periode)
+                                ->where('periode_id', $periode->id)
                                 ->select('id', 'indicators')
-                                ->where('status', "Aktif")
                                 ->orderby('indicators')
                                 ->get();
 

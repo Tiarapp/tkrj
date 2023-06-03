@@ -36,7 +36,8 @@ class NilaiIbadahController extends NilaiController
         $ibadah=data_indicators::where('area_id', 3)
                                 ->where('development_id', 2)
                                 ->where('jenjang_id', $murid[0]['jenjang_id'])
-                                ->where('status', "Aktif")
+                                ->where('periode', $periode->periode)
+                                ->where('periode_id', $periode->id)
                                 ->select('id', 'indicators')
                                 ->orderby('indicators')
                                 ->get();

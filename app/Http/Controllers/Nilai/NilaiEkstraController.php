@@ -33,6 +33,7 @@ class NilaiEkstraController extends NilaiController
         $detail_pengajar  = $this->detail_pengajar($id_pengajar);
         // TAMPILAN MURID KELAS
             $murid   = $this->murid_kelas($id_pengajar);
+        // return $detail_pengajar;
 
         $ekstra=data_indicators::where('area_id', 1)
                                 ->where('development_id', 1)

@@ -81,175 +81,269 @@
             <div class="card">
                 <div class="judul" style="padding: 10px">
 
-                    <?php
-                        if ($periode->semester == "Semester 2") {
-                            if ($murid->jenjang == "TK A") {
-                    ?>
-                    <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
-                    <h3><b>AKHIR SEMESTER</b></h3>
-                    <br>
-                    <div class="row" style="margin-bottom: 30px">
-                        <div class="col-7">
-                            <div class="row">
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
-                                <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                    {{-- JUDUL RAPORT --}}
+                        @if (($murid->jenjang == "PG" && $periode->semester == "Semester 1") ||
+                                ($murid->jenjang == "TK B" && $periode->semester == "Semester 1"))
+                            <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
+                            <h3><b>AKHIR SEMESTER</b></h3>
+                            <br>
+                            <div class="row" style="margin-bottom: 30px">
+                                <div class="col-7">
+                                    <div class="row">
+                                        <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
+                                        <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
+                                        <label class="col-6" style="text-align: left"><b>: {{ $murid->kelas }} / {{ $murid->nis }}</b></label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <label class="col-5" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
+                                        <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
+                                        <label class="col-4" style="text-align: left; padding-right: 0px">
+                                            @if ($periode->semester_id == 2)
+                                                <b>: II</b>
+                                            @else
+                                                <b>: I</b>
+                                            @endif
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                                <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
-                                <label class="col-6" style="text-align: left"><b>: {{ $murid->kelas }} / {{ $murid->nis }}</b></label>
+                        @elseif ($murid->jenjang == "TK A")
+                            <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
+                            <h3><b>AKHIR SEMESTER</b></h3>
+                            <br>
+                            <div class="row" style="margin-bottom: 30px">
+                                <div class="col-7">
+                                    <div class="row">
+                                        <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
+                                        <label class="col-7" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
+                                        <label class="col-6" style="text-align: left"><b>: {{ $murid->kelas }} / {{ $murid->nis }}</b></label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <label class="col-5" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
+                                        <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
+                                        <label class="col-4" style="text-align: left; padding-right: 0px">
+                                            @if ($periode->semester_id == 2)
+                                                <b>: II</b>
+                                            @else
+                                                <b>: I</b>
+                                            @endif
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
+                        @endif
+
+                    {{-- STUDENT PROFILE --}}
+                        @if (($murid->jenjang == "PG" && $periode->semester == "Semester 1") ||
+                            ($murid->jenjang == "TK B" && $periode->semester == "Semester 1"))
+
+                            <div class="row std-profile" style="padding: 10px">
+
+                                A. Student Profile
+                                <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
+                                    <tr>
+                                        <th style="height: 60px" colspan="1" rowspan="2">PROFILE</th>
+                                        <th style="20px" colspan="4">Category</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1">Very Good</th>
+                                        <th colspan="1">Good</th>
+                                        <th colspan="1">Satisfactory</th>
+                                        <th colspan="1">Need Improve</th>
+                                    </tr>
+
+                                    @if ($spdetail != null)
+
+                                    @foreach ($spdetail as $sp)
+                                    <tr>
+                                        <td colspan="1" rowspan="1" style="height: 40px">
+
+                                            <center>{{ $sp->indikator }}</center>
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "vg")
+                                                {{-- <i class="fa-sharp fa-solid fa-circle-check"></i> --}}
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "g")
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "s")
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "ni")
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                        @endforeach
+                                    @endif
+                                </table>
                             </div>
-                            <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: I</b></label>
+                        @elseif ($murid->jenjang == "TK A")
+                            <div class="row std-profile" style="padding: 10px">
+
+                                A. Student Profile
+                                <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
+                                    <tr>
+                                        <th style="height: 60px" colspan="1" rowspan="2">PROFILE</th>
+                                        <th style="20px" colspan="4">Category</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1">Very Good</th>
+                                        <th colspan="1">Good</th>
+                                        <th colspan="1">Satisfactory</th>
+                                        <th colspan="1">Need Improve</th>
+                                    </tr>
+
+                                    @if ($spdetail != null)
+
+                                    @foreach ($spdetail as $sp)
+                                    <tr>
+                                        <td colspan="1" rowspan="1" style="height: 40px">
+
+                                            <center>{{ $sp->indikator }}</center>
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "vg")
+                                                {{-- <i class="fa-sharp fa-solid fa-circle-check"></i> --}}
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "g")
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "s")
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                        <td colspan="1" rowspan="1">
+                                            @if ($sp->nilai == "ni")
+                                                <center>&#10003;</center>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                        @endforeach
+                                    @endif
+                                </table>
                             </div>
-                        </div>
-                    </div>
-                                
-                    <div class="row std-profile" style="padding: 10px">
-                        A. Student Profile
-                        <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
-                            <tr>
-                                <th style="height: 60px" colspan="1" rowspan="2">PROFILE</th>
-                                <th style="20px" colspan="4">Category</th>
-                            </tr>
-                            <tr>
-                                <th colspan="1">Very Good</th>
-                                <th colspan="1">Good</th>
-                                <th colspan="1">Satisfactory</th>
-                                <th colspan="1">Need Improve</th>
-                            </tr>
+                        @endif
 
-                            @if ($spdetail != null)
 
-                            @foreach ($spdetail as $sp)
-                            <tr>
-                                <td colspan="1" rowspan="1" style="height: 40px">
-
-                                    <center>{{ $sp->indikator }}</center>
-                                </td>
-                                <td colspan="1" rowspan="1">
-                                    @if ($sp->nilai == "vg")
-                                        {{-- <i class="fa-sharp fa-solid fa-circle-check"></i> --}}
-                                        <center>&#10003;</center>
-                                    @endif
-                                </td>
-                                <td colspan="1" rowspan="1">
-                                    @if ($sp->nilai == "g")
-                                        <center>&#10003;</center>
-                                    @endif
-                                </td>
-                                <td colspan="1" rowspan="1">
-                                    @if ($sp->nilai == "s")
-                                        <center>&#10003;</center>
-                                    @endif
-                                </td>
-                                <td colspan="1" rowspan="1">
-                                    @if ($sp->nilai == "ni")
-                                        <center>&#10003;</center>
-                                    @endif
-                                </td>
-                            </tr>
-                                @endforeach
-                            @endif
-                        </table>
-                    </div>
-                    <div class="row tumbuh-kembang" style="padding: 10px">
-                        B. Tumbuh Kembang Anak
-                        <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
-                            <tr>
-                                <th style="height: 40px;" colspan="3" rowspan="1">Indikator Pertumbuhan</th>
-                                <th colspan="2" rowspan="1">Capaian Pertumbuhan</th>
-                            </tr>
-                            <tr>
-                                <td style="height: 30px" colspan="3" rowspan="1">A. Kesehatan</td>
-                                <td colspan="2" rowspan="1"></td>
-                            </tr>
-                            @php
-                                $i=1;
-                            @endphp
-                            @foreach ($pertumbuhan as $p)
-                                @if ($p->master_perkembangan=="Kesehatan")
-                                    <tr style="padding-left: 10px">
-                                        <td style ="height: 25px; text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
-                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                    {{-- TUMBUH KEMBANG --}}
+                        @if ($periode->semester != "Semester 2")
+                            <div class="row tumbuh-kembang" style="padding: 10px">
+                                B. Tumbuh Kembang Anak
+                                <table style="border: 2px solid black; text-align: center; margin-top: 10px;">
+                                    <tr>
+                                        <th style="height: 40px;" colspan="3" rowspan="1">Indikator Pertumbuhan</th>
+                                        <th colspan="2" rowspan="1">Capaian Pertumbuhan</th>
                                     </tr>
-                                @endif
-                                @php
-                                    $i++
-                                @endphp
-                            @endforeach
-                            <tr>
-                                <td style ="height: 30px;" colspan="3" rowspan="1">B. Kebersihan</td>
-                                <td colspan="2" rowspan="1"></td>
-                            </tr>
-                            @php
-                                $k=1;
-                            @endphp
-                            @foreach ($pertumbuhan as $p)
-                                @if ($p->master_perkembangan=="Kebersihan")
-                                    <tr style="padding-left: 10px">
-                                        <td style ="height: 25px; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
-                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                    <tr>
+                                        <td style="height: 30px" colspan="3" rowspan="1">A. Kesehatan</td>
+                                        <td colspan="2" rowspan="1"></td>
                                     </tr>
-                                @endif
-                                @php
-                                    $i++
-                                @endphp
-                            @endforeach
-                            <tr>
-                                <td style ="height: 30px;" colspan="3" rowspan="1">C. Kerapian</td>
-                                <td colspan="2" rowspan="1"></td>
-                            </tr>
-                            @php
-                                $k=1;
-                            @endphp
-                            @foreach ($pertumbuhan as $p)
-                                @if ($p->master_perkembangan=="Kerapian")
-                                    <tr style="padding-left: 10px">
-                                        <td style ="height: 25px; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
-                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                    @php
+                                        $i=1;
+                                    @endphp
+                                    @foreach ($pertumbuhan as $p)
+                                        @if ($p->master_perkembangan=="Kesehatan")
+                                            <tr style="padding-left: 10px">
+                                                <td style ="height: 25px; text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
+                                                <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                            </tr>
+                                        @endif
+                                        @php
+                                            $i++
+                                        @endphp
+                                    @endforeach
+                                    <tr>
+                                        <td style ="height: 30px;" colspan="3" rowspan="1">B. Kebersihan</td>
+                                        <td colspan="2" rowspan="1"></td>
                                     </tr>
-                                @endif
-                                @php
-                                    $i++
-                                @endphp
-                            @endforeach
-                            {{-- <tr>
-                                <td  colspan="3" rowspan="1">C. Kerapian</td>
-                                <td colspan="2" rowspan="1"></td>
-                            </tr>
-                            @php
-                                $i=1;
-                            @endphp
-                            @foreach ($pertumbuhan as $p)
-                                @if ($p->master_perkembangan=="Kerapian")
-                                    <tr style="padding-left: 10px">
-                                        <td style ="text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
-                                        <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                    @php
+                                        $k=1;
+                                    @endphp
+                                    @foreach ($pertumbuhan as $p)
+                                        @if ($p->master_perkembangan=="Kebersihan")
+                                            <tr style="padding-left: 10px">
+                                                <td style ="height: 25px; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
+                                                <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                            </tr>
+                                        @endif
+                                        @php
+                                            $i++
+                                        @endphp
+                                    @endforeach
+                                    <tr>
+                                        <td style ="height: 30px;" colspan="3" rowspan="1">C. Kerapian</td>
+                                        <td colspan="2" rowspan="1"></td>
                                     </tr>
-                                @endif
-                                @php
-                                    $i++
-                                @endphp
-                            @endforeach --}}
-                        </table>
-                    </div>
-
-                    <?php
-                        
-                            }
-                        }
-                    ?>
-
+                                    @php
+                                        $k=1;
+                                    @endphp
+                                    @foreach ($pertumbuhan as $p)
+                                        @if ($p->master_perkembangan=="Kerapian")
+                                            <tr style="padding-left: 10px">
+                                                <td style ="height: 25px; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$k}}. {{$p->master_kategori}}</td>
+                                                <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                            </tr>
+                                        @endif
+                                        @php
+                                            $i++
+                                        @endphp
+                                    @endforeach
+                                    {{-- <tr>
+                                        <td  colspan="3" rowspan="1">C. Kerapian</td>
+                                        <td colspan="2" rowspan="1"></td>
+                                    </tr>
+                                    @php
+                                        $i=1;
+                                    @endphp
+                                    @foreach ($pertumbuhan as $p)
+                                        @if ($p->master_perkembangan=="Kerapian")
+                                            <tr style="padding-left: 10px">
+                                                <td style ="text-align: justify; text-align: justify; text-indent: 0.2in;" colspan="3" rowspan="1">{{$i}}. {{$p->master_kategori}}</td>
+                                                <td colspan="2" rowspan="1">{{$p->nilai}}</td>
+                                            </tr>
+                                        @endif
+                                        @php
+                                            $i++
+                                        @endphp
+                                    @endforeach --}}
+                                </table>
+                            </div>
+                        @endif
 
                     <div class="pagebreak"></div>
                     <br>
+
+                    {{-- PAGE 2 --}}
                     <div class="row" style="margin-bottom: 30px">
                         <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
                         <h3><b>AKHIR SEMESTER</b></h3>
@@ -272,7 +366,13 @@
                             </div>
                             <div class="row">
                                 <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
+                                <label class="col-4" style="text-align: left; padding-right: 0px">
+                                    @if ($periode->semester_id == 2)
+                                        <b>: II</b>
+                                    @else
+                                        <b>: I</b>
+                                    @endif
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -306,8 +406,6 @@
                                 $rowid = 0;
                                 $rowspan = 0;
                             @endphp
-
-
 
                             {{-- Nilai Ibadah --}}
                             @foreach($ibadah as $key => $data)
@@ -368,23 +466,23 @@
                             @endforeach
 
                             {{-- Nilai CBI --}}
-                            @foreach($cbi as $key => $data)
-                            @php
-                            $rowid += 1
-                            @endphp
-                            <tr>
-                            @if ($key == 0 || $rowspan == $rowid)
-                                @php
-                                    $rowid = 0;
-                                    $rowspan = count($cbi);
-                                @endphp
-                                <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
-                                <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
-                            @endif
-                            <td>{{$data->indicators}}</td>
-                            <td class="value">{{$data->nilai}}</td>
-                            </tr>
-                            @endforeach
+                                @foreach($cbi as $key => $data)
+                                    @php
+                                    $rowid += 1
+                                    @endphp
+                                    <tr>
+                                        @if ($key == 0 || $rowspan == $rowid)
+                                            @php
+                                                $rowid = 0;
+                                                $rowspan = count($cbi);
+                                            @endphp
+                                            <td rowspan="{{ $rowspan }}">{{$data->area->nama_area}}</td>
+                                            <td rowspan="{{ $rowspan }}">{{$data->devac->nama_achievment}}</td>
+                                        @endif
+                                        <td>{{$data->indicators}}</td>
+                                        <td class="value">{{$data->nilai}}</td>
+                                    </tr>
+                                @endforeach
 
                             {{-- Nilai Ekstra --}}
                             @foreach($ekstra as $key => $data)
@@ -419,7 +517,7 @@
                         <br>
                         <br>
                         <div class="col-6" style="text-align: left">
-                            <b>Sidoarjo, 24 Desember 2022</b>
+                            <b>Sidoarjo, {{$tanggal_cetak->tanggal_cetak}}</b>
                         </div>
                     </div>
 
@@ -491,7 +589,13 @@
                             </div>
                             <div class="row">
                                 <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
+                                <label class="col-4" style="text-align: left; padding-right: 0px">
+                                    @if ($periode->semester_id == 2)
+                                        <b>: II</b>
+                                    @else
+                                        <b>: I</b>
+                                    @endif
+                                </label>
                             </div>
                         </div>
                     </div>

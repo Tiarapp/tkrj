@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Raport\RaportController;
 use App\Models\Data\data_indicators;
 use App\Models\Data\data_murid;
+use App\Models\Data\data_tanggal_cetak;
 use App\Models\Master\MasterPredikat;
 use App\Models\Master\MasterSiswa;
 use App\Models\Nilai\nilai_cbi;
@@ -58,32 +59,40 @@ class RaportEkstraController extends RaportController
 
         $periode=$this->periode->getPeriodeAktif();
 
+        $tanggal_cetak=data_tanggal_cetak::where('periode_keterangan', $periode->periode)
+                                        ->where('master_periode_id', $periode->id)
+                                        ->first();
+
         $absen=absen::where('murid_id', $murid_id)
                     ->where('periode_keterangan', $periode->periode)
                     ->where('periode_id', $periode->id)
                     ->first();
+
         $ekstra = nilai_ekstra::where('murid_id', '=', $murid_id)
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)->get();
+
         $cbi = nilai_cbi::where('murid_id', '=', $murid_id)
-                ->where('periode_keterangan', $periode->periode)
-                ->where('periode_id', $periode->id)
-                ->get();
-        $doa = nilai_doa::leftjoin('data_indicators', 'nilai_doa_harian.indicators_id', '=', 'data_indicators.id')
                         ->where('periode_keterangan', $periode->periode)
+                        ->where('periode_id', $periode->id)
+                        ->get();
+
+        $doa = nilai_doa::leftjoin('data_indicators', 'nilai_doa_harian.indicators_id', '=', 'data_indicators.id')
+                        ->where('nilai_doa_harian.periode_keterangan', $periode->periode)
                         ->where('nilai_doa_harian.periode_id', $periode->id)
                         ->where('murid_id', '=', $murid_id)
                         ->orderby('data_indicators.urutan')->get();
-
+                        
         $hadist = nilai_hadist::where('murid_id', '=', $murid_id)
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)->get();
 
         $ibadah = nilai_ibadah::leftjoin('data_indicators', 'nilai_ibadah.indicators_id', 'data_indicators.id')
-                        ->where('periode_keterangan', $periode->periode)
-                        ->where('nilai_ibadah.periode_id', $periode->id)
-                        ->where('murid_id', '=', $murid_id)
-                        ->orderby('data_indicators.urutan')->get();
+                                ->where('periode_keterangan', $periode->periode)
+                                ->where('nilai_ibadah.periode_id', $periode->id)
+                                ->where('murid_id', '=', $murid_id)
+                                ->orderby('data_indicators.urutan')->get();
+
         // leftjoin('master_doa_harian', 'nilai_ibadah.indicators_id', '=', 'master_doa_harian.id')
         //                         ->where('periode_keterangan', $periode->periode)
         //                         ->where('periode_id', $periode->id)
@@ -97,14 +106,16 @@ class RaportEkstraController extends RaportController
                                 ->where('nilai_tahfidz.periode_id', $periode->id)
                                 ->orderby('data_indicators.urutan')->get();
 
-        $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id) 
+        $tilawah = nilai_tilawah::where('murid_id', '=', $murid_id)
                                 ->where('periode_keterangan', $periode->periode)
                                 ->where('periode_id', $periode->id)->get();
 
         $ortu = MasterSiswa::where('id', '=', $murid->siswa_id)->first();
+
         $pertumbuhan=perkembangan::leftjoin('master_kategoris', 'nilai_perkembangan.master_kategori_id', '=', 'master_kategoris.id')
                                 ->where('nilai_perkembangan.murid_id', $murid_id)
                                 ->where('nilai_perkembangan.periode_id', $periode->id)->orderby('master_kategoris.id')->get();
+
         // return $pertumbuhan->master_perkembangan;
         $sp = studentprofile::where('murid_id', '=', $murid_id)
                             ->where('periode_keterangan', $periode->periode)
@@ -119,9 +130,13 @@ class RaportEkstraController extends RaportController
         }
 
         if ($periode->periode == "Tengah") {
-            return view('content.Raport.Ekstra.print_mid_raport', compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu'));
+            return view('content.Raport.Ekstra.print_mid_raport',
+                    compact('murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist',
+                            'ibadah', 'ortu', 'tanggal_cetak'));
         } else {
-            return view('content.Raport.Ekstra.print_akhir_raport', compact('pertumbuhan','murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa', 'hadist', 'ibadah', 'ortu', 'spdetail'));
+            return view('content.Raport.Ekstra.print_akhir_raport',
+                    compact('pertumbuhan','murid','periode', 'absen', 'ekstra', 'tilawah', 'tahfidz', 'cbi', 'doa',
+                            'hadist', 'ibadah', 'ortu', 'spdetail', 'tanggal_cetak'));
         }
 
     }
