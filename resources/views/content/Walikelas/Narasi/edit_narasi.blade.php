@@ -53,11 +53,12 @@
 
                                         @php $i="0px"; $key=0; @endphp
                                         @foreach ($nilai_akademik as $na)
-
+                                        {{-- @dump($na) --}}
                                             <input type="hidden" value="{{$na->cp}}" name="cp[]">
                                             <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">
                                                 {{$na->cp}}
-                                                <button type="button" class="btn btn-icon btn-success _foto" id="add_foto" data-bs-toggle="modal" data-bs-target="#inlineForm">
+                                                {{-- <button type="button" class="btn btn-icon btn-success _foto" id="add_foto" onclick="modal_add_foto()" data-bs-toggle="modal" data-bs-target="#inlineForm"> --}}
+                                                <button type="button" class="btn btn-icon btn-success _foto" id="add_foto" onclick="modal_add_foto({{$key}})">
                                                     <i data-feather='image'></i>
                                                 </button>
                                             </h6>
@@ -85,7 +86,7 @@
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </form>
-                                    @include('content.Walikelas.Narasi.add_foto')
+                                        @include('content.Walikelas.Narasi.add_foto')
                                 </div>
                             </div>
                         </div>
@@ -163,6 +164,28 @@
                 document.getElementById("id_nilai_akademik").value=id_rekap;
             }
         });
+        function modal_add_foto(data_key) {
+
+
+            if (data_key==0) {
+                document.getElementById("foto1").hidden = false;
+                document.getElementById("foto2").hidden = true;
+                document.getElementById("foto3").hidden = true;
+                $("#cp_id").val(1).change();
+            } else if(data_key==1) {
+                document.getElementById("foto1").hidden = true;
+                document.getElementById("foto2").hidden = false;
+                document.getElementById("foto3").hidden = true;
+                $("#cp_id").val(2).change();
+            }else if(data_key==2) {
+                document.getElementById("foto1").hidden = true;
+                document.getElementById("foto2").hidden = true;
+                document.getElementById("foto3").hidden = false;
+                $("#cp_id").val(3).change();
+            };
+
+            $("#inlineForm").modal('show');
+        }
 
         function submit() {
             document.getElementById("form_foto").submit();

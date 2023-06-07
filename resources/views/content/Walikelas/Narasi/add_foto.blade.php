@@ -8,7 +8,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img class="card-img" style="width: 400px; height: 400px; text-align: left " src="{{ asset('/Tahunajaran/2022/B2/ABRAR DAYYAN HAYDAR ALHANAN_CP_1.png')}}">
+
+                <img id="foto1" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_1)}}" hidden>
+                <img id="foto2" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_2)}}" hidden>
+                <img id="foto3" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_3)}}" hidden>
 
                 <form id="form_foto" action="{{route('walikelas.narasi.add_foto')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -16,7 +22,7 @@
                     {{-- ID Murid --}}
                     <input type="hidden" name="id_murid" id="id_murid" value="{{$murid->id}}">
 
-                    <select class="basic-select2" name="cp_id" id="cp_id" required>
+                    <select class="select2-size-sm form-select" name="cp_id" id="cp_id" required>
                         <option value="" selected disabled>Pilih CP</option>
                         @foreach ($cp as $c)
                             <option value="{{ $c->id }}">{{$c->nama_cp}}</option>
@@ -24,10 +30,11 @@
                     </select>
                     <br>
                     <br>
+                    <br>
 
                     <input type="file" name="foto_cp" id="foto_cp">
 
-                    <button onclick="submit()" class="btn btn-primary me-1">Simpan</button>
+                    <button onclick="submit($key)" class="btn btn-primary me-1">Simpan</button>
                 </form>
             </div>
         </div>

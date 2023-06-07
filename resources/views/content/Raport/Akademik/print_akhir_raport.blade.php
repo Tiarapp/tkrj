@@ -108,19 +108,23 @@
                                 echo '<div class="narasi">
                                         <div class="jatidiri" style="border: 1px solid black;">';
                                             if ($i==0) {
-                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_1.'")}}" alt="Image"/><br>';
+                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$periode->id.'/'.$murid->kelas.'/'.$rekap_akademik->foto_1.'")}}" alt="Image"/><br>';
                                             }elseif($i==1){
-                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_2.'")}}" alt="Image"/><br>';
+                                                echo '<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$periode->id.'/'.$murid->kelas.'/'.$rekap_akademik->foto_2.'")}}" alt="Image"/><br>';
                                             }elseif($i==2){
-                                                echo'<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$murid->kelas.'/'.$rekap_akademik->foto_3.'")}}" alt="Image"/><br>';
+                                                echo'<img src="/Tahunajaran/'.$periode->tahunmulai.'/'.$periode->id.'/'.$murid->kelas.'/'.$rekap_akademik->foto_3.'")}}" alt="Image"/><br>';
                                             }
                                 echo '<br><h3>'.$cp[$i].'</h3>';
                                             for ($j=0; $j < count($narasi) ; $j++) {
                                                 if ($i==$j) {
                                                     echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$narasi[$j].'</p>';
-                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_tema[$j].'</p>';
-                                                    echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_ortu[$j].'</p>';
 
+                                                    if ($periode->semester!="Semester 2" && $periode->periode!="Akhir") {
+                                                        echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_tema[$j].'</p>';
+                                                        echo '<br><p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_ortu[$j].'</p>';
+                                                    }else {
+                                                        echo '<p style ="text-align: justify; text-size: 10px; text-indent: 0.4in;">'.$saran_ortu[$j].'</p>';
+                                                    }
                                                 }
                                             }
                                 echo '</div></div>';

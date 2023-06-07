@@ -49,8 +49,14 @@ class NarasiRaportController extends WalasController
                                         ->groupBy('nilai_akademik.nis', 'nilai_akademik.nama', 'nilai_akademik.kelas', 'nilai_akademik.jenjang', 'nilai_akademik.cp')
                                         ->orderby('nilai_akademik.cp_id')
                                         ->get();
-        // dd($nilai_akademik);
-        return view('content.Walikelas.Narasi.edit_narasi', ['breadcrumbs' => $breadcrumbs, 'cp' => $cp, 'murid'=>$murid, 'nilai_akademik'=>$nilai_akademik]);
+
+        $rekap_akademik=rekap_akademik::where('murid_id', $murid->id)->where('periode_keterangan', $periode->periode)
+                                        ->where('periode_id', $periode->id)->first();
+
+
+        return view('content.Walikelas.Narasi.edit_narasi',
+                ['breadcrumbs' => $breadcrumbs, 'cp' => $cp, 'murid'=>$murid, 'nilai_akademik'=>$nilai_akademik,
+                'periode'=>$periode, 'rekap_akademik'=>$rekap_akademik]);
     }
 
     public function store(Request $request)
@@ -89,17 +95,19 @@ class NarasiRaportController extends WalasController
         $periode=$this->periode->getPeriodeAktif();
 
         $rekap_akademik=rekap_akademik::where('murid_id', $request->id_murid)
+                                        ->where('periode_keterangan', $periode->periode)
                                         ->where('periode_id', $periode->id)->first();
 
         $murid=data_murid::find($request->id_murid);
 
         $imageName = $murid->nama.'_CP_'.$request->cp_id.'.'.$request->foto_cp->extension();
 
-        $request->foto_cp->move(public_path('Tahunajaran/'.$periode->tahunmulai."/".$murid->kelas), $imageName);
+        $request->foto_cp->move(public_path('Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas), $imageName);
         // $imageName = 'CP_'.$request->cp_id.'.'.$request->foto_cp->extension();
 
         // $request->foto_cp->move(public_path($periode->tahunmulai."/".$murid->kelas."/".$murid->absen), $imageName);
 
+        // return $request->all();
         if ($request->cp_id==1) {
 
             $rekap_akademik->foto_1  = $imageName;
