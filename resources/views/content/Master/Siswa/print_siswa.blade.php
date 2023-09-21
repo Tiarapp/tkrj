@@ -87,7 +87,7 @@
                     <h3>BIODATA SISWA</h3>
                 </div>
                 <div class="isi">
-                    <table style=" text-align: left; margin-top: 10px;">
+                    <table style=" text-align: left; margin-top: 10px;line-height:20px">
                         <tr>
                             <td colspan="1" style="padding: 0px 40px;">1</td>
                             <td colspan="1" style="padding: 0px 10px;">No. Induk Siswa</td>
@@ -120,13 +120,14 @@
                             <td colspan="1" style="padding: 0px 40px;">4</td>
                             <td colspan="1" style="padding: 0px 10px;">Agama</td>
                             <td colspan="1" style="padding: 0px 30px">:</td>
-                            <td colspan="1">{{ $siswa->agama }}</td>
+                            <td colspan="1">Islam</td>
                         </tr>
                         <tr>
                             <td colspan="1" style="padding: 0px 40px;">5</td>
                             <td colspan="1" style="padding: 0px 10px;">Tempat/Tgl Lahir</td>
                             <td colspan="1" style="padding: 0px 30px">:</td>
-                            <td colspan="1">{{ $siswa->tempat_lahir }}, {{ date_format(date_create($siswa->tanggal_lahir), "d F Y") }}</td>
+                            {{--<td colspan="1">{{ $siswa->tempat_lahir }}, {{ date_format(date_create($siswa->tanggal_lahir), "d F Y") }}</td>--}}
+                            <td colspan="1">{{ $siswa->tempat_lahir }}, {{ $siswa->tanggal_lahir}}</td>
                         </tr>
                         <tr>
                             <td colspan="1" style="padding: 0px 40px;">6</td>

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Data\DataCPController;
+use App\Http\Controllers\Data\DataElemenCPController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
@@ -37,7 +39,8 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Data\DataPengajarController;
     use App\Http\Controllers\Data\WalikelasController;
     use App\Http\Controllers\Data\DataIndicatorsController;
-
+use App\Http\Controllers\Data\DataTKController;
+use App\Http\Controllers\Data\DataTPController;
 // NILAI
     use App\Http\Controllers\Nilai\NilaiDoaController;
     use App\Http\Controllers\Nilai\NilaiEkstraController;
@@ -49,7 +52,6 @@ use App\Http\Controllers\LanguageController;
     use App\Http\Controllers\Nilai\NilaiCBIController;
 // Raport
     use App\Http\Controllers\Raport\RaportEkstraController;
-    use App\Http\Controllers\Raport\RapotEkstraController;
     use App\Http\Controllers\Raport\RaportAkademikController;
 
 // WALIKELAS
@@ -311,6 +313,34 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::post('/add',[DataIndicatorsController::class, 'store'])->name('add');
                 Route::get('/view_data', [DataIndicatorsController::class, 'view_data'])->name('view_data');
                 Route::put('/edit',[DataIndicatorsController::class, 'update'])->name('edit');
+            });
+
+        // CP
+            Route::group(['prefix' => 'Data/CP', 'as' => 'data.cp.'], function() {
+                Route::get('', [DataCPController::class, 'index'])->name('list');
+                Route::post('/add',[DataCPController::class, 'store'])->name('add');
+                Route::put('/edit{id}',[DataCPController::class, 'update'])->name('edit');
+            });
+
+        // ELEMEN CP
+            Route::group(['prefix' => 'Data/ElemenCP', 'as' => 'data.elemencp.'], function() {
+                Route::get('', [DataElemenCPController::class, 'index'])->name('list');
+                Route::post('/add',[DataElemenCPController::class, 'store'])->name('add');
+                Route::put('/edit{id}',[DataElemenCPController::class, 'update'])->name('edit');
+            });
+        
+        // TP
+            Route::group(['prefix' => 'Data/TP', 'as' => 'data.tp.'], function() {
+                Route::get('', [DataTPController::class, 'index'])->name('list');
+                Route::post('/add',[DataTPController::class, 'store'])->name('add');
+                Route::put('/edit{id}',[DataTPController::class, 'update'])->name('edit');
+            });
+
+        // TK
+            Route::group(['prefix' => 'Data/TK', 'as' => 'data.tk.'], function() {
+                Route::get('', [DataTKController::class, 'index'])->name('list');
+                Route::post('/add',[DataTKController::class, 'store'])->name('add');
+                Route::put('/edit{id}',[DataTKController::class, 'update'])->name('edit');
             });
 
     // NILAI-----------------------------------------------------------------------------------------------------------

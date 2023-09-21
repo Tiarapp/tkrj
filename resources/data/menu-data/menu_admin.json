@@ -177,6 +177,30 @@
                     "name": "Indicators",
                     "icon": "user",
                     "slug": "data.indicators.list"
+                },
+                {
+                    "url": "Data/CP",
+                    "name": "Capaian Pembelajaran",
+                    "icon": "user",
+                    "slug": "data.cp.list"
+                },
+                {
+                    "url": "Data/ElemenCP",
+                    "name": "Elemen CP",
+                    "icon": "user",
+                    "slug": "data.elemencp.list"
+                },
+                {
+                    "url": "Data/TP",
+                    "name": "Tujuan Pembelajaran",
+                    "icon": "user",
+                    "slug": "data.tp.list"
+                },
+                {
+                    "url": "Data/TK",
+                    "name": "Tujuan Kegiatan",
+                    "icon": "user",
+                    "slug": "data.tk.list"
                 }
             ]
         }
