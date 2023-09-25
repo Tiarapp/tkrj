@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Data\DataCBIController;
 use App\Http\Controllers\Data\DataCPController;
 use App\Http\Controllers\Data\DataElemenCPController;
 use Illuminate\Support\Facades\Route;
@@ -341,6 +342,13 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
                 Route::get('', [DataTKController::class, 'index'])->name('list');
                 Route::post('/add',[DataTKController::class, 'store'])->name('add');
                 Route::put('/edit{id}',[DataTKController::class, 'update'])->name('edit');
+            });
+
+        // CBI
+            Route::group(['prefix' => 'Data/CBI', 'as' => 'data.cbi.'], function() {
+                Route::get('', [DataCBIController::class, 'index'])->name('list');
+                Route::post('/add',[DataCBIController::class, 'store'])->name('add');
+                Route::put('/edit{id}',[DataCBIController::class, 'update'])->name('edit');
             });
 
     // NILAI-----------------------------------------------------------------------------------------------------------

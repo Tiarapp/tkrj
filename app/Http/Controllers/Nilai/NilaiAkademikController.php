@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Nilai;
 use App\Models\Data\data_indicators;
 use App\Models\Data\data_murid;
 use App\Models\Data\data_pengajar;
+use App\Models\Data\data_tk;
 use App\Models\Master\MasterArea;
 use App\Models\Master\MasterCP;
 use App\Models\Master\MasterPredikat;
@@ -43,7 +44,8 @@ class NilaiAkademikController extends NilaiController
 
         $tema=MasterTema::all();
 
-        $tk=MasterTK::where('jenjang', $detail_pengajar->jenjang)
+        $tk=data_tk::where('jenjang', $detail_pengajar->jenjang)
+                    ->where('tahunajaran_id', $periode->tahunajaran_id)
                     ->get();
 
         $predikat=MasterPredikat::all();

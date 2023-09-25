@@ -12,10 +12,10 @@ class DataElemenCPController extends DataController
     public function index()
     {
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data"], ['name' => "Elemen CP"]];
-        $elemen = data_elemen_cp::latest()->paginate(10);
+        $elemen = data_elemen_cp::where('tahunajaran_id', '4')->get();
         $tahun_ajaran = MasterTahunAjaran::all();
 
-        $cp = data_cp::all();
+        $cp = data_cp::where('tahunajaran_id', '4')->get();
 
         return view('content.Data.ElemenCP.data_elemen', [
             'breadcrumbs' => $breadcrumbs,
@@ -27,13 +27,14 @@ class DataElemenCPController extends DataController
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'elemen'   => 'required',
-            'status'        => 'required',
-            'cp_id'         => 'required',
-            'narasi'        => 'required',
-            'tahunajaran_id'=> 'required',
-        ]);
+        // return $request->all();
+        // $this->validate($request, [
+        //     'elemen'        => 'required',
+        //     'status'        => 'required', 
+        //     'cp_id'         => 'required',
+        //     'narasi'        => 'required',
+        //     'tahunajaran_id'=> 'required',
+        // ]);
 
         // dd($request->elemen);
 

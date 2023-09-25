@@ -201,6 +201,12 @@
                     "name": "Tujuan Kegiatan",
                     "icon": "user",
                     "slug": "data.tk.list"
+                },
+                {
+                    "url": "Data/CBI",
+                    "name": "CBI Fonik",
+                    "icon": "user",
+                    "slug": "data.cbi.list"
                 }
             ]
         }

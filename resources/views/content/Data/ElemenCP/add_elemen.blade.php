@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="jquery-val-form" action="{{route('data.elemencp.add')}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
+                @csrf
                 <div class="modal-body">
                     <div class="row d-flex align-items-end">
                         <div class="col-md-12 col-12">

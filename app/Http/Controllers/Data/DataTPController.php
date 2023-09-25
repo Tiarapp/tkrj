@@ -10,14 +10,14 @@ class DataTPController extends DataController
 {
     public function index()
     {
-        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data Master"], ['name' => "TP"]];
+        $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data"], ['name' => "TP"]];
         $data_tp = data_tp::latest()->paginate(10);
 
         $cp = data_elemen_cp::all();
 
         // dd($cp);
 
-        return view('content.Master.TP.data_tp', [
+        return view('content.Data.TujuanPembelajaran.data_tp', [
             'breadcrumbs' => $breadcrumbs,
             'tp' => $data_tp,
             'cp' => $cp
@@ -43,10 +43,10 @@ class DataTPController extends DataController
 
         if($data_tp){
             //redirect dengan pesan sukses
-            return redirect()->route('master.tp.list')->with(['succes' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('data.tp.list')->with(['succes' => 'Data Berhasil Disimpan!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('master.tp.list')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('data.tp.list')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -87,10 +87,10 @@ class DataTPController extends DataController
 
         if($mastertp){
             //redirect dengan pesan sukses
-            return redirect()->route('master.tp.list')->with(['succes' => 'Data Berhasil Diupdate!']);
+            return redirect()->route('data.tp.list')->with(['succes' => 'Data Berhasil Diupdate!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('master.tp.list')->with(['error' => 'Data Gagal Diupdate!']);
+            return redirect()->route('data.tp.list')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
 

@@ -26,6 +26,7 @@ class MasterAkunController extends MasterController
             $data=MasterSiswa::where('id', $request->nomor_induk)
                                 ->select('id', 'nis as ni', 'nama')
                                 ->first();
+                                
         }elseif($request->level=="Guru") {
 
             $data=MasterGuru::where('id', $request->nomor_induk)

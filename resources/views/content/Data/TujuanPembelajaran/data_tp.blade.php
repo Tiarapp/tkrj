@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                @include('content.Master.TP.add_tp')
+                @include('content.Data.TujuanPembelajaran.add_tp')
                 <div class="card-datatable">
                     <table id="example" class="datatables-ajax table table-responsive">
                         <thead>
@@ -82,7 +82,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                                @include('content.Master.TP.edit_tp')
+                                @include('content.Data.TujuanPembelajaran.edit_tp')
                             @endforeach
                         </tbody>
                     </table>

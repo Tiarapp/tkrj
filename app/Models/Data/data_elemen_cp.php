@@ -10,7 +10,7 @@ class data_elemen_cp extends Model
     use HasFactory;
     protected $table = 'data_elemen_cp';
     protected $fillable = [
-        'cp_id', 'nama_elemen','narasi', 'status','tahunajaran_id'
+        'cp_id', 'nama_elemen','narasi', 'status','tahunajaran_id',
     ];
 
     public function cp()
