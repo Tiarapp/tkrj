@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Data;
 
 use App\Models\Data\data_tk;
 use App\Models\Data\data_tp;
+use App\Models\Master\MasterJenjang;
 use App\Models\Master\MasterTahunAjaran;
 use Illuminate\Http\Request;
 
@@ -16,34 +17,40 @@ class DataTKController extends DataController
         $tahun_ajaran = MasterTahunAjaran::all();
         $data_tk = data_tk::latest()->paginate(10); 
 
-        $data_tp = data_tp::all();
+        $data_tp = data_tp::where('cp_id', '5')->get();
+        $jenjang = MasterJenjang::all();
 
         return view('content.Data.TujuanKegiatan.data_tk', [
             'breadcrumbs' => $breadcrumbs,
-            'tk' => $data_tk,
-            'tp' => $data_tp,
-            'tahun_ajaran' => $tahun_ajaran
+            'data_tk' => $data_tk,
+            'data_tp' => $data_tp,
+            'tahun_ajaran' => $tahun_ajaran,
+            'jenjang'   => $jenjang
         ]);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'kode_ref'      => 'required',
-            'tp_id'         => 'required',
-            'nama_tk'       => 'required',
-            'narasi'        => 'required',
-            'status_aktif'  => 'required',
-            'tahun_ajaran'  => 'required'
-        ]);
-
+        // $this->validate($request, [
+        //     'kode_ref'          => 'required',
+        //     'tp_id'             => 'required',
+        //     'tujuan_kegiatan'   => 'required',
+        //     'status_aktif'      => 'required',
+        //     'tahun_ajaran'      => 'required'
+        // ]);
+        $tp = explode('#', $request->tp_id);
+        $jenjang = explode('#', $request->jenjang);
         $data_tk = data_tk::create([
-            'kode_ref'      => $request->kode_ref,
-            'nama_tk'       => $request->nama_tk,
-            'tp_id'         => $request->tp_id,
-            'narasi'        => $request->narasi,
-            'status_aktif'  => $request->status_aktif,
-            'tahun_ajaran'  => $request->ta_id
+            'kode_ref'              => $request->kode_ref,
+            'tujuan_kegiatan'       => $request->nama_tk,
+            'tp_id'                 => $tp[0],
+            'tujuan_pembelajaran'   => $tp[1],
+            'cp_id'                 => $tp[2],
+            'jenjang_id'            => $jenjang[0],
+            'jenjang'               => $jenjang[1],
+            'no'                    => $request->no,
+            'status_aktif'          => $request->status_aktif,
+            'tahunajaran_id'        => $request->ta_id
         ]);
 
         if($data_tk){
@@ -64,7 +71,6 @@ class DataTKController extends DataController
             'kode_ref'      => 'required',
             'tp_id'         => 'required',
             'nama_tk'       => 'required',
-            'narasi'        => 'required',
             'status_aktif'  => 'required'
         ]);
 

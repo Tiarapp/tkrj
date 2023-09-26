@@ -11,9 +11,9 @@ class DataTPController extends DataController
     public function index()
     {
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data"], ['name' => "TP"]];
-        $data_tp = data_tp::latest()->paginate(10);
+        $data_tp = data_tp::where('tahunajaran_id', '4')->get();
 
-        $cp = data_elemen_cp::all();
+        $cp = data_elemen_cp::where('tahunajaran_id', '4')->get();
 
         // dd($cp);
 
@@ -37,7 +37,7 @@ class DataTPController extends DataController
         $data_tp = data_tp::create([
             'nama_tp'       => $request->nama_tp,
             'narasi'        => $request->narasi,
-            'elemen_id'        => $request->cp_id,
+            'elemen_id'     => $request->cp_id,
             'status_aktif'  => $request->status_aktif
         ]);
 

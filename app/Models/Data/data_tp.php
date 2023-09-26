@@ -22,4 +22,9 @@ class data_tp extends Model
     {
     	return $this->belongsTo('App\Models\Master\MasterTahunAjaran','tahunajaran_id', 'id');
     }
+
+    public function id_elemencp()
+    {
+        return $this->belongsTo(data_elemen_cp::class, 'elemencp_id', 'id');
+    }
 }

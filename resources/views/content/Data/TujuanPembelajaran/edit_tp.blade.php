@@ -27,7 +27,7 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="basic-default-name">Jenis CP</label>
                                     <select class="basic-select2" name="cp_id" required>
-                                        <option value="{{ $tp->elemen_id }}" selected>{{ $tp->elemencp->nama_elemen }}</option>
+                                        <option value="{{ $tp->elemen_id }}" selected>{{ $tp->elemencp}}</option>
                                         @foreach ($cp as $c)
                                             <option value="{{ $c->id }}">{{$c->nama_elemen}}</option>
                                         @endforeach

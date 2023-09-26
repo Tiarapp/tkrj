@@ -13,7 +13,7 @@
                         <div class="col-md-12 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Kode Referensi</label>
-                                <input type="text" class="form-control" name="kode_ref" id="basic-default-name" placeholder="Kode Referensi" required/>
+                                <input type="text" class="form-control" name="kode_ref" id="basic-default-name" placeholder="Kode Referensi"/>
                                 {{-- <textarea class="form-control" name="narasi" id="narasi" placeholder="Narasi" cols="30" rows="5"></textarea> --}}
                             </div>
                         </div>
@@ -23,46 +23,58 @@
                             <label class="form-label" for="basic-default-name">Jenis TP</label>
                             <select class="basic-select2" name="tp_id" required>
                                 <option value="" selected disabled>Pilih TP</option>
-                                @foreach ($tp as $c)
-                                    <option value="{{ $c->id }}">{{$c->nama_tp}}</option>
+                                @foreach ($data_tp as $tp)
+                                    <option value="{{ $tp->id }}#{{$tp->tujuan_pembelajaran}}#{{$tp->cp_id}}">{{$tp->tujuan_pembelajaran}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="row d-flex align-items-end">
-                        <div class="col-md-4 col-12">
-                            <div class="mb-1">
-                                <label class="form-label" for="basic-default-name">Nama TK</label>
-                                <input type="text" class="form-control" name="nama_tk" id="basic-default-name" placeholder="Nama Tujuan Kegiatan" required/>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-6 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Status Aktif</label>
                                 <select class="basic-select2" name="status_aktif" required>
-                                    <option value="" selected disabled>Pilih Status</option>
-                                    <option value="0">Non Aktif</option>
-                                    <option value="1">Aktif</option>
+                                    {{-- <option value="" selected disabled>Pilih Status</option> --}}
+                                    {{-- <option value="Non Aktif">Non Aktif</option> --}}
+                                    <option selected value="Aktif">Aktif</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-6 col-12">
                             <div class="mb-1">
                                 <label class="form-label" for="basic-default-name">Tahun Ajaran</label>
                                 <select class="basic-select2" name="ta_id" required>
-                                    <option >Pilih Tahun Ajaran</option>
-                                    @foreach($tahun_ajaran as $ta)
-                                    <option value="{{$ta->id}}">{{$ta->tahun_ajaran}}</option>
+                                    {{-- <option >Pilih Tahun Ajaran</option> --}}
+                                    {{-- @foreach($tahun_ajaran as $ta) --}}
+                                    {{-- <option value="{{$ta->id }}">{{$ta->tahun_ajaran}}</option> --}}
+                                    <option selected value="4">2023/2024</option>
+                                    {{-- @endforeach --}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="mb-1">
+                                <label class="form-label" for="basic-default-name">Jenjang</label>
+                                <select class="basic-select2" name="jenjang" required>
+                                    <option >Pilih Jenjang</option>
+                                    @foreach($jenjang as $j)
+                                    <option value="{{$j->id}}#{{$j->nama_jenjang}}">{{$j->nama_jenjang}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="mb-1">
+                                <label class="form-label" for="basic-default-name">Nomor</label>
+                                <input type="text" name="no" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="row d-flex align-items-end">
                         <div class="col-md-12 col-12">
                             <div class="mb-1">
-                                <label class="form-label" for="basic-default-name">Narasi</label>
-                                <textarea class="form-control" name="narasi" id="narasi" placeholder="Narasi" cols="30" rows="5"></textarea>
+                                <label class="form-label" for="basic-default-name">Tujuan Kegiatan</label>
+                                <textarea class="form-control" name="nama_tk" id="narasi" placeholder="Narasi" cols="30" rows="5"></textarea>
                             </div>
                         </div>
                     </div>

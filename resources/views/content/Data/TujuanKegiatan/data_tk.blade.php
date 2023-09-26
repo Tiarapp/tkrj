@@ -59,23 +59,21 @@
                     <table id="example" class="datatables-ajax table table-responsive">
                         <thead>
                             <tr>
-                                <th>Kode Referensi</th>
-                                <th>Elemen CP</th>
-                                <th>TP</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Narasi</th>
+                                <th>No</th>
+                                <th>Jenjang</th>
+                                <th>Tujuan Pembelajaran</th>
+                                <th>Tujuan Kegiatan</th>
                                 <th>Status</th>
                                 <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tk as $tk)
+                            @foreach ($data_tk as $tk)
                                 <tr>
-                                    <td>{{ $tk->kode_ref }}</td>
-                                    <td>{{ $tk->tp->elemencp->nama_elemen }} </td>
-                                    <td>{{ $tk->tp->nama_tp }} </td>
-                                    <td>{{ $tk->nama_tk }} </td>
-                                    <td>{{ $tk->narasi }} </td>
+                                    <td>{{ $tk->no }}</td>
+                                    <td>{{ $tk->jenjang }}</td>
+                                    <td>{{ $tk->tujuan_pembelajaran }}</td>
+                                    <td>{{ $tk->tujuan_kegiatan }} </td>
                                     <td>{{ $tk->status_aktif }}</td>
                                     <td>
                                         {{-- <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{$t->id}}"> --}}
@@ -133,7 +131,9 @@
     $(".basic-select2").select2();
 
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').DataTable({
+            sorting: false,
+        });
     } );
 
     $('#jquery-val-form').validate({

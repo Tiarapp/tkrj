@@ -61,8 +61,6 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>CP</th>
-                                <th>Nama Elemen</th>
-                                <th>Narasi</th>
                                 <th>Status</th>
                                 <th>Option</th>
                             </tr>
@@ -70,10 +68,8 @@
                         <tbody>
                             @foreach ($tp as $tp)
                                 <tr>
-                                    <td>{{ $tp->nama_tp }}</td>
-                                    <td>{{ $tp->elemencp->cp->nama_cp }}</td>
-                                    <td>{{ $tp->elemencp->nama_elemen }}</td>
-                                    <td>{{ $tp->narasi }}</td>
+                                    <td>{{ $tp->tujuan_pembelajaran }}</td>
+                                    <td>{{ $tp->capaian_pembelajaran }}</td>
                                     <td>{{ $tp->status_aktif }}</td>
                                     <td>
                                         {{-- <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" id="modal_edit" data-bs-target="#edit{{$t->id}}"> --}}
@@ -131,7 +127,9 @@
     $(".basic-select2").select2();
 
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').DataTable({
+            sorting: false,
+        });
     } );
 
     $('#jquery-val-form').validate({
