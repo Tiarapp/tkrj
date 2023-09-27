@@ -17,7 +17,7 @@ class DataTKController extends DataController
         $tahun_ajaran = MasterTahunAjaran::all();
         $data_tk = data_tk::latest()->paginate(10); 
 
-        $data_tp = data_tp::where('cp_id', '5')->get();
+        $data_tp = data_tp::where('cp_id', '6')->get();
         $jenjang = MasterJenjang::all();
 
         return view('content.Data.TujuanKegiatan.data_tk', [
