@@ -68,7 +68,7 @@ class NilaiAkademikController extends NilaiController
         $periode=$this->periode->getPeriodeAktif();
 
         $tema=MasterTema::find($request->id_tema);
-        $tk=MasterTK::find($request->id_tk);
+        $tk=data_tk::find($request->id_tk);
 
         if (count($request['add_murid_id']) > 0) {
             foreach($request['add_murid_id'] as $idx_murid_id => $val_murid_id) {

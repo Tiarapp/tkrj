@@ -15,9 +15,10 @@ class DataTKController extends DataController
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Data"], ['name' => "TK"]];
         
         $tahun_ajaran = MasterTahunAjaran::all();
-        $data_tk = data_tk::latest()->paginate(10); 
+        $data_tk = data_tk::orderBy('id', 'desc')->paginate(10); 
 
-        $data_tp = data_tp::where('cp_id', '6')->get();
+        // $data_tp = data_tp::where('cp_id', '8')->get();
+        $data_tp = data_tp::all();
         $jenjang = MasterJenjang::all();
 
         return view('content.Data.TujuanKegiatan.data_tk', [
