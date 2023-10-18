@@ -63,14 +63,20 @@ class RaportAkademikController extends RaportController
                                         ->where('periode_keterangan', $periode->periode)
                                         ->where('periode_id', $periode->id)
                                         ->first();
-
+        // dd($rekap_akademik->saran_tema);
         if (!empty($rekap_akademik)) {
             $cp = explode('||', $rekap_akademik->cp);
-            $narasi = explode('||', $rekap_akademik->narasi);
             $narasi = explode('||', $rekap_akademik->narasi);
             $saran_tema = explode('||', $rekap_akademik->saran_tema);
             $saran_ortu = explode('||', $rekap_akademik->saran_ortu);
 
+            foreach ($cp as $key => $data) {
+                $data_[$data]=[
+                    'narasi'        =>$narasi[$key],
+                    'saran_tema'    =>$saran_tema[$key],
+                    'saran_ortu'    =>$saran_ortu[$key]
+                ];
+            }
             // $cp = array_reverse($cp);
             // $narasi = array_reverse($narasi);
             // $saran_tema = array_reverse($saran_tema);
@@ -89,7 +95,7 @@ class RaportAkademikController extends RaportController
         if ($periode->periode == "Tengah") {
             return view('content.Raport.Akademik.print_mid_raport',
                     compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu',
-                    'tanggal_cetak'));
+                    'tanggal_cetak', 'data_'));
         } else {
             return view('content.Raport.Akademik.print_akhir_raport',
                     compact('murid','periode', 'rekap_akademik', 'cp','narasi', 'saran_tema', 'saran_ortu', 'proyek',
