@@ -39,6 +39,7 @@ class NilaiEkstraController extends NilaiController
                                 ->where('development_id', 1)
                                 ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
+                                ->where('periode_id', $periode->id)
                                 ->select('id', 'indicators')
                                 ->orderby('indicators')
                                 ->get();

@@ -80,28 +80,28 @@
         <div class="col-12">
             <div class="card">
                 <div class="judul" style="padding: 10px">
-                    <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
-                    <h3><b>MID SEMESTER</b></h3>
+                    <h2><b>LAPORAN PERKEMBANGAN ANAK</b></h2>
+                    <h2><b>MID SEMESTER</b></h2>
                     <br>
-                    <div class="row" style="margin-bottom: 30px">
-                        <div class="col-7">
+                    <div class="row" style="margin-bottom: 30px; font-size:1.1rem">
+                        <div class="col-8">
                             <div class="row">
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
                                 <label class="col-6" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
-                                <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
+                                <label class="col-5" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
                                 <label class="col-6" style="text-align: left"><b>: {{ $murid->kelas }} / {{ $murid->nis }}</b></label>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-4">
                             <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
+                                <label class="col-7" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
                             </div>
                             <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
+                                <label class="col-7" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
                             </div>
                         </div>
                     </div>
@@ -122,8 +122,8 @@
                     </div>
 
 
-                    <div class="row nilai" style="text-align: center; padding: 10px">
-                        <table style="border: 1px solid black">
+                    <div class="row nilai" style="text-align: center; padding: 10px; ">
+                        <table style="border: 1px solid black; font-size: 1.1rem">
                             <tr>
                                 <th style="text-align: center">AREAS OF DEVELOPMENT</th>
                                 <th style="text-align: center">DEVELOPMENT ACHIEVEMENT</th>
@@ -244,12 +244,12 @@
                         <br>
                         <br>
                         <div class="col-6" style="text-align: left">
-                            <b>Sidoarjo, 18 Maret 2023</b>
+                            <b>Sidoarjo, {{$tanggal_cetak->tanggal_cetak}}</b>
                         </div>
                     </div>
 
                     <div class="row" style="padding: 10px">
-                        <div class="title" style="border: 1px solid black">
+                        <div class="title" style="border: 1px solid black; font-size:1.1rem">
                             <div class="row">
                                 <div class="col-4" style="border: 1px solid black">
                                     PRINCIPAL
@@ -275,7 +275,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="name" style="border: 1px solid black">
+                        <div class="name" style="border: 1px solid black; font-size:1.1rem">
                             <div class="row">
                                 <div class="col-4" style="border: 1px solid black">
                                     Siti Isnawati, S.Pd.I. S.Pd
@@ -294,36 +294,36 @@
 
                     </div>
 
-                    <div class="row" style="margin-bottom: 30px">
-                        <h3><b>LAPORAN PERKEMBANGAN ANAK</b></h3>
-                        <h3><b>MID SEMESTER</b></h3>
+                    <div class="row" style="margin-bottom: 30px;">
+                        <h2><b>LAPORAN PERKEMBANGAN ANAK</b></h2>
+                        <h2><b>MID SEMESTER</b></h2>
                         <br>
                         <br>
                         <br>
-                        <div class="col-7">
+                       <div class="col-8" style="font-size:1.1rem">
                             <div class="row">
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px"><b>NAMA ANAK DIDIK </b></label>
                                 <label class="col-6" style="text-align: left; padding-right: 0px"><b>: {{ $murid->nama }}</b></label>
                             </div>
                             <div class="row">
-                                <label class="col-4" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
+                                <label class="col-5" style="text-align: left; "><b>KELAS/NO DIDIK</b></label>
                                 <label class="col-6" style="text-align: left"><b>: {{ $murid->kelas }} / {{ $murid->nis }}</b></label>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-4"  style="font-size:1.1rem">
                             <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
+                                <label class="col-7" style="text-align: left; padding: 0px"><b>TAHUN AJARAN</b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px"><b>: {{ $murid->tahunajaran }}</b></label>
                             </div>
                             <div class="row">
-                                <label class="col-5" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
-                                <label class="col-4" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
+                                <label class="col-7" style="text-align: left; padding: 0px"><b>SEMESTER</b></label>
+                                <label class="col-5" style="text-align: left; padding-right: 0px"><b>: {{ $periode->semester}}</b></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row nilai" style="text-align: center; padding: 10px">
-                        <table style="border: 1px solid black">
+                        <table style="border: 1px solid black; font-size: 1.1rem">
                             <tr>
                                 <th style="text-align: center">AREAS OF DEVELOPMENT</th>
                                 <th style="text-align: center">DEVELOPMENT ACHIEVEMENT</th>
