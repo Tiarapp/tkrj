@@ -336,7 +336,7 @@
                             $rowid += 1
                             @endphp
                             <tr>
-                            @if ($key == 0 || $rowspan == $ro   wid)
+                            @if ($key == 0 || $rowspan == $rowid)
                                 @php
                                     $rowid = 0;
                                     $rowspan = count($tilawah);
