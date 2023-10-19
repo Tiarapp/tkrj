@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="card-header">
-                                <h4 class="card-title">Nama: {{$murid->nama}} / Kelas: {{$murid->kelas}}</h4>
+                                <h4 class="card-title">Nama: {{ $murid->nama }} / Kelas: {{ $murid->kelas }}</h4>
                             </div>
                         </div>
                     </div>
@@ -44,49 +44,68 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-1">
-                                    <form id="jquery-val-form" action="{{ route('walikelas.narasi.add') }}" method="post" enctype="multipart/form-data">
+                                    <form id="jquery-val-form" action="{{ route('walikelas.narasi.add') }}" method="post"
+                                        enctype="multipart/form-data">
                                         {{ csrf_field() }}
 
                                         {{-- ID --}}
                                         <input type="hidden" name="id_murid" id="id_murid" value="{{ $murid->id }}">
                                         <input type="hidden" name="id_rekap_akademik" id="id_rekap_akademik">
 
-                                        @php $i="0px"; $key=0; @endphp
+                                        @php
+                                            $i = '0px';
+                                            $key = 0;
+                                        @endphp
                                         @foreach ($nilai_akademik as $na)
-                                        {{-- @dump($na) --}}
-                                            <input type="hidden" value="{{$na->cp}}" name="cp[]">
-                                            <h6 class="card-title" id="cp_{{$key}}" style="margin-top: {{$i}}">
-                                                {{$na->cp}}
+                                            {{-- @dump($na) --}}
+                                            <input type="hidden" value="{{ $na->cp }}" name="cp[]">
+                                            <h6 class="card-title" id="cp_{{ $key }}"
+                                                style="margin-top: {{ $i }}">
+                                                {{ $na->cp }}
                                                 {{-- <button type="button" class="btn btn-icon btn-success _foto" id="add_foto" onclick="modal_add_foto()" data-bs-toggle="modal" data-bs-target="#inlineForm"> --}}
-                                                <button type="button" class="btn btn-icon btn-success _foto" id="add_foto" onclick="modal_add_foto({{$key}})">
-                                                    <i data-feather='image'></i>
-                                                </button>
+                                                @if ($periode->periode == 'Akhir')
+                                                    <button type="button" class="btn btn-icon btn-success _foto"
+                                                        id="add_foto" onclick="modal_add_foto({{ $key }})">
+                                                        <i data-feather='image'></i>
+                                                    </button>
+                                                @endif
+
                                             </h6>
-                                            @php $nama=strtolower($murid->nama); $new_nama=ucwords($nama);@endphp
-                                            <textarea class="form-control narasi" name="narasi[{{$key}}]" id="narasi_{{$key}}" rows="3">Alhamdulillah, Ananda {{$new_nama}} sudah dapat {{$na->tk}}</textarea>
+                                            @php
+                                                $nama = strtolower($murid->nama);
+                                                $new_nama = ucwords($nama);
+                                            @endphp
+                                            <textarea class="form-control narasi" name="narasi[{{ $key }}]" id="narasi_{{ $key }}"
+                                                rows="3">Alhamdulillah, Ananda {{ $new_nama }} sudah dapat {{ $na->tk }}</textarea>
                                             <br>
                                             <div class="row">
                                                 <div class="col-6">
                                                     {{-- INPUT SARAN TEMA SELANJUTNYA --}}
-                                                    <label class="card-title" id="cp_{{$key}}">Saran Tema Selanjutnya</label>
-                                                    <textarea class="form-control narasi" name="saran_tema[{{$key}}]" id="saran_tema_{{$key}}" rows="3"></textarea>
+                                                    <label class="card-title" id="cp_{{ $key }}">Saran Tema
+                                                        Selanjutnya</label>
+                                                    <textarea class="form-control narasi" name="saran_tema[{{ $key }}]" id="saran_tema_{{ $key }}"
+                                                        rows="3"></textarea>
                                                 </div>
                                                 <div class="col-6">
                                                     {{-- INPUT SARAN ORTU di RUMAH --}}
-                                                    <label class="card-title" id="cp_{{$key}}">Saran Untuk Ortu di Rumah</label>
-                                                    <textarea class="form-control narasi" name="saran_ortu[{{$key}}]" id="saran_ortu_{{$key}}" rows="3"></textarea>
+                                                    <label class="card-title" id="cp_{{ $key }}">Saran Untuk Ortu
+                                                        di Rumah</label>
+                                                    <textarea class="form-control narasi" name="saran_ortu[{{ $key }}]" id="saran_ortu_{{ $key }}"
+                                                        rows="3"></textarea>
                                                 </div>
                                             </div>
 
-                                            @php $i="30px"; $key++;@endphp
-
+                                            @php
+                                                $i = '30px';
+                                                $key++;
+                                            @endphp
                                         @endforeach
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary me-1">Simpan</button>
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </form>
-                                        @include('content.Walikelas.Narasi.add_foto')
+                                    @include('content.Walikelas.Narasi.add_foto')
                                 </div>
                             </div>
                         </div>
@@ -135,7 +154,7 @@
 
             $(".basic-select2").select2();
 
-            var id_murid=document.getElementById("id_murid").value;
+            var id_murid = document.getElementById("id_murid").value;
             edit_rekap_akademik(id_murid);
 
             @if ($message = Session::get('succes'))
@@ -156,28 +175,29 @@
                 @endforeach
             @endif
 
-            var id_rekap=document.getElementById("id_rekap_akademik").value;
-            if (id_rekap=="") {
-                $("._foto").hide=true;
-            }else{
-                $("._foto").hide=true;
-                document.getElementById("id_nilai_akademik").value=id_rekap;
+            var id_rekap = document.getElementById("id_rekap_akademik").value;
+            if (id_rekap == "") {
+                $("._foto").hide = true;
+            } else {
+                $("._foto").hide = true;
+                document.getElementById("id_nilai_akademik").value = id_rekap;
             }
         });
+
         function modal_add_foto(data_key) {
 
 
-            if (data_key==0) {
+            if (data_key == 0) {
                 document.getElementById("foto1").hidden = false;
                 document.getElementById("foto2").hidden = true;
                 document.getElementById("foto3").hidden = true;
                 $("#cp_id").val(1).change();
-            } else if(data_key==1) {
+            } else if (data_key == 1) {
                 document.getElementById("foto1").hidden = true;
                 document.getElementById("foto2").hidden = false;
                 document.getElementById("foto3").hidden = true;
                 $("#cp_id").val(2).change();
-            }else if(data_key==2) {
+            } else if (data_key == 2) {
                 document.getElementById("foto1").hidden = true;
                 document.getElementById("foto2").hidden = true;
                 document.getElementById("foto3").hidden = false;
@@ -191,19 +211,19 @@
             document.getElementById("form_foto").submit();
         }
 
-        const edit_rekap_akademik = function(id_murid){
+        const edit_rekap_akademik = function(id_murid) {
             if (id_murid) {
                 $.ajax({
                     type: "GET",
-                    url: "/Walikelas/Narasi/update_narasi?id_murid=" +id_murid,
+                    url: "/Walikelas/Narasi/update_narasi?id_murid=" + id_murid,
                     dataType: 'JSON',
-                    success:function(result){
+                    success: function(result) {
 
                         $("#id_rekap_akademik").val(result.id);
 
                         const cp = result.cp.split("||");
                         for (let index = 0; index < cp.length; index++) {
-                            $("#cp_"+index).val(cp[index]);
+                            $("#cp_" + index).val(cp[index]);
                         }
 
                         // const narasi = result.narasi.split("||");
@@ -213,17 +233,16 @@
 
                         const saran_tema = result.saran_tema.split("||");
                         for (let index = 0; index < saran_tema.length; index++) {
-                            $("#saran_tema_"+index).val(saran_tema[index]);
+                            $("#saran_tema_" + index).val(saran_tema[index]);
                         }
 
                         const saran_ortu = result.saran_ortu.split("||");
                         for (let index = 0; index < saran_ortu.length; index++) {
-                            $("#saran_ortu_"+index).val(saran_ortu[index]);
+                            $("#saran_ortu_" + index).val(saran_ortu[index]);
                         }
 
                     },
-                    error:function(result)
-                    {
+                    error: function(result) {
 
                     }
                 });

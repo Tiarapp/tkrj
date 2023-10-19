@@ -8,13 +8,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-                <img id="foto1" class="card-img" style="width: 400px; height: 400px; text-align: left "
-                src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_1)}}" hidden>
-                <img id="foto2" class="card-img" style="width: 400px; height: 400px; text-align: left "
-                src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_2)}}" hidden>
-                <img id="foto3" class="card-img" style="width: 400px; height: 400px; text-align: left "
-                src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_3)}}" hidden>
+                @if (empty($rekap_akademik))
+                    <img id="foto1" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                    src="" hidden>
+                    <img id="foto2" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                    src="" hidden>
+                    <img id="foto3" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                    src="" hidden>
+                @else
+                    <img id="foto1" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                    src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_1)}}" hidden>
+                    <img id="foto2" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                    src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_2)}}" hidden>
+                    <img id="foto3" class="card-img" style="width: 400px; height: 400px; text-align: left "
+                    src="{{ asset('/Tahunajaran/'.$periode->tahunmulai."/".$periode->id."/".$murid->kelas."/".$rekap_akademik->foto_3)}}" hidden>
+                @endif
 
                 <form id="form_foto" action="{{route('walikelas.narasi.add_foto')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
