@@ -55,7 +55,6 @@ class RaportAkademikController extends RaportController
         // return $periode;
         $murid = data_murid::where('id', '=', $murid_id)
             ->first();
-
         $tanggal_cetak=data_tanggal_cetak::where('periode_keterangan', $periode->periode)
                                         ->where('master_periode_id', $periode->id)
                                         ->first();
@@ -93,9 +92,27 @@ class RaportAkademikController extends RaportController
                                 ->where('periode_id', $periode->id)->first();
 
         if ($periode->periode == "Tengah") {
-            return view('content.Raport.Akademik.print_mid_raport',
-                    compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu',
-                    'tanggal_cetak', 'data_'));
+            if ($murid->jenjang=="TC") {
+
+                return view('content.Raport.Akademik.print_mid_raport_tc',
+                compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu',
+                'tanggal_cetak', 'data_'));
+
+            } elseif ($murid->jenjang=="PG") {
+
+                return view('content.Raport.Akademik.print_mid_raport_pg',
+                compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu',
+                'tanggal_cetak', 'data_'));
+
+            }elseif ($murid->jenjang=="TK A" || $murid->jenjang=="TK B") {
+                return view('content.Raport.Akademik.print_mid_raport_tk',
+                compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu',
+                'tanggal_cetak', 'data_'));
+            }
+
+            // return view('content.Raport.Akademik.print_mid_raport',
+            //         compact('murid','periode', 'rekap_akademik', 'cp', 'narasi', 'saran_tema', 'saran_ortu',
+            //         'tanggal_cetak', 'data_'));
         } else {
             return view('content.Raport.Akademik.print_akhir_raport',
                     compact('murid','periode', 'rekap_akademik', 'cp','narasi', 'saran_tema', 'saran_ortu', 'proyek',
