@@ -52,7 +52,8 @@
                         <select class="select2-size-sm form-select" name="tk_id" id="tk_id">
                             <option value="" selected disabled>Pilih TK</option>
                             @foreach ($tk as $t)
-                                <option value="{{$t->id}}">{{$t->kode_referensi}} || {{$t->tujuan_kegiatan}}</option>
+                                {{-- <option value="{{$t->id}}">{{$t->kode_referensi}} || {{$t->tujuan_kegiatan}}</option> --}}
+                                <option value="{{$t->id}}">{{$t->tujuan_kegiatan}}</option>
                             @endforeach
                         </select>
                     </div>

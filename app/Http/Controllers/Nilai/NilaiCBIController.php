@@ -25,6 +25,7 @@ class NilaiCBIController extends NilaiController
 
     public function add_nilai($id_pengajar)
     {
+       
         $breadcrumbs = [['link' => "home", 'name' => "Home"], ['name' => "Input Nilai"], ['name' => "CBI"]];
 
         $periode=$this->periode->getPeriodeAktif();
@@ -36,10 +37,11 @@ class NilaiCBIController extends NilaiController
         $cbi=data_indicators::where('area_id', 2)
                                 ->where('jenjang_id', $murid[0]['jenjang_id'])
                                 ->where('status', "Aktif")
+                                ->where('periode_id', $periode->id)
                                 ->select('id', 'indicators')
                                 ->orderby('indicators')
                                 ->get();
-
+        // dd($cbi);
         $predikat=MasterPredikat::all();
 
         return view('content.Nilai.CBI.add_nilai_cbi', ['breadcrumbs' => $breadcrumbs, 'periode' => $periode, 'detail_pengajar' => $detail_pengajar, 'murid' => $murid, 'cbi'=>$cbi, 'predikat'=>$predikat]);

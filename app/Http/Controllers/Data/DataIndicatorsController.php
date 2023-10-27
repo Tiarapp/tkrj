@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Data;
 
+use App\Models\Data\data_cbi;
 use App\Models\Data\data_indicators;
 use App\Models\Master\MasterArea;
 use App\Models\Master\MasterCBI;
@@ -92,7 +93,8 @@ class DataIndicatorsController extends DataController
         // MASTER CBI
             public function data_cbi(Request $request)
             {
-                $cbi=MasterCBI::where('status', "Aktif")
+                $cbi=data_cbi::where('status', "Aktif")
+                                    ->where('tahunajaran_id', '4')
                                     ->orderby('cbi')
                                     ->get();
                 return response()->json($cbi);
